@@ -16,14 +16,14 @@ CREATE TABLE type_de_client(
    PRIMARY KEY(type_id)
 );
 
-CREATE TABLE Poste(
+CREATE TABLE poste(
    pos_id INT AUTO_INCREMENT,
    pos_libelle VARCHAR(50),
    pos_description VARCHAR(50),
    PRIMARY KEY(pos_id)
 );
 
-CREATE TABLE Site(
+CREATE TABLE site(
    site_id INT AUTO_INCREMENT,
    site_nom VARCHAR(50),
    site_description VARCHAR(50),
@@ -36,7 +36,7 @@ CREATE TABLE Site(
    PRIMARY KEY(site_id)
 );
 
-CREATE TABLE Pays(
+CREATE TABLE pays(
    pay_id INT AUTO_INCREMENT,
    pay_libelle VARCHAR(50),
    PRIMARY KEY(pay_id)
@@ -57,7 +57,7 @@ CREATE TABLE fournisseur(
    FOREIGN KEY(pay_id) REFERENCES Pays(pay_id)
 );
 
-CREATE TABLE Utilisateur(
+CREATE TABLE utilisateur(
    util_id INT AUTO_INCREMENT,
    util_role VARCHAR(50),
    util_identifiant VARCHAR(50),
@@ -82,7 +82,7 @@ CREATE TABLE article(
    FOREIGN KEY(cat_id) REFERENCES categorie(cat_id)
 );
 
-CREATE TABLE Employé(
+CREATE TABLE employe(
    emp_id INT AUTO_INCREMENT,
    emp_pos_id INT,
    emp_emp_id INT,
