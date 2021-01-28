@@ -3,7 +3,6 @@ CREATE DATABASE filrouge; USE filrouge;
 CREATE TABLE categorie(
    cat_id INT AUTO_INCREMENT,
    cat_nom VARCHAR(30),
-   cat_sous_categorie VARCHAR(50),
    cat_id_1 INT,
    PRIMARY KEY(cat_id),
    FOREIGN KEY(cat_id_1) REFERENCES categorie(cat_id)
