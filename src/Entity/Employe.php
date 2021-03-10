@@ -71,6 +71,16 @@ class Employe
      */
     private $clients;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $emp_mdp;
+
+    /**
+     * @ORM\Column(type="string", length=1)
+     */
+    private $emp_sexe;
+
     public function __construct()
     {
         $this->emp_sup_id = new ArrayCollection();
@@ -277,6 +287,42 @@ class Employe
                 $client->setEmpId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmpMdp(): ?string
+    {
+        return $this->emp_mdp;
+    }
+
+    public function setEmpMdp(string $emp_mdp): self
+    {
+        $this->emp_mdp = $emp_mdp;
+
+        return $this;
+    }
+
+    public function getCliSexe(): ?string
+    {
+        return $this->cli_sexe;
+    }
+
+    public function setCliSexe(string $cli_sexe): self
+    {
+        $this->cli_sexe = $cli_sexe;
+
+        return $this;
+    }
+
+    public function getEmpSexe(): ?string
+    {
+        return $this->emp_sexe;
+    }
+
+    public function setEmpSexe(string $emp_sexe): self
+    {
+        $this->emp_sexe = $emp_sexe;
 
         return $this;
     }
