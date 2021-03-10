@@ -2,42 +2,58 @@
 
 namespace App\Entity;
 
-use App\Repository\LigneDeCommandeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=LigneDeCommandeRepository::class)
+ * LigneDeCommande
+ *
+ * @ORM\Table(name="ligne_de_commande", indexes={@ORM\Index(name="FK_ligne_de_commande_commande", columns={"com_id"}), @ORM\Index(name="FK_ligne_de_commande_article", columns={"art_id"})})
+ * @ORM\Entity
  */
 class LigneDeCommande
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @var string
+     *
+     * @ORM\Column(name="ligne_prix", type="decimal", precision=10, scale=2, nullable=false)
      */
-    private $ligne_prix;
+    private $lignePrix;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="ligne_quantite", type="integer", nullable=false)
      */
-    private $ligne_quantite;
+    private $ligneQuantite;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="ligneDeCommandes")
-     * @ORM\JoinColumn(nullable=false)
+     * @var \Article
+     *
+     * @ORM\ManyToOne(targetEntity="Article")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="art_id", referencedColumnName="id")
+     * })
      */
-    private $com_id;
+    private $art;
 
     /**
-     * @ORM\OneToOne(targetEntity=Article::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @var \Commande
+     *
+     * @ORM\ManyToOne(targetEntity="Commande")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="com_id", referencedColumnName="id")
+     * })
      */
-    private $art_id;
+    private $com;
 
     public function getId(): ?int
     {
@@ -46,49 +62,51 @@ class LigneDeCommande
 
     public function getLignePrix(): ?string
     {
-        return $this->ligne_prix;
+        return $this->lignePrix;
     }
 
-    public function setLignePrix(string $ligne_prix): self
+    public function setLignePrix(string $lignePrix): self
     {
-        $this->ligne_prix = $ligne_prix;
+        $this->lignePrix = $lignePrix;
 
         return $this;
     }
 
     public function getLigneQuantite(): ?int
     {
-        return $this->ligne_quantite;
+        return $this->ligneQuantite;
     }
 
-    public function setLigneQuantite(int $ligne_quantite): self
+    public function setLigneQuantite(int $ligneQuantite): self
     {
-        $this->ligne_quantite = $ligne_quantite;
+        $this->ligneQuantite = $ligneQuantite;
 
         return $this;
     }
 
-    public function getComId(): ?Commande
+    public function getArt(): ?Article
     {
-        return $this->com_id;
+        return $this->art;
     }
 
-    public function setComId(?Commande $com_id): self
+    public function setArt(?Article $art): self
     {
-        $this->com_id = $com_id;
+        $this->art = $art;
 
         return $this;
     }
 
-    public function getArtId(): ?Article
+    public function getCom(): ?Commande
     {
-        return $this->art_id;
+        return $this->com;
     }
 
-    public function setArtId(Article $art_id): self
+    public function setCom(?Commande $com): self
     {
-        $this->art_id = $art_id;
+        $this->com = $com;
 
         return $this;
     }
+
+
 }

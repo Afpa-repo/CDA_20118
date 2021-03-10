@@ -2,46 +2,62 @@
 
 namespace App\Entity;
 
-use App\Repository\FactureRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=FactureRepository::class)
+ * Facture
+ *
+ * @ORM\Table(name="facture", indexes={@ORM\Index(name="FK_facture_commande", columns={"com_id"})})
+ * @ORM\Entity
  */
 class Facture
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="fact_num", type="string", length=255, nullable=false)
      */
-    private $fact_num;
+    private $factNum;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @var string
+     *
+     * @ORM\Column(name="fact_prix_ht", type="decimal", precision=10, scale=2, nullable=false)
      */
-    private $fact_prix_ht;
+    private $factPrixHt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fact_date", type="datetime", nullable=false)
      */
-    private $fact_date;
+    private $factDate;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @var string
+     *
+     * @ORM\Column(name="fact_prix_ttc", type="decimal", precision=10, scale=2, nullable=false)
      */
-    private $fact_prix_ttc;
+    private $factPrixTtc;
 
     /**
-     * @ORM\OneToOne(targetEntity=Commande::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @var \Commande
+     *
+     * @ORM\ManyToOne(targetEntity="Commande")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="com_id", referencedColumnName="id")
+     * })
      */
-    private $com_id;
+    private $com;
 
     public function getId(): ?int
     {
@@ -50,61 +66,63 @@ class Facture
 
     public function getFactNum(): ?string
     {
-        return $this->fact_num;
+        return $this->factNum;
     }
 
-    public function setFactNum(string $fact_num): self
+    public function setFactNum(string $factNum): self
     {
-        $this->fact_num = $fact_num;
+        $this->factNum = $factNum;
 
         return $this;
     }
 
     public function getFactPrixHt(): ?string
     {
-        return $this->fact_prix_ht;
+        return $this->factPrixHt;
     }
 
-    public function setFactPrixHt(string $fact_prix_ht): self
+    public function setFactPrixHt(string $factPrixHt): self
     {
-        $this->fact_prix_ht = $fact_prix_ht;
+        $this->factPrixHt = $factPrixHt;
 
         return $this;
     }
 
     public function getFactDate(): ?\DateTimeInterface
     {
-        return $this->fact_date;
+        return $this->factDate;
     }
 
-    public function setFactDate(\DateTimeInterface $fact_date): self
+    public function setFactDate(\DateTimeInterface $factDate): self
     {
-        $this->fact_date = $fact_date;
+        $this->factDate = $factDate;
 
         return $this;
     }
 
     public function getFactPrixTtc(): ?string
     {
-        return $this->fact_prix_ttc;
+        return $this->factPrixTtc;
     }
 
-    public function setFactPrixTtc(string $fact_prix_ttc): self
+    public function setFactPrixTtc(string $factPrixTtc): self
     {
-        $this->fact_prix_ttc = $fact_prix_ttc;
+        $this->factPrixTtc = $factPrixTtc;
 
         return $this;
     }
 
-    public function getComId(): ?Commande
+    public function getCom(): ?Commande
     {
-        return $this->com_id;
+        return $this->com;
     }
 
-    public function setComId(Commande $com_id): self
+    public function setCom(?Commande $com): self
     {
-        $this->com_id = $com_id;
+        $this->com = $com;
 
         return $this;
     }
+
+
 }

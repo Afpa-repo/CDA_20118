@@ -2,72 +2,103 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * Article
+ *
+ * @ORM\Table(name="article", indexes={@ORM\Index(name="FK_article_promotion", columns={"pro_id"}), @ORM\Index(name="FK_article_fournisseur", columns={"four_id"}), @ORM\Index(name="FK_article_categorie", columns={"cat_id"})})
+ * @ORM\Entity
  */
 class Article
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="art_photo", type="string", length=255, nullable=false)
      */
-    private $art_photo;
+    private $artPhoto;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @var string
+     *
+     * @ORM\Column(name="art_nom", type="string", length=50, nullable=false)
      */
-    private $art_nom;
+    private $artNom;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="art_libelle", type="string", length=255, nullable=true)
      */
-    private $art_libelle;
+    private $artLibelle;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @var string
+     *
+     * @ORM\Column(name="art_prix_ht", type="decimal", precision=10, scale=2, nullable=false)
      */
-    private $art_prix_ht;
+    private $artPrixHt;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="art_min_stock", type="integer", nullable=false)
      */
-    private $art_min_stock;
+    private $artMinStock;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="art_stock", type="integer", nullable=false)
      */
-    private $art_stock;
+    private $artStock;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @var bool
+     *
+     * @ORM\Column(name="art_promo", type="boolean", nullable=false)
      */
-    private $art_promo;
+    private $artPromo;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Promotion::class, inversedBy="articles")
+     * @var \Categorie
+     *
+     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cat_id", referencedColumnName="id")
+     * })
      */
-    private $pro_id;
+    private $cat;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Fournisseur::class, inversedBy="articles")
-     * @ORM\JoinColumn(nullable=false)
+     * @var \Fournisseur
+     *
+     * @ORM\ManyToOne(targetEntity="Fournisseur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="four_id", referencedColumnName="id")
+     * })
      */
-    private $four_id;
+    private $four;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="articles")
-     * @ORM\JoinColumn(nullable=false)
+     * @var \Promotion
+     *
+     * @ORM\ManyToOne(targetEntity="Promotion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pro_id", referencedColumnName="id")
+     * })
      */
-    private $cat_id;
+    private $pro;
 
     public function getId(): ?int
     {
@@ -76,121 +107,123 @@ class Article
 
     public function getArtPhoto(): ?string
     {
-        return $this->art_photo;
+        return $this->artPhoto;
     }
 
-    public function setArtPhoto(string $art_photo): self
+    public function setArtPhoto(string $artPhoto): self
     {
-        $this->art_photo = $art_photo;
+        $this->artPhoto = $artPhoto;
 
         return $this;
     }
 
     public function getArtNom(): ?string
     {
-        return $this->art_nom;
+        return $this->artNom;
     }
 
-    public function setArtNom(string $art_nom): self
+    public function setArtNom(string $artNom): self
     {
-        $this->art_nom = $art_nom;
+        $this->artNom = $artNom;
 
         return $this;
     }
 
     public function getArtLibelle(): ?string
     {
-        return $this->art_libelle;
+        return $this->artLibelle;
     }
 
-    public function setArtLibelle(?string $art_libelle): self
+    public function setArtLibelle(?string $artLibelle): self
     {
-        $this->art_libelle = $art_libelle;
+        $this->artLibelle = $artLibelle;
 
         return $this;
     }
 
     public function getArtPrixHt(): ?string
     {
-        return $this->art_prix_ht;
+        return $this->artPrixHt;
     }
 
-    public function setArtPrixHt(string $art_prix_ht): self
+    public function setArtPrixHt(string $artPrixHt): self
     {
-        $this->art_prix_ht = $art_prix_ht;
+        $this->artPrixHt = $artPrixHt;
 
         return $this;
     }
 
     public function getArtMinStock(): ?int
     {
-        return $this->art_min_stock;
+        return $this->artMinStock;
     }
 
-    public function setArtMinStock(int $art_min_stock): self
+    public function setArtMinStock(int $artMinStock): self
     {
-        $this->art_min_stock = $art_min_stock;
+        $this->artMinStock = $artMinStock;
 
         return $this;
     }
 
     public function getArtStock(): ?int
     {
-        return $this->art_stock;
+        return $this->artStock;
     }
 
-    public function setArtStock(int $art_stock): self
+    public function setArtStock(int $artStock): self
     {
-        $this->art_stock = $art_stock;
+        $this->artStock = $artStock;
 
         return $this;
     }
 
     public function getArtPromo(): ?bool
     {
-        return $this->art_promo;
+        return $this->artPromo;
     }
 
-    public function setArtPromo(bool $art_promo): self
+    public function setArtPromo(bool $artPromo): self
     {
-        $this->art_promo = $art_promo;
+        $this->artPromo = $artPromo;
 
         return $this;
     }
 
-    public function getProId(): ?Promotion
+    public function getCat(): ?Categorie
     {
-        return $this->pro_id;
+        return $this->cat;
     }
 
-    public function setProId(?Promotion $pro_id): self
+    public function setCat(?Categorie $cat): self
     {
-        $this->pro_id = $pro_id;
+        $this->cat = $cat;
 
         return $this;
     }
 
-    public function getFourId(): ?Fournisseur
+    public function getFour(): ?Fournisseur
     {
-        return $this->four_id;
+        return $this->four;
     }
 
-    public function setFourId(?Fournisseur $four_id): self
+    public function setFour(?Fournisseur $four): self
     {
-        $this->four_id = $four_id;
+        $this->four = $four;
 
         return $this;
     }
 
-    public function getCatId(): ?Categorie
+    public function getPro(): ?Promotion
     {
-        return $this->cat_id;
+        return $this->pro;
     }
 
-    public function setCatId(?Categorie $cat_id): self
+    public function setPro(?Promotion $pro): self
     {
-        $this->cat_id = $cat_id;
+        $this->pro = $pro;
 
         return $this;
     }
+
+
 }

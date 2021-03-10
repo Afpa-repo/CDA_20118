@@ -2,99 +2,124 @@
 
 namespace App\Entity;
 
-use App\Repository\ClientRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ClientRepository::class)
+ * Client
+ *
+ * @ORM\Table(name="client", indexes={@ORM\Index(name="FK_client_coordonnee", columns={"coo_id"}), @ORM\Index(name="FK_client_employe", columns={"emp_id"}), @ORM\Index(name="FK_client_pays", columns={"pay_id"})})
+ * @ORM\Entity
  */
 class Client
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @var string
+     *
+     * @ORM\Column(name="cli_nom", type="string", length=50, nullable=false)
      */
-    private $cli_nom;
+    private $cliNom;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @var string
+     *
+     * @ORM\Column(name="cli_prenom", type="string", length=50, nullable=false)
      */
-    private $cli_prenom;
+    private $cliPrenom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="cli_identifiant", type="string", length=255, nullable=false)
      */
-    private $cli_identifiant;
+    private $cliIdentifiant;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="cli_mdp", type="string", length=255, nullable=false)
      */
-    private $cli_mdp;
+    private $cliMdp;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @var string
+     *
+     * @ORM\Column(name="cli_sexe", type="string", length=1, nullable=false)
      */
-    private $cli_sexe;
+    private $cliSexe = '';
 
     /**
-     * @ORM\Column(type="date")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="cli_date_naissance", type="date", nullable=false)
      */
-    private $cli_date_naissance;
+    private $cliDateNaissance;
 
     /**
-     * @ORM\Column(type="decimal", precision=2, scale=2, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="cli_coef", type="decimal", precision=2, scale=2, nullable=true)
      */
-    private $cli_coef;
+    private $cliCoef;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @var bool
+     *
+     * @ORM\Column(name="cli_client_pro", type="boolean", nullable=false)
      */
-    private $cli_client_pro;
+    private $cliClientPro;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="cli_email", type="string", length=255, nullable=false)
      */
-    private $cli_email;
+    private $cliEmail;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @var string
+     *
+     * @ORM\Column(name="cli_tel", type="string", length=20, nullable=false)
      */
-    private $cli_tel;
+    private $cliTel;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Coordonnee::class, inversedBy="clients")
+     * @var \Coordonnee
+     *
+     * @ORM\ManyToOne(targetEntity="Coordonnee")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="coo_id", referencedColumnName="id")
+     * })
      */
-    private $coo_id;
+    private $coo;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Employe::class, inversedBy="clients")
-     * @ORM\JoinColumn(nullable=false)
+     * @var \Employe
+     *
+     * @ORM\ManyToOne(targetEntity="Employe")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="emp_id", referencedColumnName="id")
+     * })
      */
-    private $emp_id;
+    private $emp;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Pays::class, inversedBy="clients")
-     * @ORM\JoinColumn(nullable=false)
+     * @var \Pays
+     *
+     * @ORM\ManyToOne(targetEntity="Pays")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pay_id", referencedColumnName="id")
+     * })
      */
-    private $pay_id;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="cli_id")
-     */
-    private $commandes;
-
-    public function __construct()
-    {
-        $this->commandes = new ArrayCollection();
-    }
+    private $pay;
 
     public function getId(): ?int
     {
@@ -103,187 +128,159 @@ class Client
 
     public function getCliNom(): ?string
     {
-        return $this->cli_nom;
+        return $this->cliNom;
     }
 
-    public function setCliNom(string $cli_nom): self
+    public function setCliNom(string $cliNom): self
     {
-        $this->cli_nom = $cli_nom;
+        $this->cliNom = $cliNom;
 
         return $this;
     }
 
     public function getCliPrenom(): ?string
     {
-        return $this->cli_prenom;
+        return $this->cliPrenom;
     }
 
-    public function setCliPrenom(string $cli_prenom): self
+    public function setCliPrenom(string $cliPrenom): self
     {
-        $this->cli_prenom = $cli_prenom;
+        $this->cliPrenom = $cliPrenom;
 
         return $this;
     }
 
     public function getCliIdentifiant(): ?string
     {
-        return $this->cli_identifiant;
+        return $this->cliIdentifiant;
     }
 
-    public function setCliIdentifiant(string $cli_identifiant): self
+    public function setCliIdentifiant(string $cliIdentifiant): self
     {
-        $this->cli_identifiant = $cli_identifiant;
+        $this->cliIdentifiant = $cliIdentifiant;
 
         return $this;
     }
 
     public function getCliMdp(): ?string
     {
-        return $this->cli_mdp;
+        return $this->cliMdp;
     }
 
-    public function setCliMdp(string $cli_mdp): self
+    public function setCliMdp(string $cliMdp): self
     {
-        $this->cli_mdp = $cli_mdp;
+        $this->cliMdp = $cliMdp;
 
         return $this;
     }
 
-    public function getCliSexe(): ?bool
+    public function getCliSexe(): ?string
     {
-        return $this->cli_sexe;
+        return $this->cliSexe;
     }
 
-    public function setCliSexe(bool $cli_sexe): self
+    public function setCliSexe(string $cliSexe): self
     {
-        $this->cli_sexe = $cli_sexe;
+        $this->cliSexe = $cliSexe;
 
         return $this;
     }
 
     public function getCliDateNaissance(): ?\DateTimeInterface
     {
-        return $this->cli_date_naissance;
+        return $this->cliDateNaissance;
     }
 
-    public function setCliDateNaissance(\DateTimeInterface $cli_date_naissance): self
+    public function setCliDateNaissance(\DateTimeInterface $cliDateNaissance): self
     {
-        $this->cli_date_naissance = $cli_date_naissance;
+        $this->cliDateNaissance = $cliDateNaissance;
 
         return $this;
     }
 
     public function getCliCoef(): ?string
     {
-        return $this->cli_coef;
+        return $this->cliCoef;
     }
 
-    public function setCliCoef(?string $cli_coef): self
+    public function setCliCoef(?string $cliCoef): self
     {
-        $this->cli_coef = $cli_coef;
+        $this->cliCoef = $cliCoef;
 
         return $this;
     }
 
     public function getCliClientPro(): ?bool
     {
-        return $this->cli_client_pro;
+        return $this->cliClientPro;
     }
 
-    public function setCliClientPro(bool $cli_client_pro): self
+    public function setCliClientPro(bool $cliClientPro): self
     {
-        $this->cli_client_pro = $cli_client_pro;
+        $this->cliClientPro = $cliClientPro;
 
         return $this;
     }
 
     public function getCliEmail(): ?string
     {
-        return $this->cli_email;
+        return $this->cliEmail;
     }
 
-    public function setCliEmail(string $cli_email): self
+    public function setCliEmail(string $cliEmail): self
     {
-        $this->cli_email = $cli_email;
+        $this->cliEmail = $cliEmail;
 
         return $this;
     }
 
     public function getCliTel(): ?string
     {
-        return $this->cli_tel;
+        return $this->cliTel;
     }
 
-    public function setCliTel(string $cli_tel): self
+    public function setCliTel(string $cliTel): self
     {
-        $this->cli_tel = $cli_tel;
+        $this->cliTel = $cliTel;
 
         return $this;
     }
 
-    public function getCooId(): ?Coordonnee
+    public function getCoo(): ?Coordonnee
     {
-        return $this->coo_id;
+        return $this->coo;
     }
 
-    public function setCooId(?Coordonnee $coo_id): self
+    public function setCoo(?Coordonnee $coo): self
     {
-        $this->coo_id = $coo_id;
+        $this->coo = $coo;
 
         return $this;
     }
 
-    public function getEmpId(): ?Employe
+    public function getEmp(): ?Employe
     {
-        return $this->emp_id;
+        return $this->emp;
     }
 
-    public function setEmpId(?Employe $emp_id): self
+    public function setEmp(?Employe $emp): self
     {
-        $this->emp_id = $emp_id;
+        $this->emp = $emp;
 
         return $this;
     }
 
-    public function getPayId(): ?Pays
+    public function getPay(): ?Pays
     {
-        return $this->pay_id;
+        return $this->pay;
     }
 
-    public function setPayId(?Pays $pay_id): self
+    public function setPay(?Pays $pay): self
     {
-        $this->pay_id = $pay_id;
+        $this->pay = $pay;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Commande[]
-     */
-    public function getCommandes(): Collection
-    {
-        return $this->commandes;
-    }
 
-    public function addCommande(Commande $commande): self
-    {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setCliId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->removeElement($commande)) {
-            // set the owning side to null (unless already changed)
-            if ($commande->getCliId() === $this) {
-                $commande->setCliId(null);
-            }
-        }
-
-        return $this;
-    }
 }

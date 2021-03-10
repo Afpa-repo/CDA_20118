@@ -2,68 +2,76 @@
 
 namespace App\Entity;
 
-use App\Repository\FournisseurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=FournisseurRepository::class)
+ * Fournisseur
+ *
+ * @ORM\Table(name="fournisseur", indexes={@ORM\Index(name="FK_fournisseur_pays", columns={"pay_id"})})
+ * @ORM\Entity
  */
 class Fournisseur
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @var string
+     *
+     * @ORM\Column(name="four_nom", type="string", length=50, nullable=false)
      */
-    private $four_nom;
+    private $fourNom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="four_adresse", type="string", length=255, nullable=false)
      */
-    private $four_adresse;
+    private $fourAdresse;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @var string
+     *
+     * @ORM\Column(name="four_ville", type="string", length=50, nullable=false)
      */
-    private $four_ville;
+    private $fourVille;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @var string
+     *
+     * @ORM\Column(name="four_cp", type="string", length=20, nullable=false)
      */
-    private $four_cp;
+    private $fourCp;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @var string
+     *
+     * @ORM\Column(name="four_tel", type="string", length=20, nullable=false)
      */
-    private $four_tel;
+    private $fourTel;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="four_email", type="string", length=255, nullable=false)
      */
-    private $four_email;
+    private $fourEmail;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Pays::class, inversedBy="fournisseurs")
-     * @ORM\JoinColumn(nullable=false)
+     * @var \Pays
+     *
+     * @ORM\ManyToOne(targetEntity="Pays")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pay_id", referencedColumnName="id")
+     * })
      */
-    private $pay_id;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="four_id")
-     */
-    private $articles;
-
-    public function __construct()
-    {
-        $this->articles = new ArrayCollection();
-    }
+    private $pay;
 
     public function getId(): ?int
     {
@@ -72,115 +80,87 @@ class Fournisseur
 
     public function getFourNom(): ?string
     {
-        return $this->four_nom;
+        return $this->fourNom;
     }
 
-    public function setFourNom(string $four_nom): self
+    public function setFourNom(string $fourNom): self
     {
-        $this->four_nom = $four_nom;
+        $this->fourNom = $fourNom;
 
         return $this;
     }
 
     public function getFourAdresse(): ?string
     {
-        return $this->four_adresse;
+        return $this->fourAdresse;
     }
 
-    public function setFourAdresse(string $four_adresse): self
+    public function setFourAdresse(string $fourAdresse): self
     {
-        $this->four_adresse = $four_adresse;
+        $this->fourAdresse = $fourAdresse;
 
         return $this;
     }
 
     public function getFourVille(): ?string
     {
-        return $this->four_ville;
+        return $this->fourVille;
     }
 
-    public function setFourVille(string $four_ville): self
+    public function setFourVille(string $fourVille): self
     {
-        $this->four_ville = $four_ville;
+        $this->fourVille = $fourVille;
 
         return $this;
     }
 
     public function getFourCp(): ?string
     {
-        return $this->four_cp;
+        return $this->fourCp;
     }
 
-    public function setFourCp(string $four_cp): self
+    public function setFourCp(string $fourCp): self
     {
-        $this->four_cp = $four_cp;
+        $this->fourCp = $fourCp;
 
         return $this;
     }
 
     public function getFourTel(): ?string
     {
-        return $this->four_tel;
+        return $this->fourTel;
     }
 
-    public function setFourTel(string $four_tel): self
+    public function setFourTel(string $fourTel): self
     {
-        $this->four_tel = $four_tel;
+        $this->fourTel = $fourTel;
 
         return $this;
     }
 
     public function getFourEmail(): ?string
     {
-        return $this->four_email;
+        return $this->fourEmail;
     }
 
-    public function setFourEmail(string $four_email): self
+    public function setFourEmail(string $fourEmail): self
     {
-        $this->four_email = $four_email;
+        $this->fourEmail = $fourEmail;
 
         return $this;
     }
 
-    public function getPayId(): ?Pays
+    public function getPay(): ?Pays
     {
-        return $this->pay_id;
+        return $this->pay;
     }
 
-    public function setPayId(?Pays $pay_id): self
+    public function setPay(?Pays $pay): self
     {
-        $this->pay_id = $pay_id;
+        $this->pay = $pay;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Article[]
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
 
-    public function addArticle(Article $article): self
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->setFourId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): self
-    {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getFourId() === $this) {
-                $article->setFourId(null);
-            }
-        }
-
-        return $this;
-    }
 }

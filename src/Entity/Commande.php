@@ -2,68 +2,76 @@
 
 namespace App\Entity;
 
-use App\Repository\CommandeRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CommandeRepository::class)
+ * Commande
+ *
+ * @ORM\Table(name="commande", indexes={@ORM\Index(name="FK_commande_client", columns={"cli_id"})})
+ * @ORM\Entity
  */
 class Commande
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="com_num", type="string", length=255, nullable=false)
      */
-    private $com_num;
+    private $comNum;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="com_date", type="datetime", nullable=false)
      */
-    private $com_date;
+    private $comDate;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @var string
+     *
+     * @ORM\Column(name="com_etat", type="string", length=50, nullable=false)
      */
-    private $com_etat;
+    private $comEtat;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @var string
+     *
+     * @ORM\Column(name="com_total_ht", type="decimal", precision=10, scale=2, nullable=false)
      */
-    private $com_total_ht;
+    private $comTotalHt;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @var string
+     *
+     * @ORM\Column(name="com_type_paiement", type="string", length=50, nullable=false)
      */
-    private $com_type_paiement;
+    private $comTypePaiement;
 
     /**
-     * @ORM\Column(type="decimal", precision=2, scale=2, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="com_reduc_commerciale", type="decimal", precision=2, scale=2, nullable=true)
      */
-    private $com_reduc_commerciale;
+    private $comReducCommerciale;
 
     /**
-     * @ORM\OneToMany(targetEntity=LigneDeCommande::class, mappedBy="com_id")
+     * @var \Client
+     *
+     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cli_id", referencedColumnName="id")
+     * })
      */
-    private $ligneDeCommandes;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="commandes")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $cli_id;
-
-    public function __construct()
-    {
-        $this->ligneDeCommandes = new ArrayCollection();
-    }
+    private $cli;
 
     public function getId(): ?int
     {
@@ -72,115 +80,87 @@ class Commande
 
     public function getComNum(): ?string
     {
-        return $this->com_num;
+        return $this->comNum;
     }
 
-    public function setComNum(string $com_num): self
+    public function setComNum(string $comNum): self
     {
-        $this->com_num = $com_num;
+        $this->comNum = $comNum;
 
         return $this;
     }
 
     public function getComDate(): ?\DateTimeInterface
     {
-        return $this->com_date;
+        return $this->comDate;
     }
 
-    public function setComDate(\DateTimeInterface $com_date): self
+    public function setComDate(\DateTimeInterface $comDate): self
     {
-        $this->com_date = $com_date;
+        $this->comDate = $comDate;
 
         return $this;
     }
 
     public function getComEtat(): ?string
     {
-        return $this->com_etat;
+        return $this->comEtat;
     }
 
-    public function setComEtat(string $com_etat): self
+    public function setComEtat(string $comEtat): self
     {
-        $this->com_etat = $com_etat;
+        $this->comEtat = $comEtat;
 
         return $this;
     }
 
     public function getComTotalHt(): ?string
     {
-        return $this->com_total_ht;
+        return $this->comTotalHt;
     }
 
-    public function setComTotalHt(string $com_total_ht): self
+    public function setComTotalHt(string $comTotalHt): self
     {
-        $this->com_total_ht = $com_total_ht;
+        $this->comTotalHt = $comTotalHt;
 
         return $this;
     }
 
     public function getComTypePaiement(): ?string
     {
-        return $this->com_type_paiement;
+        return $this->comTypePaiement;
     }
 
-    public function setComTypePaiement(string $com_type_paiement): self
+    public function setComTypePaiement(string $comTypePaiement): self
     {
-        $this->com_type_paiement = $com_type_paiement;
+        $this->comTypePaiement = $comTypePaiement;
 
         return $this;
     }
 
     public function getComReducCommerciale(): ?string
     {
-        return $this->com_reduc_commerciale;
+        return $this->comReducCommerciale;
     }
 
-    public function setComReducCommerciale(?string $com_reduc_commerciale): self
+    public function setComReducCommerciale(?string $comReducCommerciale): self
     {
-        $this->com_reduc_commerciale = $com_reduc_commerciale;
+        $this->comReducCommerciale = $comReducCommerciale;
 
         return $this;
     }
 
-    /**
-     * @return Collection|LigneDeCommande[]
-     */
-    public function getLigneDeCommandes(): Collection
+    public function getCli(): ?Client
     {
-        return $this->ligneDeCommandes;
+        return $this->cli;
     }
 
-    public function addLigneDeCommande(LigneDeCommande $ligneDeCommande): self
+    public function setCli(?Client $cli): self
     {
-        if (!$this->ligneDeCommandes->contains($ligneDeCommande)) {
-            $this->ligneDeCommandes[] = $ligneDeCommande;
-            $ligneDeCommande->setComId($this);
-        }
+        $this->cli = $cli;
 
         return $this;
     }
 
-    public function removeLigneDeCommande(LigneDeCommande $ligneDeCommande): self
-    {
-        if ($this->ligneDeCommandes->removeElement($ligneDeCommande)) {
-            // set the owning side to null (unless already changed)
-            if ($ligneDeCommande->getComId() === $this) {
-                $ligneDeCommande->setComId(null);
-            }
-        }
 
-        return $this;
-    }
-
-    public function getCliId(): ?Client
-    {
-        return $this->cli_id;
-    }
-
-    public function setCliId(?Client $cli_id): self
-    {
-        $this->cli_id = $cli_id;
-
-        return $this;
-    }
 }
