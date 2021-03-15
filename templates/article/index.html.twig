@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+    <h1 class="text-center">Article index</h1>
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+        {% endfor %}
+    </div>
+    <a class="btn btn-success flex mt-3 offset-5" href="{{ path('article_new') }}">Ajouter un article</a>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ArtPhoto</th>
+                <th>ArtNom</th>
+                <th>ArtLibelle</th>
+                <th>ArtPrixHt</th>
+                <th>ArtMinStock</th>
+                <th>ArtStock</th>
+                <th>ArtPromo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.artPhoto }}</td>
+                <td>{{ article.artNom }}</td>
+                <td>{{ article.artLibelle }}</td>
+                <td>{{ article.artPrixHt }}</td>
+                <td>{{ article.artMinStock }}</td>
+                <td>{{ article.artStock }}</td>
+                <td>{{ article.artPromo ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+{% endblock %}

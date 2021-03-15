@@ -17,7 +17,7 @@ class HomeController extends AbstractController {
     public function index() :Response
     {
         // affichage de la page d'accueil
-        return $this->render('home/index.html.twig');
+        return $this->render('accueil/index.html.twig');
     }
 }
 ?>

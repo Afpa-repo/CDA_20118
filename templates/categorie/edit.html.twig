@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de Catégorie{% endblock %}
+
+{% block body %}
+<div class="offset-lg-3 col-lg-6 ">
+    <div class="container-fluid">
+        <h1>Modifier la Catégorie</h1>
+
+            <div class="col">
+            {{ include('categorie/_form.html.twig', {'button_label': 'Update'}) }}
+            </div>
+            <div class="col">
+                <a class="btn btn-secondary flex mt-3 " href="{{ path('categorie_index') }}">Retour</a>
+            </div>
+            <div class="col mt-3">
+                {{ include('categorie/_delete_form.html.twig') }}
+            </div>
+
+    </div>
+</div>
+{% endblock %}

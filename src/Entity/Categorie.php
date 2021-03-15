@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Categorie
@@ -66,6 +67,9 @@ class Categorie
 
         return $this;
     }
-
+    public function __toString()
+    {
+        return $this->catNom;
+    }
 
 }
