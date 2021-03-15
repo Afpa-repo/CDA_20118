@@ -17,12 +17,12 @@
         <tbody>
         {% for ligne_de_commande in ligne_de_commandes %}
             <tr>
-                <td>{{ ligne_de_commande.id }}</td>
+                <td>{{ ligne_de_commande.ligneId }}</td>
                 <td>{{ ligne_de_commande.lignePrix }}</td>
                 <td>{{ ligne_de_commande.ligneQuantite }}</td>
                 <td>
-                    <a href="{{ path('ligne_de_commande_show', {'id': ligne_de_commande.id}) }}">show</a>
-                    <a href="{{ path('ligne_de_commande_edit', {'id': ligne_de_commande.id}) }}">edit</a>
+                    <a href="{{ path('ligne_de_commande_show', {'id': ligne_de_commande.ligneId}) }}">show</a>
+                    <a href="{{ path('ligne_de_commande_edit', {'id': ligne_de_commande.ligneId}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

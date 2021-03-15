@@ -12,12 +12,12 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Listage de la structure de la base pour filrouge2
+-- Listage de la structure de la base pour filrouge
 DROP DATABASE IF EXISTS `filrouge`;
 CREATE DATABASE IF NOT EXISTS `filrouge` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `filrouge`;
 
--- Listage de la structure de la table filrouge2. article
+-- Listage de la structure de la table filrouge. article
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
   `art_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -38,14 +38,16 @@ CREATE TABLE IF NOT EXISTS `article` (
   CONSTRAINT `FK_23A0E66C3B7E4BA` FOREIGN KEY (`pro_id`) REFERENCES `promotion` (`pro_id`),
   CONSTRAINT `FK_23A0E66E5AC00A4` FOREIGN KEY (`four_id`) REFERENCES `fournisseur` (`four_id`),
   CONSTRAINT `FK_23A0E66E6ADA943` FOREIGN KEY (`cat_id`) REFERENCES `categorie` (`cat_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge2.article : ~0 rows (environ)
+-- Listage des données de la table filrouge.article : ~1 rows (environ)
 DELETE FROM `article`;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
+INSERT INTO `article` (`art_id`, `pro_id`, `four_id`, `cat_id`, `art_photo`, `art_nom`, `art_libelle`, `art_prix_ht`, `art_min_stock`, `art_stock`, `art_promo`) VALUES
+	(2, NULL, 2, 14, 'autre test', 'test', 'test', 10.00, 2, 5, 0);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 
--- Listage de la structure de la table filrouge2. categorie
+-- Listage de la structure de la table filrouge. categorie
 DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE IF NOT EXISTS `categorie` (
   `cat_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -54,14 +56,84 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   PRIMARY KEY (`cat_id`),
   KEY `cat_id_1` (`cat_id_1`),
   CONSTRAINT `FK_497DD634597AB279` FOREIGN KEY (`cat_id_1`) REFERENCES `categorie` (`cat_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge2.categorie : ~0 rows (environ)
+-- Listage des données de la table filrouge.categorie : ~69 rows (environ)
 DELETE FROM `categorie`;
 /*!40000 ALTER TABLE `categorie` DISABLE KEYS */;
+INSERT INTO `categorie` (`cat_id`, `cat_id_1`, `cat_nom`) VALUES
+	(1, NULL, 'Guitares'),
+	(2, NULL, 'Pianos'),
+	(3, NULL, 'Batteries'),
+	(4, NULL, 'Synthés'),
+	(5, NULL, 'Vents'),
+	(6, NULL, 'Quatuor à cordes'),
+	(7, NULL, 'Sonorisation'),
+	(8, NULL, 'Deejay'),
+	(9, 1, 'Guitares classiques'),
+	(10, 1, 'Guitares électriques'),
+	(11, 1, 'Guitares électro acoustiques'),
+	(12, 1, 'Guitares pour gauchers'),
+	(13, 1, 'Ukulélés'),
+	(14, 2, 'Accordéons'),
+	(15, 2, 'Banquettes clavier'),
+	(16, 2, 'Claviers arrangeurs'),
+	(17, 2, 'Claviers maîtres'),
+	(18, 2, 'Housses clavier'),
+	(19, 2, 'Orgues'),
+	(20, 2, 'Pianos numériques'),
+	(21, 3, 'Accessoires Batteries'),
+	(22, 3, 'Batteries acoustiques'),
+	(23, 3, 'Batteries electroniques'),
+	(24, 3, 'Caisses claires'),
+	(25, 3, 'Cymbales'),
+	(26, 3, 'Percussions'),
+	(27, 3, 'Percussions africaines'),
+	(28, 3, 'Percussions brésiliennes'),
+	(29, 3, 'Percussions orchestre'),
+	(30, 3, 'Xylophones'),
+	(31, 4, 'Accessoires synthétiseurs'),
+	(32, 4, 'Boites à rythmes'),
+	(33, 4, 'Groovebox/samplers'),
+	(34, 4, 'Synthés analogiques'),
+	(35, 4, 'Synthés numériques'),
+	(36, 4, 'Workstations'),
+	(37, 5, 'Accessoires vents'),
+	(38, 5, 'Clarinettes'),
+	(39, 5, 'Cors harmonie'),
+	(40, 5, 'Flûtes à bec'),
+	(41, 5, 'Flûtes traversières'),
+	(42, 5, 'Gros cuivres'),
+	(43, 5, 'Hautbois et bassons'),
+	(44, 5, 'Instruments composite'),
+	(45, 5, 'Saxophones'),
+	(46, 5, 'Trombones'),
+	(47, 5, 'Trompettes et cornets'),
+	(48, 6, 'Accessoires quatuor'),
+	(49, 6, 'Altos'),
+	(50, 6, 'Contrebasses'),
+	(51, 6, 'Violons'),
+	(52, 6, 'Violoncelles'),
+	(53, 7, 'Accessoires sonorisation'),
+	(54, 7, 'Amplis de puissance'),
+	(55, 7, 'Bose professional'),
+	(56, 7, 'Enceintes actives'),
+	(57, 7, 'Enceintes passives'),
+	(58, 7, 'Kits et packs lumières'),
+	(59, 7, 'Microphones'),
+	(60, 7, 'Mixage et production'),
+	(61, 7, 'Packs enceintes'),
+	(62, 7, 'Périphériques analogiques'),
+	(63, 7, 'Préamplificateurs studio'),
+	(64, 8, 'Accessoires dj'),
+	(65, 8, 'Casques'),
+	(66, 8, 'Cellules et diamants'),
+	(67, 8, 'Effets dj'),
+	(68, 8, 'Karaoke'),
+	(69, 8, 'Tables de mixage dj');
 /*!40000 ALTER TABLE `categorie` ENABLE KEYS */;
 
--- Listage de la structure de la table filrouge2. commande
+-- Listage de la structure de la table filrouge. commande
 DROP TABLE IF EXISTS `commande`;
 CREATE TABLE IF NOT EXISTS `commande` (
   `com_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -75,14 +147,16 @@ CREATE TABLE IF NOT EXISTS `commande` (
   PRIMARY KEY (`com_id`),
   KEY `uti_id` (`uti_id`),
   CONSTRAINT `FK_6EEAA67D3951DF75` FOREIGN KEY (`uti_id`) REFERENCES `utilisateur` (`uti_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge2.commande : ~0 rows (environ)
+-- Listage des données de la table filrouge.commande : ~1 rows (environ)
 DELETE FROM `commande`;
 /*!40000 ALTER TABLE `commande` DISABLE KEYS */;
+INSERT INTO `commande` (`com_id`, `uti_id`, `com_num`, `com_date`, `com_etat`, `com_total_ht`, `com_type_de_paiement`, `com_reduc_commercial`) VALUES
+	(2, 1, '1', '2016-01-01 00:00:00', 'Reçu', 12, 'carte', NULL);
 /*!40000 ALTER TABLE `commande` ENABLE KEYS */;
 
--- Listage de la structure de la table filrouge2. doctrine_migration_versions
+-- Listage de la structure de la table filrouge. doctrine_migration_versions
 DROP TABLE IF EXISTS `doctrine_migration_versions`;
 CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   `version` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
@@ -91,14 +165,14 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table filrouge2.doctrine_migration_versions : ~1 rows (environ)
+-- Listage des données de la table filrouge.doctrine_migration_versions : ~0 rows (environ)
 DELETE FROM `doctrine_migration_versions`;
 /*!40000 ALTER TABLE `doctrine_migration_versions` DISABLE KEYS */;
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20210315110541', '2021-03-15 11:05:48', 819);
 /*!40000 ALTER TABLE `doctrine_migration_versions` ENABLE KEYS */;
 
--- Listage de la structure de la table filrouge2. employe
+-- Listage de la structure de la table filrouge. employe
 DROP TABLE IF EXISTS `employe`;
 CREATE TABLE IF NOT EXISTS `employe` (
   `emp_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -114,12 +188,12 @@ CREATE TABLE IF NOT EXISTS `employe` (
   CONSTRAINT `FK_F804D3B941085FAE` FOREIGN KEY (`pos_id`) REFERENCES `poste` (`pos_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge2.employe : ~0 rows (environ)
+-- Listage des données de la table filrouge.employe : ~0 rows (environ)
 DELETE FROM `employe`;
 /*!40000 ALTER TABLE `employe` DISABLE KEYS */;
 /*!40000 ALTER TABLE `employe` ENABLE KEYS */;
 
--- Listage de la structure de la table filrouge2. facture
+-- Listage de la structure de la table filrouge. facture
 DROP TABLE IF EXISTS `facture`;
 CREATE TABLE IF NOT EXISTS `facture` (
   `fact_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -131,35 +205,47 @@ CREATE TABLE IF NOT EXISTS `facture` (
   PRIMARY KEY (`fact_id`),
   UNIQUE KEY `com_id` (`com_id`),
   CONSTRAINT `FK_FE866410748C0F37` FOREIGN KEY (`com_id`) REFERENCES `commande` (`com_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge2.facture : ~0 rows (environ)
+-- Listage des données de la table filrouge.facture : ~0 rows (environ)
 DELETE FROM `facture`;
 /*!40000 ALTER TABLE `facture` DISABLE KEYS */;
 /*!40000 ALTER TABLE `facture` ENABLE KEYS */;
 
--- Listage de la structure de la table filrouge2. fournisseur
+-- Listage de la structure de la table filrouge. fournisseur
 DROP TABLE IF EXISTS `fournisseur`;
 CREATE TABLE IF NOT EXISTS `fournisseur` (
   `four_id` int(11) NOT NULL AUTO_INCREMENT,
+  `four_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pay_id` int(11) DEFAULT NULL,
-  `four_nom` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `four_nom` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `four_adresse` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `four_ville` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `four_cp` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `four_tel` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `four_cp` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `four_tel` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `four_courriel` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`four_id`),
   KEY `pay_id` (`pay_id`),
   CONSTRAINT `FK_369ECA32918501AB` FOREIGN KEY (`pay_id`) REFERENCES `pays` (`pay_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge2.fournisseur : ~0 rows (environ)
+-- Listage des données de la table filrouge.fournisseur : ~10 rows (environ)
 DELETE FROM `fournisseur`;
 /*!40000 ALTER TABLE `fournisseur` DISABLE KEYS */;
+INSERT INTO `fournisseur` (`four_id`, `four_email`, `pay_id`, `four_nom`, `four_adresse`, `four_ville`, `four_cp`, `four_tel`, `four_courriel`) VALUES
+	(1, 'Ut@temporlorem.ca', 56, 'Interdum Nunc Sollicitudin Incorporated', '9756 Sodales Route', 'Waren', '04370', '1-331-298-8548', NULL),
+	(2, 'convallis.dolor@nec.co.uk', 78, 'Porttitor Consulting', '9782 Metus. Rd.', 'Fleurus', '12683', '749-3494', NULL),
+	(3, 'libero@velvulputate.co.uk', 53, 'Mauris Industries', '132-3202 Ac Ave', 'Vanier', '8176', '1-687-498-7989', NULL),
+	(4, 'Nulla.facilisi@vehicularisus.edu', 121, 'Dolor Donec Fringilla LLP', 'CP 414, 2655 Vitae Route', 'Acquafondata', '20903', '1-890-768-4067', NULL),
+	(5, 'dui.Fusce@tempuseu.com', 58, 'Montes Foundation', '8332 Integer Impasse', 'Gatineau', '45802', '728-8279', NULL),
+	(6, 'in.faucibus.orci@scelerisque.ca', 45, 'Volutpat Corp.', 'Appartement 656-8960 Massa. Av.', 'San Fele', 'Z7231', '1-246-226-1811', NULL),
+	(7, 'dui.lectus.rutrum@nonloremvitae.edu', 63, 'Ornare Egestas Ligula Incorporated', 'Appartement 635-7449 Lorem Ave', 'Stafford', '21207', '1-839-284-5457', NULL),
+	(8, 'ipsum@sapiengravida.org', 74, 'Ac LLP', 'CP 160, 4370 Vitae Route', 'Ramara', '6318', '596-2662', NULL),
+	(9, 'nec.mollis@tacitisociosquad.org', 74, 'Dignissim Magna Limited', 'CP 706, 1445 Gravida. Chemin', 'Baricella', 'YC3X 2SJ', '163-7433', NULL),
+	(10, 'ut.aliquam@Integeridmagna.com', 74, 'Augue LLP', 'Appartement 162-4103 Quisque Chemin', 'Aalen', 'Z4663', '941-8958', NULL);
 /*!40000 ALTER TABLE `fournisseur` ENABLE KEYS */;
 
--- Listage de la structure de la table filrouge2. lignedecommande
+-- Listage de la structure de la table filrouge. lignedecommande
 DROP TABLE IF EXISTS `lignedecommande`;
 CREATE TABLE IF NOT EXISTS `lignedecommande` (
   `ligne_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -172,14 +258,16 @@ CREATE TABLE IF NOT EXISTS `lignedecommande` (
   KEY `art_id` (`art_id`),
   CONSTRAINT `FK_A4C3DF16748C0F37` FOREIGN KEY (`com_id`) REFERENCES `commande` (`com_id`),
   CONSTRAINT `FK_A4C3DF168C25E51A` FOREIGN KEY (`art_id`) REFERENCES `article` (`art_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge2.lignedecommande : ~0 rows (environ)
+-- Listage des données de la table filrouge.lignedecommande : ~1 rows (environ)
 DELETE FROM `lignedecommande`;
 /*!40000 ALTER TABLE `lignedecommande` DISABLE KEYS */;
+INSERT INTO `lignedecommande` (`ligne_id`, `com_id`, `art_id`, `ligne_prix`, `ligne_quantite`) VALUES
+	(2, 2, 2, 12.00, 2);
 /*!40000 ALTER TABLE `lignedecommande` ENABLE KEYS */;
 
--- Listage de la structure de la table filrouge2. pays
+-- Listage de la structure de la table filrouge. pays
 DROP TABLE IF EXISTS `pays`;
 CREATE TABLE IF NOT EXISTS `pays` (
   `pay_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -187,7 +275,7 @@ CREATE TABLE IF NOT EXISTS `pays` (
   PRIMARY KEY (`pay_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=242 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge2.pays : ~241 rows (environ)
+-- Listage des données de la table filrouge.pays : ~241 rows (environ)
 DELETE FROM `pays`;
 /*!40000 ALTER TABLE `pays` DISABLE KEYS */;
 INSERT INTO `pays` (`pay_id`, `pay_libelle`) VALUES
@@ -434,7 +522,7 @@ INSERT INTO `pays` (`pay_id`, `pay_libelle`) VALUES
 	(241, 'Zimbabwe');
 /*!40000 ALTER TABLE `pays` ENABLE KEYS */;
 
--- Listage de la structure de la table filrouge2. poste
+-- Listage de la structure de la table filrouge. poste
 DROP TABLE IF EXISTS `poste`;
 CREATE TABLE IF NOT EXISTS `poste` (
   `pos_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -443,27 +531,27 @@ CREATE TABLE IF NOT EXISTS `poste` (
   PRIMARY KEY (`pos_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge2.poste : ~0 rows (environ)
+-- Listage des données de la table filrouge.poste : ~0 rows (environ)
 DELETE FROM `poste`;
 /*!40000 ALTER TABLE `poste` DISABLE KEYS */;
 /*!40000 ALTER TABLE `poste` ENABLE KEYS */;
 
--- Listage de la structure de la table filrouge2. promotion
+-- Listage de la structure de la table filrouge. promotion
 DROP TABLE IF EXISTS `promotion`;
 CREATE TABLE IF NOT EXISTS `promotion` (
   `pro_id` int(11) NOT NULL AUTO_INCREMENT,
-  `pro_coef` decimal(2,2) NOT NULL,
+  `pro_coef` int(11) NOT NULL DEFAULT 0,
   `pro_date_debut` datetime NOT NULL,
   `pro_date_fin` datetime NOT NULL,
   PRIMARY KEY (`pro_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge2.promotion : ~0 rows (environ)
+-- Listage des données de la table filrouge.promotion : ~0 rows (environ)
 DELETE FROM `promotion`;
 /*!40000 ALTER TABLE `promotion` DISABLE KEYS */;
 /*!40000 ALTER TABLE `promotion` ENABLE KEYS */;
 
--- Listage de la structure de la table filrouge2. utilisateur
+-- Listage de la structure de la table filrouge. utilisateur
 DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `uti_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -489,7 +577,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   KEY `uti_id_1` (`uti_id_1`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge2.utilisateur : ~1 rows (environ)
+-- Listage des données de la table filrouge.utilisateur : ~0 rows (environ)
 DELETE FROM `utilisateur`;
 /*!40000 ALTER TABLE `utilisateur` DISABLE KEYS */;
 INSERT INTO `utilisateur` (`uti_id`, `uti_adresse`, `uti_adresse2`, `uti_ville`, `uti_codepostal`, `uti_nom`, `uti_role`, `uti_prenom`, `uti_sexe`, `uti_date_de_naissance`, `uti_mail`, `uti_tel`, `uti_id_1`, `pay_id`, `uti_identifiant`, `roles`, `password`) VALUES

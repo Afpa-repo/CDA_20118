@@ -21,16 +21,16 @@
         <tbody>
         {% for commande in commandes %}
             <tr>
-                <td>{{ commande.id }}</td>
+                <td>{{ commande.comId }}</td>
                 <td>{{ commande.comNum }}</td>
                 <td>{{ commande.comDate ? commande.comDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ commande.comEtat }}</td>
                 <td>{{ commande.comTotalHt }}</td>
-                <td>{{ commande.comTypePaiement }}</td>
-                <td>{{ commande.comReducCommerciale }}</td>
+                <td>{{ commande.comTypeDePaiement }}</td>
+                <td>{{ commande.comReducCommercial }}</td>
                 <td>
-                    <a href="{{ path('commande_show', {'id': commande.id}) }}">show</a>
-                    <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>
+                    <a href="{{ path('commande_show', {'id': commande.comId}) }}">show</a>
+                    <a href="{{ path('commande_edit', {'id': commande.comId}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

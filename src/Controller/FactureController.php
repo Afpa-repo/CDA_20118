@@ -86,7 +86,7 @@ class FactureController extends AbstractController
      */
     public function delete(Request $request, Facture $facture): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$facture->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$facture->getFactId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($facture);
             $entityManager->flush();

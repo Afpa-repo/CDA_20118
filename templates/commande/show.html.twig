@@ -9,7 +9,7 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ commande.id }}</td>
+                <td>{{ commande.comId }}</td>
             </tr>
             <tr>
                 <th>ComNum</th>
@@ -29,18 +29,18 @@
             </tr>
             <tr>
                 <th>ComTypePaiement</th>
-                <td>{{ commande.comTypePaiement }}</td>
+                <td>{{ commande.comTypeDePaiement }}</td>
             </tr>
             <tr>
                 <th>ComReducCommerciale</th>
-                <td>{{ commande.comReducCommerciale }}</td>
+                <td>{{ commande.comReducCommercial }}</td>
             </tr>
         </tbody>
     </table>
 
     <a href="{{ path('commande_index') }}">back to list</a>
 
-    <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>
+    <a href="{{ path('commande_edit', {'id': commande.comId}) }}">edit</a>
 
     {{ include('commande/_delete_form.html.twig') }}
 {% endblock %}

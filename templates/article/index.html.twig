@@ -28,7 +28,7 @@
         <tbody>
         {% for article in articles %}
             <tr>
-                <td>{{ article.id }}</td>
+                <td>{{ article.artId }}</td>
                 <td>{{ article.artPhoto }}</td>
                 <td>{{ article.artNom }}</td>
                 <td>{{ article.artLibelle }}</td>
@@ -37,8 +37,8 @@
                 <td>{{ article.artStock }}</td>
                 <td>{{ article.artPromo ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                    <a href="{{ path('article_show', {'id': article.artId}) }}">show</a>
+                    <a href="{{ path('article_edit', {'id': article.artId}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

@@ -86,7 +86,7 @@ class CommandeController extends AbstractController
      */
     public function delete(Request $request, Commande $commande): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$commande->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$commande->getComId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($commande);
             $entityManager->flush();

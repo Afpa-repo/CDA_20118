@@ -9,7 +9,7 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ article.id }}</td>
+                <td>{{ article.artId }}</td>
             </tr>
             <tr>
                 <th>ArtPhoto</th>
@@ -44,7 +44,7 @@
 
     <a href="{{ path('article_index') }}">back to list</a>
 
-    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+    <a href="{{ path('article_edit', {'id': article.artId}) }}">edit</a>
 
     {{ include('article/_delete_form.html.twig') }}
 {% endblock %}

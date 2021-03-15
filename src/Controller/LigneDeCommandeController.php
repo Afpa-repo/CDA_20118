@@ -86,7 +86,7 @@ class LigneDeCommandeController extends AbstractController
      */
     public function delete(Request $request, LigneDeCommande $ligneDeCommande): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$ligneDeCommande->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$ligneDeCommande->getLigneId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($ligneDeCommande);
             $entityManager->flush();

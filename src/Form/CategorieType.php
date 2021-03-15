@@ -27,7 +27,7 @@ class CategorieType extends AbstractType
                 ]),
             ]
             ])
-            ->add('catSup')
+            ->add('catId1')
         ;
     }
 

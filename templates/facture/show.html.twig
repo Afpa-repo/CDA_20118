@@ -9,7 +9,7 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ facture.id }}</td>
+                <td>{{ facture.factId }}</td>
             </tr>
             <tr>
                 <th>FactNum</th>
@@ -32,7 +32,7 @@
 
     <a href="{{ path('facture_index') }}">back to list</a>
 
-    <a href="{{ path('facture_edit', {'id': facture.id}) }}">edit</a>
+    <a href="{{ path('facture_edit', {'id': facture.factId}) }}">edit</a>
 
     {{ include('facture/_delete_form.html.twig') }}
 {% endblock %}

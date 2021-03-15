@@ -23,11 +23,11 @@
             <tbody>
             {% for categorie in categories %}
                 <tr>
-                    <td>{{ categorie.id }}</td>
+                    <td>{{ categorie.catId }}</td>
                     <td>{{ categorie.catNom }}</td>
                     <td>
-                        <a class="btn btn-primary flex" href="{{ path('categorie_show', {'id': categorie.id}) }}">Détail</a>
-                        <a class="btn btn-secondary flex" href="{{ path('categorie_edit', {'id': categorie.id}) }}">Modifier</a>
+                        <a class="btn btn-primary flex" href="{{ path('categorie_show', {'id': categorie.catId}) }}">Détail</a>
+                        <a class="btn btn-secondary flex" href="{{ path('categorie_edit', {'id': categorie.catId}) }}">Modifier</a>
                     </td>
                 </tr>
             {% else %}

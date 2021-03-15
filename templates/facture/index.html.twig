@@ -19,14 +19,14 @@
         <tbody>
         {% for facture in factures %}
             <tr>
-                <td>{{ facture.id }}</td>
+                <td>{{ facture.factId }}</td>
                 <td>{{ facture.factNum }}</td>
                 <td>{{ facture.factPrixHt }}</td>
                 <td>{{ facture.factDate ? facture.factDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ facture.factPrixTtc }}</td>
                 <td>
-                    <a href="{{ path('facture_show', {'id': facture.id}) }}">show</a>
-                    <a href="{{ path('facture_edit', {'id': facture.id}) }}">edit</a>
+                    <a href="{{ path('facture_show', {'id': facture.factId}) }}">show</a>
+                    <a href="{{ path('facture_edit', {'id': facture.factId}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

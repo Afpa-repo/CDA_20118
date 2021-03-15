@@ -9,7 +9,7 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ ligne_de_commande.id }}</td>
+                <td>{{ ligne_de_commande.ligneId }}</td>
             </tr>
             <tr>
                 <th>LignePrix</th>
@@ -24,7 +24,7 @@
 
     <a href="{{ path('ligne_de_commande_index') }}">back to list</a>
 
-    <a href="{{ path('ligne_de_commande_edit', {'id': ligne_de_commande.id}) }}">edit</a>
+    <a href="{{ path('ligne_de_commande_edit', {'id': ligne_de_commande.ligneId}) }}">edit</a>
 
     {{ include('ligne_de_commande/_delete_form.html.twig') }}
 {% endblock %}

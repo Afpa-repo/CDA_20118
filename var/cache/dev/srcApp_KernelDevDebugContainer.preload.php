@@ -10,7 +10,7 @@ if (in_array(PHP_SAPI, ['cli', 'phpdbg'], true)) {
 }
 
 require dirname(__DIR__, 3).''.\DIRECTORY_SEPARATOR.'vendor/autoload.php';
-require __DIR__.'/ContainerAakAKbe/srcApp_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerPymxmG4/srcApp_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'Symfony\Bundle\FrameworkBundle\FrameworkBundle';
@@ -32,8 +32,23 @@ $classes[] = 'Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser';
 $classes[] = 'Symfony\Bundle\FrameworkBundle\EventListener\ResolveControllerNameSubscriber';
 $classes[] = 'Symfony\Component\HttpFoundation\RequestMatcher';
 $classes[] = 'Symfony\Component\DependencyInjection\ServiceLocator';
+$classes[] = 'App\Controller\ArticleController';
+$classes[] = 'App\Controller\CategorieController';
+$classes[] = 'App\Controller\CommandeController';
+$classes[] = 'App\Controller\FactureController';
+$classes[] = 'App\Controller\FournisseurController';
+$classes[] = 'App\Controller\HomeController';
+$classes[] = 'App\Controller\LigneDeCommandeController';
+$classes[] = 'App\Controller\PromotionController';
 $classes[] = 'App\Controller\SecurityController';
 $classes[] = 'App\Controller\UtilisateurController';
+$classes[] = 'App\Form\ArticleType';
+$classes[] = 'App\Form\CategorieType';
+$classes[] = 'App\Form\CommandeType';
+$classes[] = 'App\Form\FactureType';
+$classes[] = 'App\Form\FournisseurType';
+$classes[] = 'App\Form\LigneDeCommandeType';
+$classes[] = 'App\Form\PromotionType';
 $classes[] = 'App\Form\Utilisateur1Type';
 $classes[] = 'App\Form\UtilisateurType';
 $classes[] = 'App\Repository\UtilisateurRepository';

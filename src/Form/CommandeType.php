@@ -16,9 +16,9 @@ class CommandeType extends AbstractType
             ->add('comDate')
             ->add('comEtat')
             ->add('comTotalHt')
-            ->add('comTypePaiement')
-            ->add('comReducCommerciale')
-            ->add('cli')
+            ->add('comTypeDePaiement')
+            ->add('comReducCommercial')
+            ->add('uti')
         ;
     }
 
