@@ -11,7 +11,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 'pos_description',
             ],
             'length' => [
-                50,
+                255,
             ],
             'nullable' => [
                 true,

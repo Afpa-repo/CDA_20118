@@ -20,9 +20,6 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'name' => [
                 2 => 'four_id',
             ],
-            'referencedColumnName' => [
-                2 => 'four_id',
-            ],
         ],
     ],
     [

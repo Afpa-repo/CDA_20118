@@ -11,10 +11,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 'cat_nom',
             ],
             'length' => [
-                30,
-            ],
-            'nullable' => [
-                true,
+                50,
             ],
         ],
     ],

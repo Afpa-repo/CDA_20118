@@ -14,7 +14,10 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 'decimal',
             ],
             'precision' => [
-                15,
+                10,
+            ],
+            'scale' => [
+                2,
             ],
         ],
     ],

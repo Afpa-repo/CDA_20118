@@ -11,10 +11,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 'art_photo',
             ],
             'length' => [
-                50,
-            ],
-            'nullable' => [
-                true,
+                255,
             ],
         ],
     ],

@@ -13,9 +13,6 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'type' => [
                 'datetime',
             ],
-            'nullable' => [
-                true,
-            ],
         ],
     ],
     [

@@ -11,10 +11,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 'four_cp',
             ],
             'length' => [
-                5,
-            ],
-            'nullable' => [
-                true,
+                20,
             ],
         ],
     ],

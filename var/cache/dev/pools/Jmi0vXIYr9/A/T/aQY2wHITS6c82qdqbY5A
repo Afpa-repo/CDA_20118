@@ -11,10 +11,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 'fact_date',
             ],
             'type' => [
-                'date',
-            ],
-            'nullable' => [
-                true,
+                'datetime',
             ],
         ],
     ],

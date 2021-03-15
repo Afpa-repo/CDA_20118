@@ -13,9 +13,9 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         'stdClass' => [
             'name' => [
                 'article',
-                'cat_id',
-                'pro_id',
-                'four_id',
+                'FK_article_categorie',
+                'FK_article_promotion',
+                'FK_article_fournisseur',
             ],
             'indexes' => [
                 [

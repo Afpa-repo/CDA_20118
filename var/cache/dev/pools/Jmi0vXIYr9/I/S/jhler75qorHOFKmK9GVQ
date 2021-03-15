@@ -11,7 +11,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         'stdClass' => [
             'name' => [
                 'commande',
-                'uti_id',
+                'FK_commande_client',
             ],
             'indexes' => [
                 [
@@ -20,7 +20,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'columns' => [
                 1 => [
-                    'uti_id',
+                    'cli_id',
                 ],
             ],
         ],
