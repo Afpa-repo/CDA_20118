@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur index{% endblock %}
+
+{% block body %}
+    <h1>Utilisateur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>UtiId</th>
+                <th>UtiAdresse</th>
+                <th>UtiAdresse2</th>
+                <th>UtiVille</th>
+                <th>UtiCodepostal</th>
+                <th>UtiNom</th>
+                <th>UtiRole</th>
+                <th>UtiPrenom</th>
+                <th>UtiSexe</th>
+                <th>UtiDateDeNaissance</th>
+                <th>UtiMail</th>
+                <th>UtiTel</th>
+                <th>UtiId1</th>
+                <th>PayId</th>
+                <th>Uti_identifiant</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for utilisateur in utilisateurs %}
+            <tr>
+                <td>{{ utilisateur.utiId }}</td>
+                <td>{{ utilisateur.utiAdresse }}</td>
+                <td>{{ utilisateur.utiAdresse2 }}</td>
+                <td>{{ utilisateur.utiVille }}</td>
+                <td>{{ utilisateur.utiCodepostal }}</td>
+                <td>{{ utilisateur.utiNom }}</td>
+                <td>{{ utilisateur.utiRole }}</td>
+                <td>{{ utilisateur.utiPrenom }}</td>
+                <td>{{ utilisateur.utiSexe }}</td>
+                <td>{{ utilisateur.utiDateDeNaissance ? utilisateur.utiDateDeNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ utilisateur.utiMail }}</td>
+                <td>{{ utilisateur.utiTel }}</td>
+                <td>{{ utilisateur.utiId1 }}</td>
+                <td>{{ utilisateur.payId }}</td>
+                <td>{{ utilisateur.utiIdentifiant }}</td>
+                <td>{{ utilisateur.roles ? utilisateur.roles|json_encode : '' }}</td>
+                <td>{{ utilisateur.password }}</td>
+                <td>
+                    <a href="{{ path('utilisateur_show', {'utiId': utilisateur.utiId}) }}">show</a>
+                    <a href="{{ path('utilisateur_edit', {'utiId': utilisateur.utiId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('utilisateur_new') }}">Create new</a>
+{% endblock %}
