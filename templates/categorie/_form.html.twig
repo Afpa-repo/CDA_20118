@@ -1,0 +1,17 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<div class="col-6">
+    <div class="row">
+    {{ form_label(form.catNom, 'Nom de catégorie') }}
+    {{ form_widget(form.catNom) }}
+    {{ form_help(form.catNom) }}
+    </div>
+    <div class="row mt-3">
+    {{ form_label(form.catSup, 'catégorie') }}
+    {{ form_widget(form.catSup) }}
+    {{ form_help(form.catSup) }}
+    </div>
+</div>
+<div class="d-grid gap-2 col-2">
+    <button class="btn btn-success mt-4 ">{{ button_label|default('Créer') }} </button>
+</div>
+{{ form_end(form) }}

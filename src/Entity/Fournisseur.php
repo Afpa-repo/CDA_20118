@@ -163,4 +163,9 @@ class Fournisseur
     }
 
 
+    public function __toString()
+    {
+        return $this->fourNom;
+    }
+
 }
