@@ -454,6 +454,10 @@
       <argument type="service" id="security.csrf.token_manager"/>
       <argument type="service" id="security.user_password_encoder.generic"/>
     </service>
+    <service id="App\Service\Cart\CartService" class="App\Service\Cart\CartService" autowire="true" autoconfigure="true">
+      <argument type="service" id="session"/>
+      <argument type="service" id="App\Repository\ProductRepository"/>
+    </service>
     <service id=".legacy_controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
       <argument type="service" id="kernel"/>
@@ -5319,17 +5323,10 @@
         <argument key="article" type="service" id=".errored..service_locator.WKL2avN.App\Entity\Article"/>
       </argument>
     </service>
-    <service id=".service_locator.XH79TgU" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.qQRbIWD" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="productRepository" type="service" id="App\Repository\ProductRepository"/>
-        <argument key="session" type="service" id="session"/>
-      </argument>
-    </service>
-    <service id=".service_locator.o3htLhs" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="session" type="service" id="session"/>
+        <argument key="cartService" type="service" id="App\Service\Cart\CartService"/>
       </argument>
     </service>
     <service id=".service_locator.RdXN6Y1" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -5392,15 +5389,15 @@
         <argument key="utilisateur" type="service" id=".errored..service_locator.z1iWlPx.App\Entity\Utilisateur"/>
       </argument>
     </service>
-    <service id=".service_locator.8qfidsU" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.s7tftIP" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ArticleController::delete" type="service" id=".service_locator.WKL2avN"/>
         <argument key="App\Controller\ArticleController::edit" type="service" id=".service_locator.WKL2avN"/>
         <argument key="App\Controller\ArticleController::show" type="service" id=".service_locator.WKL2avN"/>
-        <argument key="App\Controller\CartController::add" type="service" id=".service_locator.o3htLhs"/>
-        <argument key="App\Controller\CartController::index" type="service" id=".service_locator.XH79TgU"/>
-        <argument key="App\Controller\CartController::remove" type="service" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CartController::add" type="service" id=".service_locator.qQRbIWD"/>
+        <argument key="App\Controller\CartController::index" type="service" id=".service_locator.qQRbIWD"/>
+        <argument key="App\Controller\CartController::remove" type="service" id=".service_locator.qQRbIWD"/>
         <argument key="App\Controller\CategorieController::delete" type="service" id=".service_locator.RdXN6Y1"/>
         <argument key="App\Controller\CategorieController::edit" type="service" id=".service_locator.RdXN6Y1"/>
         <argument key="App\Controller\CategorieController::show" type="service" id=".service_locator.RdXN6Y1"/>
@@ -5428,9 +5425,9 @@
         <argument key="App\Controller\ArticleController:delete" type="service" id=".service_locator.WKL2avN"/>
         <argument key="App\Controller\ArticleController:edit" type="service" id=".service_locator.WKL2avN"/>
         <argument key="App\Controller\ArticleController:show" type="service" id=".service_locator.WKL2avN"/>
-        <argument key="App\Controller\CartController:add" type="service" id=".service_locator.o3htLhs"/>
-        <argument key="App\Controller\CartController:index" type="service" id=".service_locator.XH79TgU"/>
-        <argument key="App\Controller\CartController:remove" type="service" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CartController:add" type="service" id=".service_locator.qQRbIWD"/>
+        <argument key="App\Controller\CartController:index" type="service" id=".service_locator.qQRbIWD"/>
+        <argument key="App\Controller\CartController:remove" type="service" id=".service_locator.qQRbIWD"/>
         <argument key="App\Controller\CategorieController:delete" type="service" id=".service_locator.RdXN6Y1"/>
         <argument key="App\Controller\CategorieController:edit" type="service" id=".service_locator.RdXN6Y1"/>
         <argument key="App\Controller\CategorieController:show" type="service" id=".service_locator.RdXN6Y1"/>
@@ -5963,12 +5960,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.8qfidsU"/>
+      <argument type="service" id=".service_locator.s7tftIP"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.8qfidsU"/>
+      <argument type="service" id=".service_locator.s7tftIP"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface" public="false">
       <argument type="collection"/>
@@ -6369,7 +6366,7 @@
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.8qfidsU"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.s7tftIP"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>
