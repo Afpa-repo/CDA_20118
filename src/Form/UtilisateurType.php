@@ -24,10 +24,9 @@ class UtilisateurType extends AbstractType
             ->add('utiMail')
             ->add('utiTel')
             ->add('utiId1')
-            ->add('payId')
             ->add('utiIdentifiant')
-            ->add('roles')
-            ->add('password')
+            ->add('utiMdp')
+            ->add('pay')
         ;
     }
 

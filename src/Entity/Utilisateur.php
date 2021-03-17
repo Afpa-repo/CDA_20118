@@ -2,14 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
- * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_1D1C63B374C1F655", columns={"uti_identifiant"})}, indexes={@ORM\Index(name="uti_id_1", columns={"uti_id_1"}), @ORM\Index(name="pay_id", columns={"pay_id"})})
- * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
+ * Utilisateur
+ *
+ * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_1D1C63B374C1F655", columns={"uti_identifiant"})}, indexes={@ORM\Index(name="pay_id", columns={"pay_id"}), @ORM\Index(name="uti_id_1", columns={"uti_id_1"})})
+ * @ORM\Entity
+ *  * @UniqueEntity(
+ *     fields={"utiMail"},
+ *     message="Cette adresse email existe deja !")
  */
+
 class Utilisateur implements UserInterface
 {
     /**
@@ -21,23 +29,6 @@ class Utilisateur implements UserInterface
      */
     private $utiId;
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
-    private $uti_identifiant;
-
-    /**
-     * @ORM\Column(type="array")
-     */
-    private $roles = [];
-
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
-    private $password;
-
-    // ---------------------------------------------- //
     /**
      * @var string|null
      *
@@ -123,93 +114,40 @@ class Utilisateur implements UserInterface
     private $utiId1;
 
     /**
-     * @var int|null
+     * @var \Pays
      *
-     * @ORM\Column(name="pay_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Pays")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pay_id", referencedColumnName="pay_id")
+     * })
      */
-    private $payId;
+    private $pay;
 
-    public function getutiId(): ?int
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uti_identifiant", type="string", length=180, nullable=false)
+     */
+    private $utiIdentifiant;
+
+    /**
+     * @var string
+     * @ORM\Column(name="uti_mdp", type="string", length=255, nullable=false)
+     * @Assert\Length(min="8", minMessage="Votre mot de passe doit faire 8 caractères minimum")
+     */
+    private $utiMdp;
+
+    /**
+     * @var string
+     * @Assert\EqualTo(propertyPath="uti_Mdp", message="Vous n'avez pas tapé la meme mot de passe")
+     */
+    public $confirm_utiMdp;
+
+    public function getUtiId(): ?int
     {
         return $this->utiId;
     }
 
-    public function getUtiIdentifiant(): ?string
-    {
-        return $this->uti_identifiant;
-    }
-
-    public function setUtiIdentifiant(string $uti_identifiant): self
-    {
-        $this->uti_identifiant = $uti_identifiant;
-
-        return $this;
-    }
-
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->uti_identifiant;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getPassword(): string
-    {
-        return (string) $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
-     */
-    public function getSalt(): ?string
-    {
-        return null;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
-    // ----------------------------------------------------- //
     public function getUtiAdresse(): ?string
     {
         return $this->utiAdresse;
@@ -354,14 +292,38 @@ class Utilisateur implements UserInterface
         return $this;
     }
 
-    public function getPayId(): ?int
+    public function getPay(): ?Pays
     {
-        return $this->payId;
+        return $this->pay;
     }
 
-    public function setPayId(?int $payId): self
+    public function setPay(?Pays $pay): self
     {
-        $this->payId = $payId;
+        $this->pay = $pay;
+
+        return $this;
+    }
+
+    public function getUtiIdentifiant(): ?string
+    {
+        return $this->utiIdentifiant;
+    }
+
+    public function setUtiIdentifiant(string $utiIdentifiant): self
+    {
+        $this->utiIdentifiant = $utiIdentifiant;
+
+        return $this;
+    }
+
+    public function getUtiMdp(): ?string
+    {
+        return $this->utiMdp;
+    }
+
+    public function setUtiMdp(string $utiMdp): self
+    {
+        $this->utiMdp = $utiMdp;
 
         return $this;
     }
@@ -370,5 +332,28 @@ class Utilisateur implements UserInterface
     {
         return $this->utiNom;
     }
-    
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function getSalt()
+    {
+
+    }
+
+    public function getRoles() {
+        return ['ROLE_USER'];
+    }
+
+    public function getPassword() :string
+    {
+        return $this->utiMdp;
+    }
+
+    public function getUsername() :string
+    {
+        return $this->utiIdentifiant;
+    }
+
 }

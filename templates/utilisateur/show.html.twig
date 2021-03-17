@@ -12,18 +12,6 @@
                 <td>{{ utilisateur.utiId }}</td>
             </tr>
             <tr>
-                <th>Uti_identifiant</th>
-                <td>{{ utilisateur.utiIdentifiant }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ utilisateur.roles ? utilisateur.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ utilisateur.password }}</td>
-            </tr>
-            <tr>
                 <th>UtiAdresse</th>
                 <td>{{ utilisateur.utiAdresse }}</td>
             </tr>
@@ -72,8 +60,12 @@
                 <td>{{ utilisateur.utiId1 }}</td>
             </tr>
             <tr>
-                <th>PayId</th>
-                <td>{{ utilisateur.payId }}</td>
+                <th>UtiIdentifiant</th>
+                <td>{{ utilisateur.utiIdentifiant }}</td>
+            </tr>
+            <tr>
+                <th>UtiMdp</th>
+                <td>{{ utilisateur.utiMdp }}</td>
             </tr>
         </tbody>
     </table>

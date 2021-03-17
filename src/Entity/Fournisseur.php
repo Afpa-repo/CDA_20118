@@ -24,7 +24,14 @@ class Fournisseur
     /**
      * @var string|null
      *
-     * @ORM\Column(name="four_nom", type="string", length=30, nullable=true)
+     * @ORM\Column(name="four_email", type="string", length=255, nullable=true)
+     */
+    private $fourEmail;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="four_nom", type="string", length=50, nullable=true)
      */
     private $fourNom;
 
@@ -45,14 +52,14 @@ class Fournisseur
     /**
      * @var string|null
      *
-     * @ORM\Column(name="four_cp", type="string", length=5, nullable=true)
+     * @ORM\Column(name="four_cp", type="string", length=10, nullable=true)
      */
     private $fourCp;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="four_tel", type="string", length=10, nullable=true)
+     * @ORM\Column(name="four_tel", type="string", length=20, nullable=true)
      */
     private $fourTel;
 
@@ -76,6 +83,18 @@ class Fournisseur
     public function getFourId(): ?int
     {
         return $this->fourId;
+    }
+
+    public function getFourEmail(): ?string
+    {
+        return $this->fourEmail;
+    }
+
+    public function setFourEmail(?string $fourEmail): self
+    {
+        $this->fourEmail = $fourEmail;
+
+        return $this;
     }
 
     public function getFourNom(): ?string
@@ -162,10 +181,8 @@ class Fournisseur
         return $this;
     }
 
-
     public function __toString()
     {
         return $this->fourNom;
     }
-
 }

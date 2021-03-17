@@ -114,13 +114,54 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("facture_index");
         echo "\">Factures</a>
                 </li>
-            </ul>
+
+                <li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"";
+        // line 45
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("utilisateur_index");
+        echo "\">Utilisateur</a>
+                </li>
+
+                <li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"";
+        // line 49
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security_registration");
+        echo "\">Inscription</a>
+                </li>
+
+                ";
+        // line 52
+        if ( !twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 52, $this->source); })()), "user", [], "any", false, false, false, 52)) {
+            // line 53
+            echo "                    <li class=\"nav-item\">
+                        <a href=\"";
+            // line 54
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security_login");
+            echo "\" class=\"nav-link\">
+                            Connexion
+                        </a>
+                    </li>
+                ";
+        } else {
+            // line 59
+            echo "                    <li class=\"nav-item\">
+                        <a href=\"";
+            // line 60
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security_logout");
+            echo "\" class=\"nav-link\">
+                            Déconnexion
+                        </a>
+                    </li>
+                ";
+        }
+        // line 65
+        echo "            </ul>
         </div>
     </nav>
         ";
-        // line 46
+        // line 68
         $this->displayBlock('body', $context, $blocks);
-        // line 47
+        // line 69
         echo "    </body>
 </html>
 ";
@@ -192,7 +233,7 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
 
     }
 
-    // line 46
+    // line 68
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -222,7 +263,7 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
 
     public function getDebugInfo()
     {
-        return array (  196 => 46,  186 => 14,  184 => 13,  174 => 12,  155 => 9,  136 => 5,  124 => 47,  122 => 46,  114 => 41,  108 => 38,  102 => 35,  96 => 32,  90 => 29,  84 => 26,  73 => 18,  68 => 15,  66 => 12,  62 => 10,  59 => 9,  53 => 5,  47 => 1,);
+        return array (  237 => 68,  227 => 14,  225 => 13,  215 => 12,  196 => 9,  177 => 5,  165 => 69,  163 => 68,  158 => 65,  150 => 60,  147 => 59,  139 => 54,  136 => 53,  134 => 52,  128 => 49,  121 => 45,  114 => 41,  108 => 38,  102 => 35,  96 => 32,  90 => 29,  84 => 26,  73 => 18,  68 => 15,  66 => 12,  62 => 10,  59 => 9,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -269,6 +310,28 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
                 <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"{{ path('facture_index') }}\">Factures</a>
                 </li>
+
+                <li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"{{ path('utilisateur_index') }}\">Utilisateur</a>
+                </li>
+
+                <li class=\"nav-item\">
+                    <a class=\"nav-link\" href=\"{{ path('security_registration') }}\">Inscription</a>
+                </li>
+
+                {% if not app.user %}
+                    <li class=\"nav-item\">
+                        <a href=\"{{ path('security_login') }}\" class=\"nav-link\">
+                            Connexion
+                        </a>
+                    </li>
+                {% else %}
+                    <li class=\"nav-item\">
+                        <a href=\"{{ path('security_logout') }}\" class=\"nav-link\">
+                            Déconnexion
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </nav>

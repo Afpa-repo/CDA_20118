@@ -24,9 +24,9 @@ class Promotion
     /**
      * @var string
      *
-     * @ORM\Column(name="pro_coef", type="decimal", precision=2, scale=2, nullable=false)
+     * @ORM\Column(name="pro_coef", type="string", nullable=false)
      */
-    private $proCoef;
+    private $proCoef = '0';
 
     /**
      * @var \DateTime
@@ -52,7 +52,7 @@ class Promotion
         return $this->proCoef;
     }
 
-    public function setProCoef(string $proCoef): self
+    public function setProCoef(int $proCoef): self
     {
         $this->proCoef = $proCoef;
 
@@ -82,9 +82,9 @@ class Promotion
 
         return $this;
     }
+
     public function __toString()
     {
         return $this->proCoef;
     }
-
 }

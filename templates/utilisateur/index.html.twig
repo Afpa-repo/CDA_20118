@@ -1,17 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Utilisateur index{% endblock %}
+
 {% block body %}
-{# {{  dump(utilisateurs) }} #}
     <h1>Utilisateur index</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>UtiId</th>
-                <th>Uti_identifiant</th>
-                <th>Roles</th>
-                <th>Password</th>
                 <th>UtiAdresse</th>
                 <th>UtiAdresse2</th>
                 <th>UtiVille</th>
@@ -24,18 +21,15 @@
                 <th>UtiMail</th>
                 <th>UtiTel</th>
                 <th>UtiId1</th>
-                <th>PayId</th>
+                <th>UtiIdentifiant</th>
+                <th>UtiMdp</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for utilisateur in utilisateurs %}
-{#         {{ dump(utilisateur) }} #}
             <tr>
                 <td>{{ utilisateur.utiId }}</td>
-                <td>{{ utilisateur.utiIdentifiant }}</td>
-                <td>{{ utilisateur.roles ? utilisateur.roles|json_encode : '' }}</td>
-                <td>{{ utilisateur.password }}</td>
                 <td>{{ utilisateur.utiAdresse }}</td>
                 <td>{{ utilisateur.utiAdresse2 }}</td>
                 <td>{{ utilisateur.utiVille }}</td>
@@ -48,7 +42,8 @@
                 <td>{{ utilisateur.utiMail }}</td>
                 <td>{{ utilisateur.utiTel }}</td>
                 <td>{{ utilisateur.utiId1 }}</td>
-                <td>{{ utilisateur.payId }}</td>
+                <td>{{ utilisateur.utiIdentifiant }}</td>
+                <td>{{ utilisateur.utiMdp }}</td>
                 <td>
                     <a href="{{ path('utilisateur_show', {'utiId': utilisateur.utiId}) }}">show</a>
                     <a href="{{ path('utilisateur_edit', {'utiId': utilisateur.utiId}) }}">edit</a>
@@ -56,7 +51,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="18">no records found</td>
+                <td colspan="16">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

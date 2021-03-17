@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Lignedecommande
  *
- * @ORM\Table(name="lignedecommande", indexes={@ORM\Index(name="com_id", columns={"com_id"}), @ORM\Index(name="art_id", columns={"art_id"})})
+ * @ORM\Table(name="lignedecommande", indexes={@ORM\Index(name="art_id", columns={"art_id"}), @ORM\Index(name="com_id", columns={"com_id"})})
  * @ORM\Entity
  */
 class LigneDeCommande
@@ -107,6 +107,7 @@ class LigneDeCommande
 
         return $this;
     }
+
 
 
 }
