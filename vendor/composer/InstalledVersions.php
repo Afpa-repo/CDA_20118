@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'faccb1d0bdd0e3ceb8338c9886e028ece01bcc02',
+    'reference' => 'abbfda39af0a3b95d50bfbddc1136724bb124990',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'faccb1d0bdd0e3ceb8338c9886e028ece01bcc02',
+      'reference' => 'abbfda39af0a3b95d50bfbddc1136724bb124990',
     ),
     'composer/package-versions-deprecated' => 
     array (
@@ -1336,6 +1336,7 @@ self::$canGetVendors = method_exists('Composer\Autoload\ClassLoader', 'getRegist
 $installed = array();
 
 if (self::$canGetVendors) {
+
 foreach (ClassLoader::getRegisteredLoaders() as $vendorDir => $loader) {
 if (isset(self::$installedByVendor[$vendorDir])) {
 $installed[] = self::$installedByVendor[$vendorDir];

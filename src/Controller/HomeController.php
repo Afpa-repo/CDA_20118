@@ -19,5 +19,7 @@ class HomeController extends AbstractController {
         // affichage de la page d'accueil
         return $this->render('accueil/index.html.twig');
     }
+
+
 }
 ?>
