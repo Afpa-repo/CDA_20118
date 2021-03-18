@@ -64,8 +64,13 @@ return [
                             .'|/([^/]++)(*:248)'
                             .'|_cart/([^/]++)(*:270)'
                         .')'
+<<<<<<< Updated upstream
                         .'|remove/([^/]++)(*:294)'
                         .'|minus/([^/]++)(*:316)'
+=======
+                        .'|minus/([^/]++)(*:293)'
+                        .'|remove/([^/]++)(*:316)'
+>>>>>>> Stashed changes
                     .')'
                     .'|romotion/([^/]++)(?'
                         .'|(*:345)'
@@ -122,8 +127,13 @@ return [
         210 => [[['_route' => 'article_delete', '_controller' => 'App\\Controller\\ArticleController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
         248 => [[['_route' => 'cart_add', '_controller' => 'App\\Controller\\CartController::add'], ['id'], null, null, false, true, null]],
         270 => [[['_route' => 'cart_add_cart', '_controller' => 'App\\Controller\\CartController::add_cart'], ['id'], null, null, false, true, null]],
+<<<<<<< Updated upstream
         294 => [[['_route' => 'cart_remove', '_controller' => 'App\\Controller\\CartController::remove'], ['id'], null, null, false, true, null]],
         316 => [[['_route' => 'cart_minus', '_controller' => 'App\\Controller\\CartController::minus'], ['id'], null, null, false, true, null]],
+=======
+        293 => [[['_route' => 'cart_minus', '_controller' => 'App\\Controller\\CartController::minus'], ['id'], null, null, false, true, null]],
+        316 => [[['_route' => 'cart_remove', '_controller' => 'App\\Controller\\CartController::remove'], ['id'], null, null, false, true, null]],
+>>>>>>> Stashed changes
         345 => [[['_route' => 'promotion_show', '_controller' => 'App\\Controller\\PromotionController::show'], ['id'], ['GET' => 0], null, false, true, null]],
         358 => [[['_route' => 'promotion_edit', '_controller' => 'App\\Controller\\PromotionController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         366 => [[['_route' => 'promotion_delete', '_controller' => 'App\\Controller\\PromotionController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],

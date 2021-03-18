@@ -22,6 +22,8 @@ return [
     'article_delete' => [['id'], ['_controller' => 'App\\Controller\\ArticleController::delete'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/article']], [], []],
     'cart_index' => [[], ['_controller' => 'App\\Controller\\CartController::index'], [], [['text', '/panier']], [], []],
     'cart_add' => [['id'], ['_controller' => 'App\\Controller\\CartController::add'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/panier/add']], [], []],
+    'cart_add_cart' => [['id'], ['_controller' => 'App\\Controller\\CartController::add_cart'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/panier/add_cart']], [], []],
+    'cart_minus' => [['id'], ['_controller' => 'App\\Controller\\CartController::minus'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/panier/minus']], [], []],
     'cart_remove' => [['id'], ['_controller' => 'App\\Controller\\CartController::remove'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/panier/remove']], [], []],
     'cart_minus' => [['id'], ['_controller' => 'App\\Controller\\CartController::minus'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/panier/minus']], [], []],
     'cart_add_cart' => [['id'], ['_controller' => 'App\\Controller\\CartController::add_cart'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/panier/add_cart']], [], []],

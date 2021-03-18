@@ -36,6 +36,26 @@ class CartController extends AbstractController
     {
         $cartService->add($id);
 
+        return $this->redirectToRoute("produit_index");
+    }
+
+        /**
+     * @Route("/panier/add_cart/{id}", name="cart_add_cart")
+     */
+    public function add_cart($id, CartService $cartService)
+    {
+        $cartService->add($id);
+
+        return $this->redirectToRoute("cart_index");
+    }
+
+        /**
+     * @Route("/panier/minus/{id}", name="cart_minus")
+     */
+    public function minus($id, CartService $cartService)
+    {
+        $cartService->minus($id);
+
         return $this->redirectToRoute("cart_index");
     }
 
@@ -49,23 +69,4 @@ class CartController extends AbstractController
         return $this->redirectToRoute("cart_index");
     }
 
-    /**
-     * @Route("/panier/minus/{id}", name="cart_minus")
-     */
-    public function minus($id, CartService $cartService)
-    {
-        $cartService->minus($id);
-
-        return $this->redirectToRoute("cart_index");
-    }
-
-    /**
-     * @Route("/panier/add_cart/{id}", name="cart_add_cart")
-     */
-    public function add_cart($id, CartService $cartService)
-    {
-        $cartService->add($id);
-
-        return $this->redirectToRoute("cart_index");
-    }
 }

@@ -156,6 +156,7 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
         }
         // line 65
         echo "                <li class=\"nav-item\">
+<<<<<<< Updated upstream
 
                         <button type=\"button\" class=\"btn btn-light\">
                             <a href=\"";
@@ -179,6 +180,21 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
         // line 79
         $this->displayBlock('body', $context, $blocks);
         // line 82
+=======
+                    <a class=\"nav-link\" href=\"";
+        // line 66
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_index");
+        echo "\"><i class=\"bi bi-cart\"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+        ";
+        // line 72
+        $this->displayBlock('body', $context, $blocks);
+        // line 73
+>>>>>>> Stashed changes
         echo "    </body>
 </html>
 ";
@@ -248,7 +264,11 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
 
     }
 
+<<<<<<< Updated upstream
     // line 79
+=======
+    // line 72
+>>>>>>> Stashed changes
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -281,7 +301,11 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
 
     public function getDebugInfo()
     {
+<<<<<<< Updated upstream
         return array (  262 => 80,  252 => 79,  242 => 14,  232 => 12,  213 => 9,  194 => 5,  182 => 82,  180 => 79,  167 => 69,  163 => 68,  158 => 65,  150 => 60,  147 => 59,  139 => 54,  136 => 53,  134 => 52,  128 => 49,  121 => 45,  114 => 41,  108 => 38,  102 => 35,  96 => 32,  90 => 29,  84 => 26,  73 => 18,  68 => 15,  66 => 12,  62 => 10,  59 => 9,  53 => 5,  47 => 1,);
+=======
+        return array (  244 => 72,  234 => 14,  232 => 13,  222 => 12,  203 => 9,  184 => 5,  172 => 73,  170 => 72,  161 => 66,  158 => 65,  150 => 60,  147 => 59,  139 => 54,  136 => 53,  134 => 52,  128 => 49,  121 => 45,  114 => 41,  108 => 38,  102 => 35,  96 => 32,  90 => 29,  84 => 26,  73 => 18,  68 => 15,  66 => 12,  62 => 10,  59 => 9,  53 => 5,  47 => 1,);
+>>>>>>> Stashed changes
     }
 
     public function getSourceContext()
@@ -351,6 +375,7 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
                     </li>
                 {% endif %}
                 <li class=\"nav-item\">
+<<<<<<< Updated upstream
 
                         <button type=\"button\" class=\"btn btn-light\">
                             <a href=\"{{ path('cart_index') }}\"  class=\"bi bi-cart-fill\" >
@@ -361,6 +386,11 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
 
                 </li>
 
+=======
+                    <a class=\"nav-link\" href=\"{{ path('cart_index') }}\"><i class=\"bi bi-cart\"></i>
+                    </a>
+                </li>
+>>>>>>> Stashed changes
             </ul>
         </div>
     </nav>
@@ -369,6 +399,6 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
 {% endblock %}
     </body>
 </html>
-", "base.html.twig", "D:\\symfony\\Kevin\\CDA_20118\\templates\\base.html.twig");
+", "base.html.twig", "C:\\Program Files\\Site\\CDA_20118\\templates\\base.html.twig");
     }
 }
