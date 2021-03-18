@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Fournisseur;
 use App\Form\FournisseurType;
+use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,22 +18,26 @@ class FournisseurController extends AbstractController
     /**
      * @Route("/", name="fournisseur_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(CartService $cartService): Response
     {
+        $size = $cartService->getSize();
         $fournisseurs = $this->getDoctrine()
             ->getRepository(Fournisseur::class)
             ->findAll();
 
         return $this->render('fournisseur/index.html.twig', [
             'fournisseurs' => $fournisseurs,
+            'size' => $size
         ]);
     }
 
     /**
      * @Route("/new", name="fournisseur_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         $fournisseur = new Fournisseur();
         $form = $this->createForm(FournisseurType::class, $fournisseur);
         $form->handleRequest($request);
@@ -48,24 +53,33 @@ class FournisseurController extends AbstractController
         return $this->render('fournisseur/new.html.twig', [
             'fournisseur' => $fournisseur,
             'form' => $form->createView(),
+            'size' => $size
+
+
         ]);
     }
 
     /**
      * @Route("/{id}", name="fournisseur_show", methods={"GET"})
      */
-    public function show(Fournisseur $fournisseur): Response
+    public function show(Fournisseur $fournisseur, CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         return $this->render('fournisseur/show.html.twig', [
             'fournisseur' => $fournisseur,
+            'size' => $size
+
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="fournisseur_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Fournisseur $fournisseur): Response
+    public function edit(Request $request, Fournisseur $fournisseur, CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         $form = $this->createForm(FournisseurType::class, $fournisseur);
         $form->handleRequest($request);
 
@@ -78,6 +92,8 @@ class FournisseurController extends AbstractController
         return $this->render('fournisseur/edit.html.twig', [
             'fournisseur' => $fournisseur,
             'form' => $form->createView(),
+            'size' => $size
+
         ]);
     }
 
@@ -86,7 +102,7 @@ class FournisseurController extends AbstractController
      */
     public function delete(Request $request, Fournisseur $fournisseur): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$fournisseur->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$fournisseur->getFourId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($fournisseur);
             $entityManager->flush();

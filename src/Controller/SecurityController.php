@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\Cart\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,12 +18,14 @@ class SecurityController extends AbstractController
      * @Route("/inscription", name="security_registration")
      * @return Response
      */
-    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder) {
+    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, CartService $cartService) {
         $utilisateur = new Utilisateur();
 
         $form = $this->createForm(RegistrationType::class, $utilisateur);
 
         $form->handleRequest($request);
+
+        $size = $cartService->getSize();
 
         if($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($utilisateur, $utilisateur->getUtiMdp());
@@ -35,15 +38,20 @@ class SecurityController extends AbstractController
 
         }
         return $this->render('security/registration.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'size' => $size
         ]);
     }
 
     /**
      * @Route("/connexion", name="security_login")
      */
-    public function login(){
-        return $this->render('security/login.html.twig');
+    public function login(CartService $cartService){
+        $size = $cartService->getSize();
+
+        return $this->render('security/login.html.twig', [
+            'size' => $size
+        ]);
     }
 
     /**

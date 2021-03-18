@@ -23,6 +23,8 @@ return [
     'cart_index' => [[], ['_controller' => 'App\\Controller\\CartController::index'], [], [['text', '/panier']], [], []],
     'cart_add' => [['id'], ['_controller' => 'App\\Controller\\CartController::add'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/panier/add']], [], []],
     'cart_remove' => [['id'], ['_controller' => 'App\\Controller\\CartController::remove'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/panier/remove']], [], []],
+    'cart_minus' => [['id'], ['_controller' => 'App\\Controller\\CartController::minus'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/panier/minus']], [], []],
+    'cart_add_cart' => [['id'], ['_controller' => 'App\\Controller\\CartController::add_cart'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/panier/add_cart']], [], []],
     'categorie_index' => [[], ['_controller' => 'App\\Controller\\CategorieController::index'], [], [['text', '/categorie/']], [], []],
     'categorie_new' => [[], ['_controller' => 'App\\Controller\\CategorieController::new'], [], [['text', '/categorie/new']], [], []],
     'categorie_show' => [['id'], ['_controller' => 'App\\Controller\\CategorieController::show'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/categorie']], [], []],

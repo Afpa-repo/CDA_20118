@@ -20,9 +20,12 @@ class CartController extends AbstractController
 
         $total = $cartService->getTotal();
 
+        $size = $cartService->getSize();
+
         return $this->render('cart/index.html.twig', [
             'items' => $panierWithData,
-            'total' => $total
+            'total' => $total,
+            'size' => $size
         ]);
     }
 
@@ -42,6 +45,26 @@ class CartController extends AbstractController
     public function remove($id, CartService $cartService) {
 
         $cartService->remove($id);
+
+        return $this->redirectToRoute("cart_index");
+    }
+
+    /**
+     * @Route("/panier/minus/{id}", name="cart_minus")
+     */
+    public function minus($id, CartService $cartService)
+    {
+        $cartService->minus($id);
+
+        return $this->redirectToRoute("cart_index");
+    }
+
+    /**
+     * @Route("/panier/add_cart/{id}", name="cart_add_cart")
+     */
+    public function add_cart($id, CartService $cartService)
+    {
+        $cartService->add($id);
 
         return $this->redirectToRoute("cart_index");
     }

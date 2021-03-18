@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>FourId</th>
                 <th>FourNom</th>
                 <th>FourAdresse</th>
                 <th>FourVille</th>
@@ -21,7 +21,7 @@
         <tbody>
         {% for fournisseur in fournisseurs %}
             <tr>
-                <td>{{ fournisseur.id }}</td>
+                <td>{{ fournisseur.fourId }}</td>
                 <td>{{ fournisseur.fourNom }}</td>
                 <td>{{ fournisseur.fourAdresse }}</td>
                 <td>{{ fournisseur.fourVille }}</td>
@@ -29,8 +29,8 @@
                 <td>{{ fournisseur.fourTel }}</td>
                 <td>{{ fournisseur.fourEmail }}</td>
                 <td>
-                    <a href="{{ path('fournisseur_show', {'id': fournisseur.id}) }}">show</a>
-                    <a href="{{ path('fournisseur_edit', {'id': fournisseur.id}) }}">edit</a>
+                    <a href="{{ path('fournisseur_show', {'id': fournisseur.fourId}) }}">show</a>
+                    <a href="{{ path('fournisseur_edit', {'id': fournisseur.fourId}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

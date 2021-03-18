@@ -10,7 +10,7 @@
 
 
         {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+{#            <script src="{{ asset('js/script.js') }}" ></script>#}
         {% endblock %}
     </head>
     <body>
@@ -62,9 +62,22 @@
                         </a>
                     </li>
                 {% endif %}
+                <li class="nav-item">
+
+                        <button type="button" class="btn btn-light">
+                            <a href="{{ path('cart_index') }}"  class="bi bi-cart-fill" >
+                               {{ size }}
+                            </a>
+                        </button>
+                    </a>
+
+                </li>
+
             </ul>
         </div>
     </nav>
-        {% block body %}{% endblock %}
+    {% block body %}
+
+{% endblock %}
     </body>
 </html>

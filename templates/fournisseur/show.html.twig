@@ -9,7 +9,7 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ fournisseur.id }}</td>
+                <td>{{ fournisseur.fourId }}</td>
             </tr>
             <tr>
                 <th>FourNom</th>
@@ -40,7 +40,7 @@
 
     <a href="{{ path('fournisseur_index') }}">back to list</a>
 
-    <a href="{{ path('fournisseur_edit', {'id': fournisseur.id}) }}">edit</a>
+    <a href="{{ path('fournisseur_edit', {'id': fournisseur.fourId}) }}">edit</a>
 
     {{ include('fournisseur/_delete_form.html.twig') }}
 {% endblock %}

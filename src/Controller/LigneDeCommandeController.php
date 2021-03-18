@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\LigneDeCommande;
 use App\Form\LigneDeCommandeType;
+use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,22 +18,26 @@ class LigneDeCommandeController extends AbstractController
     /**
      * @Route("/", name="ligne_de_commande_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(CartService $cartService): Response
     {
+        $size = $cartService->getSize();
         $ligneDeCommandes = $this->getDoctrine()
             ->getRepository(LigneDeCommande::class)
             ->findAll();
 
         return $this->render('ligne_de_commande/index.html.twig', [
             'ligne_de_commandes' => $ligneDeCommandes,
+            'size' => $size
         ]);
     }
 
     /**
      * @Route("/new", name="ligne_de_commande_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         $ligneDeCommande = new LigneDeCommande();
         $form = $this->createForm(LigneDeCommandeType::class, $ligneDeCommande);
         $form->handleRequest($request);
@@ -48,24 +53,32 @@ class LigneDeCommandeController extends AbstractController
         return $this->render('ligne_de_commande/new.html.twig', [
             'ligne_de_commande' => $ligneDeCommande,
             'form' => $form->createView(),
+            'size' => $size
+
         ]);
     }
 
     /**
      * @Route("/{id}", name="ligne_de_commande_show", methods={"GET"})
      */
-    public function show(LigneDeCommande $ligneDeCommande): Response
+    public function show(LigneDeCommande $ligneDeCommande, CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         return $this->render('ligne_de_commande/show.html.twig', [
             'ligne_de_commande' => $ligneDeCommande,
+            'size' => $size
+
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="ligne_de_commande_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, LigneDeCommande $ligneDeCommande): Response
+    public function edit(Request $request, LigneDeCommande $ligneDeCommande, CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         $form = $this->createForm(LigneDeCommandeType::class, $ligneDeCommande);
         $form->handleRequest($request);
 
@@ -78,6 +91,8 @@ class LigneDeCommandeController extends AbstractController
         return $this->render('ligne_de_commande/edit.html.twig', [
             'ligne_de_commande' => $ligneDeCommande,
             'form' => $form->createView(),
+            'size' => $size
+
         ]);
     }
 

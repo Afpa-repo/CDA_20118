@@ -5,7 +5,8 @@ namespace App\Service\Cart;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class CartService {
+class CartService
+{
 
     protected $session;
     protected $productRepository;
@@ -16,32 +17,34 @@ class CartService {
         $this->productRepository = $productRepository;
     }
 
-    public function add(int $id){
+    public function add(int $id)
+    {
 
         $panier = $this->session->get('panier', []);
 
-        if(!empty($panier[$id])) {
+        if (!empty($panier[$id])) {
+
             $panier[$id]++;
         } else {
             $panier[$id] = 1;
         }
-
-
         $this->session->set('panier', $panier);
     }
 
-    public function remove(int $id) {
+    public function remove(int $id)
+    {
 
         $panier = $this->session->get('panier', []);
 
-        if(!empty($panier[$id])) {
+        if (!empty($panier[$id])) {
             unset($panier[$id]);
         }
 
         $this->session->set('panier', $panier);
     }
 
-    public function getFullCart() : array {
+    public function getFullCart(): array
+    {
 
         $panier = $this->session->get('panier', []);
 
@@ -49,14 +52,16 @@ class CartService {
 
         foreach ($panier as $id => $quantity) {
             $panierWithData[] = [
-                'product' =>$this->productRepository->find($id),
+                'product' => $this->productRepository->find($id),
                 'quantity' => $quantity
             ];
         }
         return $panierWithData;
     }
+
 //
-    public function getTotal() : float {
+    public function getTotal(): float
+    {
 
         $total = 0;
 
@@ -66,4 +71,32 @@ class CartService {
 
         return $total;
     }
+
+
+
+    public function getSize(): float
+    {
+        $total = 0;
+        $panier = $this->session->get('panier', []);
+        foreach ($panier as $quantity) {
+            $total += $quantity;
+        }
+        return $total;
+
+    }
+
+    public function minus(int $id){
+
+        $panier = $this->session->get('panier', []);
+
+        if(!empty($panier[$id])) {
+            $panier[$id]--;
+        } else {
+            $panier[$id] = 1;
+        }
+
+
+        $this->session->set('panier', $panier);
+    }
 }
+

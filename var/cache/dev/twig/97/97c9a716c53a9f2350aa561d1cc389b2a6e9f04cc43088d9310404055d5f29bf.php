@@ -155,13 +155,30 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
                 ";
         }
         // line 65
-        echo "            </ul>
+        echo "                <li class=\"nav-item\">
+
+                        <button type=\"button\" class=\"btn btn-light\">
+                            <a href=\"";
+        // line 68
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_index");
+        echo "\"  class=\"bi bi-cart-fill\" >
+                               ";
+        // line 69
+        echo twig_escape_filter($this->env, (isset($context["size"]) || array_key_exists("size", $context) ? $context["size"] : (function () { throw new RuntimeError('Variable "size" does not exist.', 69, $this->source); })()), "html", null, true);
+        echo "
+                            </a>
+                        </button>
+                    </a>
+
+                </li>
+
+            </ul>
         </div>
     </nav>
-        ";
-        // line 68
+    ";
+        // line 79
         $this->displayBlock('body', $context, $blocks);
-        // line 69
+        // line 82
         echo "    </body>
 </html>
 ";
@@ -221,8 +238,6 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 13
-        echo "            ";
         // line 14
         echo "        ";
         
@@ -233,7 +248,7 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
 
     }
 
-    // line 68
+    // line 79
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -243,6 +258,9 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
+        // line 80
+        echo "
+";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -263,7 +281,7 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
 
     public function getDebugInfo()
     {
-        return array (  237 => 68,  227 => 14,  225 => 13,  215 => 12,  196 => 9,  177 => 5,  165 => 69,  163 => 68,  158 => 65,  150 => 60,  147 => 59,  139 => 54,  136 => 53,  134 => 52,  128 => 49,  121 => 45,  114 => 41,  108 => 38,  102 => 35,  96 => 32,  90 => 29,  84 => 26,  73 => 18,  68 => 15,  66 => 12,  62 => 10,  59 => 9,  53 => 5,  47 => 1,);
+        return array (  262 => 80,  252 => 79,  242 => 14,  232 => 12,  213 => 9,  194 => 5,  182 => 82,  180 => 79,  167 => 69,  163 => 68,  158 => 65,  150 => 60,  147 => 59,  139 => 54,  136 => 53,  134 => 52,  128 => 49,  121 => 45,  114 => 41,  108 => 38,  102 => 35,  96 => 32,  90 => 29,  84 => 26,  73 => 18,  68 => 15,  66 => 12,  62 => 10,  59 => 9,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -280,7 +298,7 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
 
 
         {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+{#            <script src=\"{{ asset('js/script.js') }}\" ></script>#}
         {% endblock %}
     </head>
     <body>
@@ -332,10 +350,23 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
                         </a>
                     </li>
                 {% endif %}
+                <li class=\"nav-item\">
+
+                        <button type=\"button\" class=\"btn btn-light\">
+                            <a href=\"{{ path('cart_index') }}\"  class=\"bi bi-cart-fill\" >
+                               {{ size }}
+                            </a>
+                        </button>
+                    </a>
+
+                </li>
+
             </ul>
         </div>
     </nav>
-        {% block body %}{% endblock %}
+    {% block body %}
+
+{% endblock %}
     </body>
 </html>
 ", "base.html.twig", "D:\\symfony\\Kevin\\CDA_20118\\templates\\base.html.twig");

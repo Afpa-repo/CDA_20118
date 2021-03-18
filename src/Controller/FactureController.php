@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Facture;
 use App\Form\FactureType;
+use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,22 +18,26 @@ class FactureController extends AbstractController
     /**
      * @Route("/", name="facture_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(CartService $cartService): Response
     {
+        $size = $cartService->getSize();
         $factures = $this->getDoctrine()
             ->getRepository(Facture::class)
             ->findAll();
 
         return $this->render('facture/index.html.twig', [
             'factures' => $factures,
+            'size' => $size
         ]);
     }
 
     /**
      * @Route("/new", name="facture_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         $facture = new Facture();
         $form = $this->createForm(FactureType::class, $facture);
         $form->handleRequest($request);
@@ -48,24 +53,32 @@ class FactureController extends AbstractController
         return $this->render('facture/new.html.twig', [
             'facture' => $facture,
             'form' => $form->createView(),
+            'size' => $size
+
         ]);
     }
 
     /**
      * @Route("/{id}", name="facture_show", methods={"GET"})
      */
-    public function show(Facture $facture): Response
+    public function show(Facture $facture, CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         return $this->render('facture/show.html.twig', [
             'facture' => $facture,
+            'size' => $size
+
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="facture_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Facture $facture): Response
+    public function edit(Request $request, Facture $facture, CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         $form = $this->createForm(FactureType::class, $facture);
         $form->handleRequest($request);
 
@@ -78,6 +91,8 @@ class FactureController extends AbstractController
         return $this->render('facture/edit.html.twig', [
             'facture' => $facture,
             'form' => $form->createView(),
+            'size' => $size
+
         ]);
     }
 

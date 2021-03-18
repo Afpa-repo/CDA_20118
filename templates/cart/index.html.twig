@@ -25,7 +25,15 @@
                 <tr>
                     <td>{{ item.product.artNom }}</td>
                     <td>{{ item.product.artPrixHt }}</td>
-                    <td>{{ item.quantity }}</td>
+                    <td>
+                        <a href="{{ path('cart_minus', {'id': item.product.artId}) }}" class="btn btn-secondary btn-sm">
+                            <i class="bi bi-dash-circle"></i>
+                        </a>
+                        {{ item.quantity }}
+                        <a href="{{ path('cart_add_cart', {'id': item.product.artId}) }}" class="btn btn-success btn-sm">
+                            <i class="bi bi-plus-circle"></i>
+                        </a>
+                    </td>
                     <td>{{ item.product.artPrixHt * item.quantity }}</td>
                     <td>
                         <a href="{{ path('cart_remove', {'id': item.product.artId}) }}" class="btn btn-danger btn-sm">
@@ -37,9 +45,14 @@
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="3" class="text-right"> Total :
+                <td colspan="2" class="text-right"> Total :
                 </td>
-                <td>{{ total }}</td>
+                <td>
+                    {{ size }}
+                </td>
+                <td>
+                    {{ total }}
+                </td>
                 <td></td>
             </tr>
             </tfoot>

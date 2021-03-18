@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Utilisateur;
 use App\Form\UtilisateurType;
+use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,22 +18,27 @@ class UtilisateurController extends AbstractController
     /**
      * @Route("/", name="utilisateur_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         $utilisateurs = $this->getDoctrine()
             ->getRepository(Utilisateur::class)
             ->findAll();
 
         return $this->render('utilisateur/index.html.twig', [
             'utilisateurs' => $utilisateurs,
+            'size' => $size
         ]);
     }
 
     /**
      * @Route("/new", name="utilisateur_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         $utilisateur = new Utilisateur();
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
         $form->handleRequest($request);
@@ -48,24 +54,32 @@ class UtilisateurController extends AbstractController
         return $this->render('utilisateur/new.html.twig', [
             'utilisateur' => $utilisateur,
             'form' => $form->createView(),
+            'size' => $size
+
         ]);
     }
 
     /**
      * @Route("/{utiId}", name="utilisateur_show", methods={"GET"})
      */
-    public function show(Utilisateur $utilisateur): Response
+    public function show(Utilisateur $utilisateur, CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         return $this->render('utilisateur/show.html.twig', [
             'utilisateur' => $utilisateur,
+            'size' => $size
+
         ]);
     }
 
     /**
      * @Route("/{utiId}/edit", name="utilisateur_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Utilisateur $utilisateur): Response
+    public function edit(Request $request, Utilisateur $utilisateur, CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
         $form->handleRequest($request);
 
@@ -78,6 +92,8 @@ class UtilisateurController extends AbstractController
         return $this->render('utilisateur/edit.html.twig', [
             'utilisateur' => $utilisateur,
             'form' => $form->createView(),
+            'size' => $size
+
         ]);
     }
 
