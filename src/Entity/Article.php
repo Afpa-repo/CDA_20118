@@ -118,7 +118,7 @@ class Article
     public function setArtPhoto(?string $artPhoto): self
     {
         $this->artPhoto = $artPhoto;
-
+        return $this;
     }
 
     public function linkpicture(){

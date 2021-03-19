@@ -1,17 +1,23 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+{{parent ()}}
+<link rel="stylesheet" href="{{ asset('css/style_accueil.css') }}">
+{% endblock %}
 {% block bodyclass %}class="bodyback"{% endblock %}
  {% block body %}
-     <div class="container-fluid text-center">
-         <div class="row mt-5">
-                 <h1 class="text-center">Accueil</h1>
+     <div class="container-fluid">
+         <div class="row mt-5 text-center">
+                 <h1>Accueil</h1>
                     
                      <div id="pub"><img src="{{ asset('../img/pub guitare.png') }}" alt="Pub guitare Gibson/Ibanez" class=""> </div>
                      <div id="banniere4"><img src="{{ asset('../img/banniere centre 4 pictos.png') }}" alt="Banniere" class="mx-auto d-block"></div>
                      <div id="banniere"><img src="{{ asset('../img/banniere_livraison.png') }}" alt="Pub guitare Gibson/Ibanez" class=""></div>
                         <div id="meilleures_ventes"><a href="{{ asset('../categorie/1')}}"><img src="{{ asset('../img/TOP VENTES ROLL OVER guitare.png') }}" alt="Pub top ventes guitare" class="img-thumbnail"></a>
                         <a href="{{ asset('../categorie/2') }}"><img src="{{ asset('../img/TOP VENTES ROLL OVER piano.png') }}" alt="Pub top ventes piano" class="img-thumbnail"></a>
-                        <a href="{{ asset('../categorie/45') }}"><img src="{{ asset('../img/TOP VENTES ROLL OVER saxo.png') }}" alt="Pub top ventes saxophone" class="img-thumbnail"></a></div>                       
-
+                        <a href="{{ asset('../categorie/45') }}"><img src="{{ asset('../img/TOP VENTES ROLL OVER saxo.png') }}" alt="Pub top ventes saxophone" class="img-thumbnail"></a>
+                        
+                    </div>                       
+                </div>
             <div id="row1">
                 <div class="container">
                     <div id="categorie">
@@ -87,5 +93,6 @@
                                 </div>
                         </div>
                 </div>
+            </div>
             </div>
  {% endblock %}
