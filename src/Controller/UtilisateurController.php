@@ -42,7 +42,7 @@ class UtilisateurController extends AbstractController
      */
     public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, CartService $cartService) {
         $utilisateur = new Utilisateur();
-
+        $utilisateur->setUtiRole('client');
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
 
         $form->handleRequest($request);
