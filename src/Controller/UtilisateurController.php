@@ -37,7 +37,7 @@ class UtilisateurController extends AbstractController
 
 
     /**
-     * @Route("/inscription", name="utilisateur_registration")
+     * @Route("/inscription", name="utilisateur_registration", methods={"GET", "POST"})
      * @return Response
      */
     public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, CartService $cartService) {
