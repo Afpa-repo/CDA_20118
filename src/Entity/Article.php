@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Article
  *
- * @ORM\Table(name="article", indexes={@ORM\Index(name="pro_id", columns={"pro_id"}), @ORM\Index(name="four_id", columns={"four_id"}), @ORM\Index(name="cat_id", columns={"cat_id"})})
+ * @ORM\Table(name="article", indexes={@ORM\Index(name="four_id", columns={"four_id"}), @ORM\Index(name="cat_id", columns={"cat_id"}), @ORM\Index(name="pro_id", columns={"pro_id"})})
  * @ORM\Entity
  */
 class Article
@@ -100,6 +100,11 @@ class Article
      */
     private $cat;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $art_desc;
+
     public function getArtId(): ?int
     {
         return $this->artId;
@@ -115,6 +120,10 @@ class Article
         $this->artPhoto = $artPhoto;
 
         return $this;
+    }
+
+    public function linkpicture(){
+        return "../../img/".$this->artPhoto;
     }
 
     public function getArtNom(): ?string
@@ -230,4 +239,15 @@ class Article
         return $this->artNom;
     }
 
+    public function getArtDesc(): ?string
+    {
+        return $this->art_desc;
+    }
+
+    public function setArtDesc(string $art_desc): self
+    {
+        $this->art_desc = $art_desc;
+
+        return $this;
+    }
 }

@@ -33,6 +33,40 @@ class ArticleController extends AbstractController
     }
 
     /**
+     * @Route("/produits", name="produits_index", methods={"GET"})
+     */
+    public function product(): Response
+    {
+        $article = $this->getDoctrine()
+            ->getRepository(Article::class)
+            ->findAll();
+
+        return $this->render('article/product.html.twig', [
+            'article' => $article,
+        ]);
+    }
+//    public function product(PaginatorInterface $paginator, Request $request): Response
+//    {
+//        $article = $paginator->paginate($this->repository->findAllVisibleQuery(),
+//            $request->query->getInt('page', 1),
+//            9
+//        );
+//        return $this->render('article/product.html.twig', [
+//            'article' => $article,
+//        ]);
+//    }
+
+    /**
+     * @Route("/{id}/details", name="produits-details", methods={"GET"})
+     */
+    public function productShow(Article $article): Response
+    {
+        return $this->render('article/productShow.html.twig', [
+            'article' => $article,
+        ]);
+    }
+
+    /**
      * @Route("/new", name="article_new", methods={"GET","POST"})
      */
     public function new(Request $request, CartService $cartService): Response
@@ -109,4 +143,5 @@ class ArticleController extends AbstractController
 
         return $this->redirectToRoute('article_index');
     }
+
 }

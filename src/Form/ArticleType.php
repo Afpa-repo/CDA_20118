@@ -22,6 +22,7 @@ class ArticleType extends AbstractType
             ->add('cat')
             ->add('four')
             ->add('pro')
+            ->add('ArtDesc')
         ;
     }
 
