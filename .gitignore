@@ -174,3 +174,5 @@ fabric.properties
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/symfony,visualstudiocode,phpstorm
+/.idea/
+/var/
