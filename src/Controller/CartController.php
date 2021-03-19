@@ -36,7 +36,7 @@ class CartController extends AbstractController
     {
         $cartService->add($id);
 
-        return $this->redirectToRoute("cart_index");
+        return $this->redirectToRoute("produit_index");
     }
 
     /**
@@ -67,5 +67,15 @@ class CartController extends AbstractController
         $cartService->add($id);
 
         return $this->redirectToRoute("cart_index");
+    }
+
+    /**
+     * @Route("/panier/removeAll", name="cart_removeAll")
+     */
+    public function removeAll(CartService $cartService) {
+
+        $cartService->removeAll();
+
+        return $this->redirectToRoute("produit_index");
     }
 }

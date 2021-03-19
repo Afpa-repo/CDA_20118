@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,15 +18,14 @@ class UtilisateurType extends AbstractType
             ->add('utiVille')
             ->add('utiCodepostal')
             ->add('utiNom')
-            ->add('utiRole')
             ->add('utiPrenom')
+            ->add('utiIdentifiant')
+            ->add('utiMdp', PasswordType::class)
+            ->add('confirm_utiMdp', PasswordType::class)
             ->add('utiSexe')
             ->add('utiDateDeNaissance')
             ->add('utiMail')
             ->add('utiTel')
-            ->add('utiId1')
-            ->add('utiIdentifiant')
-            ->add('utiMdp')
             ->add('pay')
         ;
     }

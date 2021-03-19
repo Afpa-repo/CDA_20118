@@ -143,7 +143,7 @@
     <parameter key="twig.exception_listener.controller">null</parameter>
     <parameter key="twig.form.resources" type="collection">
       <parameter>form_div_layout.html.twig</parameter>
-      <parameter>bootstrap_4_layout.html.twig</parameter>
+      <parameter>foundation_5_layout.html.twig</parameter>
     </parameter>
     <parameter key="twig.default_path">D:\symfony\Kevin\CDA_20118/templates</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
@@ -432,9 +432,6 @@
       <tag name="form.type"/>
     </service>
     <service id="App\Form\PromotionType" class="App\Form\PromotionType" autowire="true" autoconfigure="true">
-      <tag name="form.type"/>
-    </service>
-    <service id="App\Form\RegistrationType" class="App\Form\RegistrationType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\UtilisateurType" class="App\Form\UtilisateurType" autowire="true" autoconfigure="true">
@@ -870,7 +867,6 @@
         <argument>App\Form\FournisseurType</argument>
         <argument>App\Form\LigneDeCommandeType</argument>
         <argument>App\Form\PromotionType</argument>
-        <argument>App\Form\RegistrationType</argument>
         <argument>App\Form\UtilisateurType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -1206,7 +1202,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.pmrJnYP"/>
+      <argument type="service" id=".service_locator.Q0YWOUW"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -5065,8 +5061,6 @@
     <service id=".abstract.instanceof.App\Form\LigneDeCommandeType" class="App\Form\LigneDeCommandeType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PromotionType" class="App\Form\PromotionType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\PromotionType" class="App\Form\PromotionType" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationType" class="App\Form\RegistrationType" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Form\RegistrationType" class="App\Form\RegistrationType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UtilisateurType" class="App\Form\UtilisateurType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\UtilisateurType" class="App\Form\UtilisateurType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProductRepository" class="App\Repository\ProductRepository" autowire="true" abstract="true"/>
@@ -5464,13 +5458,21 @@
         <argument key="utilisateur" type="service" id=".errored..service_locator.f54gQU1.App\Entity\Utilisateur"/>
       </argument>
     </service>
+    <service id=".service_locator.82JXxtP" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="cartService" type="service" id="App\Service\Cart\CartService"/>
+        <argument key="encoder" type="service" id="security.user_password_encoder.generic"/>
+        <argument key="utilisateur" type="service" id=".errored..service_locator.82JXxtP.App\Entity\Utilisateur"/>
+      </argument>
+    </service>
     <service id=".service_locator.z1iWlPx" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="utilisateur" type="service" id=".errored..service_locator.z1iWlPx.App\Entity\Utilisateur"/>
       </argument>
     </service>
-    <service id=".service_locator.tXq0x69" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.N4BtbOX" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ArticleController::delete" type="service" id=".service_locator.WKL2avN"/>
@@ -5483,6 +5485,7 @@
         <argument key="App\Controller\CartController::index" type="service" id=".service_locator.qQRbIWD"/>
         <argument key="App\Controller\CartController::minus" type="service" id=".service_locator.qQRbIWD"/>
         <argument key="App\Controller\CartController::remove" type="service" id=".service_locator.qQRbIWD"/>
+        <argument key="App\Controller\CartController::removeAll" type="service" id=".service_locator.qQRbIWD"/>
         <argument key="App\Controller\CategorieController::delete" type="service" id=".service_locator.RdXN6Y1"/>
         <argument key="App\Controller\CategorieController::edit" type="service" id=".service_locator.apd59_6"/>
         <argument key="App\Controller\CategorieController::index" type="service" id=".service_locator.qQRbIWD"/>
@@ -5516,11 +5519,10 @@
         <argument key="App\Controller\PromotionController::new" type="service" id=".service_locator.qQRbIWD"/>
         <argument key="App\Controller\PromotionController::show" type="service" id=".service_locator.ntoeVML"/>
         <argument key="App\Controller\SecurityController::login" type="service" id=".service_locator.qQRbIWD"/>
-        <argument key="App\Controller\SecurityController::registration" type="service" id=".service_locator.pIjrCrn"/>
         <argument key="App\Controller\UtilisateurController::delete" type="service" id=".service_locator.z1iWlPx"/>
-        <argument key="App\Controller\UtilisateurController::edit" type="service" id=".service_locator.f54gQU1"/>
+        <argument key="App\Controller\UtilisateurController::edit" type="service" id=".service_locator.82JXxtP"/>
         <argument key="App\Controller\UtilisateurController::index" type="service" id=".service_locator.qQRbIWD"/>
-        <argument key="App\Controller\UtilisateurController::new" type="service" id=".service_locator.qQRbIWD"/>
+        <argument key="App\Controller\UtilisateurController::registration" type="service" id=".service_locator.pIjrCrn"/>
         <argument key="App\Controller\UtilisateurController::show" type="service" id=".service_locator.f54gQU1"/>
         <argument key="App\Controller\ArticleController:delete" type="service" id=".service_locator.WKL2avN"/>
         <argument key="App\Controller\ArticleController:edit" type="service" id=".service_locator._l4QLTE"/>
@@ -5532,6 +5534,7 @@
         <argument key="App\Controller\CartController:index" type="service" id=".service_locator.qQRbIWD"/>
         <argument key="App\Controller\CartController:minus" type="service" id=".service_locator.qQRbIWD"/>
         <argument key="App\Controller\CartController:remove" type="service" id=".service_locator.qQRbIWD"/>
+        <argument key="App\Controller\CartController:removeAll" type="service" id=".service_locator.qQRbIWD"/>
         <argument key="App\Controller\CategorieController:delete" type="service" id=".service_locator.RdXN6Y1"/>
         <argument key="App\Controller\CategorieController:edit" type="service" id=".service_locator.apd59_6"/>
         <argument key="App\Controller\CategorieController:index" type="service" id=".service_locator.qQRbIWD"/>
@@ -5565,11 +5568,10 @@
         <argument key="App\Controller\PromotionController:new" type="service" id=".service_locator.qQRbIWD"/>
         <argument key="App\Controller\PromotionController:show" type="service" id=".service_locator.ntoeVML"/>
         <argument key="App\Controller\SecurityController:login" type="service" id=".service_locator.qQRbIWD"/>
-        <argument key="App\Controller\SecurityController:registration" type="service" id=".service_locator.pIjrCrn"/>
         <argument key="App\Controller\UtilisateurController:delete" type="service" id=".service_locator.z1iWlPx"/>
-        <argument key="App\Controller\UtilisateurController:edit" type="service" id=".service_locator.f54gQU1"/>
+        <argument key="App\Controller\UtilisateurController:edit" type="service" id=".service_locator.82JXxtP"/>
         <argument key="App\Controller\UtilisateurController:index" type="service" id=".service_locator.qQRbIWD"/>
-        <argument key="App\Controller\UtilisateurController:new" type="service" id=".service_locator.qQRbIWD"/>
+        <argument key="App\Controller\UtilisateurController:registration" type="service" id=".service_locator.pIjrCrn"/>
         <argument key="App\Controller\UtilisateurController:show" type="service" id=".service_locator.f54gQU1"/>
       </argument>
     </service>
@@ -5632,7 +5634,7 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.pmrJnYP" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.Q0YWOUW" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ArticleType" type="service" id="App\Form\ArticleType"/>
@@ -5642,7 +5644,6 @@
         <argument key="App\Form\FournisseurType" type="service" id="App\Form\FournisseurType"/>
         <argument key="App\Form\LigneDeCommandeType" type="service" id="App\Form\LigneDeCommandeType"/>
         <argument key="App\Form\PromotionType" type="service" id="App\Form\PromotionType"/>
-        <argument key="App\Form\RegistrationType" type="service" id="App\Form\RegistrationType"/>
         <argument key="App\Form\UtilisateurType" type="service" id="App\Form\UtilisateurType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
@@ -6078,12 +6079,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.tXq0x69"/>
+      <argument type="service" id=".service_locator.N4BtbOX"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.tXq0x69"/>
+      <argument type="service" id=".service_locator.N4BtbOX"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface" public="false">
       <argument type="collection"/>
@@ -6108,6 +6109,7 @@
     <service id=".errored..service_locator.ntoeVML.App\Entity\Promotion" class="App\Entity\Promotion"/>
     <service id=".errored..service_locator.Wm6VqsM.App\Entity\Promotion" class="App\Entity\Promotion"/>
     <service id=".errored..service_locator.f54gQU1.App\Entity\Utilisateur" class="App\Entity\Utilisateur"/>
+    <service id=".errored..service_locator.82JXxtP.App\Entity\Utilisateur" class="App\Entity\Utilisateur"/>
     <service id=".errored..service_locator.z1iWlPx.App\Entity\Utilisateur" class="App\Entity\Utilisateur"/>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <argument type="service" id=".service_locator.KQm4.fv"/>
@@ -6491,7 +6493,7 @@
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.tXq0x69"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.N4BtbOX"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>

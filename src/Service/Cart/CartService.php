@@ -94,9 +94,13 @@ class CartService
         } else {
             $panier[$id] = 1;
         }
-
-
         $this->session->set('panier', $panier);
+
+    }
+
+    public function removeAll()
+    {
+        $this->session->clear();
     }
 }
 

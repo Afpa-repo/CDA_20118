@@ -125,7 +125,7 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
                 <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"";
         // line 49
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security_registration");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("utilisateur_registration");
         echo "\">Inscription</a>
                 </li>
 
@@ -334,7 +334,7 @@ class __TwigTemplate_e205d81826005fbf1bcb23bee86d79bb38d77ec98501c3b1d7eb56c7960
                 </li>
 
                 <li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"{{ path('security_registration') }}\">Inscription</a>
+                    <a class=\"nav-link\" href=\"{{ path('utilisateur_registration') }}\">Inscription</a>
                 </li>
 
                 {% if not app.user %}
