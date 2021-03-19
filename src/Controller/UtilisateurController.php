@@ -14,12 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @Route("/utilisateur")
+ * @Route("/")
  */
 class UtilisateurController extends AbstractController
 {
     /**
-     * @Route("/", name="utilisateur_index", methods={"GET"})
+     * @Route("/utilisateur", name="utilisateur_index", methods={"GET"})
      */
     public function index(CartService $cartService): Response
     {
