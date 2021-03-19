@@ -50,7 +50,7 @@ class CartService
 
         $panierWithData = [];
 
-        foreach ($panier as $id => $quantity) {
+            foreach ($panier as $id => $quantity) {
             $panierWithData[] = [
                 'product' => $this->productRepository->find($id),
                 'quantity' => $quantity
@@ -59,20 +59,17 @@ class CartService
         return $panierWithData;
     }
 
-//
     public function getTotal(): float
     {
 
         $total = 0;
-
+        
         foreach ($this->getFullCart() as $item) {
             $total += $item['product']->getartPrixHt() * $item['quantity'];
-        }
 
         return $total;
+        }
     }
-
-
 
     public function getSize(): float
     {
