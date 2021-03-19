@@ -100,6 +100,11 @@ class Article
      */
     private $cat;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $art_desc;
+
     public function getArtId(): ?int
     {
         return $this->artId;
@@ -114,7 +119,10 @@ class Article
     {
         $this->artPhoto = $artPhoto;
 
-        return $this;
+    }
+
+    public function linkpicture(){
+        return "../../img/".$this->artPhoto;
     }
 
     public function getArtNom(): ?string
@@ -228,5 +236,17 @@ class Article
     public function __toString()
     {
         return $this->artNom;
+    }
+
+    public function getArtDesc(): ?string
+    {
+        return $this->art_desc;
+    }
+
+    public function setArtDesc(string $art_desc): self
+    {
+        $this->art_desc = $art_desc;
+
+        return $this;
     }
 }

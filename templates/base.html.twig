@@ -3,45 +3,215 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Fil rouge{% endblock %}</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-{#        <link rel="stylesheet" href="{{ asset('css/style.css') }}">#}
-        {% block stylesheets %} {% endblock %}
+        {% block stylesheets %}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        {% endblock %}
 
 
         {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+            <!-- JQUERY -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <!-- JavaScript Bundle with Popper -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
         {% endblock %}
     </head>
-    <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ path('home') }}">Accueil</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <body {% block bodyclass %}{% endblock %}>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ path('home') }}">Accueil</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('categorie_index') }}">Catégories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('article_index') }}">Article</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('promotion_index') }}">Promotion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('commande_index') }}">Commandes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('ligne_de_commande_index') }}">Ligne de commandes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('facture_index') }}">Factures</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('produits_index') }}">Produits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('categorie_index') }}">Catégories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('article_index') }}">Article</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('promotion_index') }}">Promotion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('commande_index') }}">Commandes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('ligne_de_commande_index') }}">Ligne de commandes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('facture_index') }}">Factures</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         {% block body %}{% endblock %}
+    {% block footer %}
+    {#    footer début  #}
+    <div class="text-white mt-5 offset-1">
+        <div class="row">
+            <div class="col-sm-4">
+                <p class="fw-bolder fs-3 mb-0">Recevez <a href="" class="text-decoration-none" style="color: #fd7e14 ">nos offres exclusives</a></p>
+                <form class="d-flex">
+                    <input class="form-control mt-0" type="text" placeholder="Votre adresse e-mail" >
+                    <button class="btn  fw-bolder" type="submit" style="color: #fd7e14">Valider</button>
+                </form>
+            </div>
+            <div class="col-sm-2">
+
+                <p class="fw-bolder fs-3 mb-0"><a href="" class="text-decoration-none" style="color: #fd7e14">Suivez nous,</a>Par Ici</p>
+                <span class="offset-1  mt-0"> <i class="bi bi-facebook"></i>  <i class="bi bi-twitter"></i></span>
+
+            </div>
+            <div class="col-sm-6 ">
+                <img class="mx-1" src="../img/chronopost.png"  height="100" alt="chronopost">
+                <img class="mx-1" src="../img/CB-1.jpg"  height="100" alt="payment">
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <p class="fs-2 fw-bolder">Contactez-nous!</p>
+                <div class="row">
+                    <p class="fw-bolder mb-0">Conseil/commande téléphone</p>
+                    <p class="mt-0">du lundi au vendredi de 8h à 19h, <br> le samedi de 10h à 18h</p>
+                </div>
+                <div class="row">
+                    <p class="mb-0">Depuis la France</p>
+                    <p class="fw-bolder mt-0">02 40 38 50 50</p>
+                </div>
+                <div class="row">
+                    <p class="mb-0">Belgique, Suisse, International</p>
+                    <p class="fw-bolder mt-0">0033 2 40 38 50 50</p>
+                </div>
+                <div class="row">
+                    <p class="fw-bolder mb-0">Service après vente</p>
+                    <p class="fw-bolder mt-0 mb-0">02 51 80 68 76</p>
+                    <p class="mt-0">Contactez-nous par téléphone <br> du lundi au vendredi de 8h à 19h, <br> depuis votre compte client</p>
+                </div>
+                <div class="row">
+                    <p class="fw-bolder mb-0">Conseil pour choisir <br>un instrument:</p>
+                    <p class="mt-0">infovg@villagegreen.com</p>
+                </div>
+                <div class="row">
+                    <p class="fw-bolder mb-0">Service Presse</p>
+                    <p class="mt-0">contact@villagegreen.com</p>
+                </div>
+                <div class="row">
+                    <p class="fw-bolder mt-0">Village Green Recrute</p>
+                </div>
+            </div>
+            <div class="col-sm">
+                <p class="fs-2 fw-bolder">Village Green Stores</p>
+                <div class="row">
+                    <p class="fw-bolder">Ouverts de 10h à 19h30 non-stop</p>
+
+                </div>
+                <div class="row">
+                    <p class="mb-0">Guitarees-Amplificateurs-Effets:</p>
+                    <p class="mt-0">182 avenue Jean Jaurès <br>75019 Paris </p>
+                </div>
+                <div class="row">
+                    <p class="mb-0">Clavier-Home Studio-Sonorisation <br> Equipement DJ-Eclairage:</p>
+                    <p class="mt-0">182 avenue Jean Jaurès <br>75019 Paris </p>
+                </div>
+                <div class="row">
+                    <p class="mb-0">Librairie Musicale:</p>
+                    <p class="mt-0">7 av. du nouveau Conservatoire <br>75019 Paris </p>
+                </div>
+                <div class="row">
+                    <p class="mb-0">Instruments à vent:</p>
+                    <p class="mt-0">9/11 av. du nouveau Conservatoire <br>75019 Paris </p>
+                </div>
+                <div class="row">
+                    <p class="mb-0">Percussions:</p>
+                    <p class="mt-0">13/15 av. du nouveau Conservatoire <br>75019 Paris </p>
+                    <p>Métro Ligne 5, station Porte de Pantin</p>
+                </div>
+                <div class="row">
+                    <p>Plan d'accès / Visite virtuelle</p>
+                </div>
+
+            </div>
+            <div class="col-sm">
+                <p class="fs-2 fw-bolder">Utiles</p>
+                <div class="row">
+                    <p>Qui sommes nous?</p>
+
+                </div>
+                <div class="row">
+                    <p>F.A.Q</p>
+                </div>
+                <div class="row">
+                    <p>Le blog Village Green</p>
+                </div>
+                <div class="row">
+                    <p>Vous avez un site Internet?</p>
+                    <p>Devenez partenaire Village Green</p>
+                </div>
+                <div class="row">
+                    <p>Conditions générales de vente</p>
+                </div>
+                <div class="row">
+                    <p>Mentions légales</p>
+                </div>
+                <div class="row">
+                    <p>Plan du site </p>
+                </div>
+                <div class="row">
+                    <p>parrainage </p>
+                </div>
+                <div class="row">
+                    <p>Nouveautés </p>
+                </div>
+                <div class="row">
+                    <p>Assurance Woodbrass.com </p>
+                </div>
+                <div class="row">
+                    <p>Location d'instruments de musique </p>
+                </div>
+
+            </div>
+            <div class="col-sm">
+                <p class="fs-2 fw-bolder mb-0 mt-0">Village Green <br> Preservation Society</p>
+                <div class="row">
+                    <p>Toute l'actualité musicale</p>
+
+                </div>
+                <div class="row">
+                    <p>Voir l'avis des musiciens</p>
+                </div>
+                <div class="row">
+                    <p>Concours: inscription et résultat... à vous de jouer!</p>
+                </div>
+
+            </div>
+            <div class="col-2">
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="text-center">Village Green est une entreprise 100% Made in France</div>
+            <div class="text-center">Magasin de musique - Achat/vente instruments de musique - Location instruments de musique - Atelier de réparation - Vente accessoires de musique au meilleur prix</div>
+            <div class="text-center">1986-2021 - RCS Paris B 222 333 444 Déclaration CNL: 12345678.</div>
+
+        </div>
+        <div class="row mt-2">
+            <p class="text-center lh-1 fw-bolder">Guitares - Amplis/Effets - Claviers/Pianos - Synthés - Batteries/Percussions - Vents -Violons - Home Studio - Sonorisations- Deejay - Eclairage - Micros - Casques -Enregistreurs - Lifestyle- Déstockage - Ecoles & Pros <br> </p>
+            <p class="text-center lh-1" >Behringer - Bose - Conservatoire de musique de paris - Fender - Focusrite - Gibson 2016 - Gibson - Guitar Shop - Guitare Martin - Guitare Taylor - Guitare classique - Guitare folk - Guitare électrique <br>
+            IK Multimedia - Luthier Paris - Magasin DJ Paris - Magasin instruments de musique Paris - Magasin sonorisation Paris - Microphone USB - Musique - Namm - Partition alto - Partition clarinette - Partition flute - Patition guitare <br>
+            Partition harmonica - Partition musique - Partition piano - Partition saxophone - Partion trombone - Partition trompette - Partition vibraphone - Partition violon - Partion xylophone - Piano pas cher - Pionneer Dj - Platine vinyle <br>
+            Site inernet DJ - Site internet Deejay - Site internet Violon - Sono Behringer - Tablatures - Ukulele - Vente sono - Yamaha RS - batterie débutant</p>
+        </div>
+
+    </div>
+    {#         footer fin #}
+    {% endblock %}
     </body>
 </html>

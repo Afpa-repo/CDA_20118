@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.artNom }}{% endblock %}
+{% block stylesheets %}
+    {{  parent() }}
+    <link rel="stylesheet" href="{{ asset('css/product_style.css') }}">
+{% endblock %}
+{% block bodyclass %}class=""{% endblock %}
+{% block body %}
+    {#            <h1>{{article.artNom}}</h1>#}
+    {#            <div class="row mt-4">#}
+    {#                    <div class="example">#}
+    {#                        <article class="card depth--two mb-4">#}
+    {#                            <figure class="image">#}
+    {#                                <img src="{{article.linkpicture}}"  alt="{{article.artNom}}" />#}
+    {#                            </figure>#}
+    {#                            <div class="card__body">#}
+    {#                                <header class="card__primary-title">#}
+    {#                                    <h2 class="text-large">{{article.artNom}}</h2>#}
+    {#                                    <h3 class="text-secondary text-normal text-small">{{ article.artLibelle}}</h3>#}
+    {#                                </header>#}
+    {#                                <div class="card__supporting-text">#}
+    {#                                    {{ article.artDesc}}#}
+    {#                                </div>#}
+    {#                                <div class="card__supporting-text">#}
+    {#                                    {{ article.artPrixHt }}€#}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                            <footer class="card__actions">#}
+    {#                                <a class="btn" href="{{ path('produits_index') }}">Retour</a>#}
+    {#                                <a class="btn" href="#">Ajouter au panier</a>#}
+    {#                            </footer>#}
+    {#                        </article>#}
+    {#                    </div>#}
+    {#            </div>#}
+
+    <div class="container mt-4">
+        <h1>{{ article.artNom }}</h1>
+        <div class="row">
+            <div class="col-6" >
+                <img src="{{ article.linkpicture }}" >
+                <p>{{ article.artLibelle }}</p>
+{#                <p class="card-text">{{ article.artDesc}}</p>#}
+
+            </div>
+            <div class="col-6 mt-5">
+                Disponibilité :
+                <p class="h3">{{ article.artPrixHt }}€</p>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

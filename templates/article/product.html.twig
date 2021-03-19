@@ -1,0 +1,202 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nos produits{% endblock %}
+
+{% block stylesheets %}
+    {{  parent() }}
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/product_style.css') }}">
+
+{% endblock %}
+
+{% block javascripts %}
+    {{  parent() }}
+    <script type="text/javascript" src="{{ asset('js/product_script.js') }}"></script>
+{% endblock %}
+
+{% block bodyclass %}class="bodyback "{% endblock %}
+{% block body  %}
+    <div class="container-fluid mt-4">
+
+        <h2 class="product_title">Nos produits</h2>
+        <div class="row">
+            <div class="col-3">
+                <div class="page-wrapper chiller-theme toggled">
+                    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                    <nav id="sidebar" class="sidebar-wrapper">
+                        <div class="sidebar-content">
+                            <div class="sidebar-brand">
+                                <a href="#">pro sidebar</a>
+                                <div id="close-sidebar">
+                                    <i class="fas fa-times"></i>
+                                </div>
+                            </div>
+                            <!-- sidebar-search  -->
+                            <div class="sidebar-menu">
+                                <ul>
+                                    <li class="header-menu">
+                                        <span>General</span>
+                                    </li>
+                                    <li class="sidebar-dropdown">
+                                        <a href="#">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>Dashboard</span>
+                                        </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Dashboard 1
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Dashboard 2</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Dashboard 3</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown">
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>E-commerce</span>
+                                        </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Products
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Orders</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Credit cart</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown">
+                                        <a href="#">
+                                            <i class="far fa-gem"></i>
+                                            <span>Components</span>
+                                        </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">General</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Panels</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Tables</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Icons</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Forms</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown">
+                                        <a href="#">
+                                            <i class="fa fa-chart-line"></i>
+                                            <span>Charts</span>
+                                        </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Pie chart</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Line chart</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Bar chart</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Histogram</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown">
+                                        <a href="#">
+                                            <i class="fa fa-globe"></i>
+                                            <span>Maps</span>
+                                        </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Google maps</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Open street map</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="header-menu">
+                                        <span>Extra</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-book"></i>
+                                            <span>Documentation</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-calendar"></i>
+                                            <span>Calendar</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-folder"></i>
+                                            <span>Examples</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- sidebar-menu  -->
+                        </div>
+                    </nav>
+                </div>
+            </div> <!--col 3 -->
+            <div class="col-7">
+            {% for article in article %}
+                    <div class="example">
+                        <article class="card depth--two mb-4">
+                            <figure class="image">
+                                <img src="{{article.linkpicture}}"  alt="{{article.artNom}}" />
+                            </figure>
+                            <div class="card__body">
+                                <header class="card__primary-title">
+                                    <h2 class="text-large">{{article.artNom}}</h2>
+                                    <h3 class="text-secondary text-normal text-small">{{ article.artLibelle}}</h3>
+                                </header>
+                                <div class="card__supporting-text">
+                                    {{ article.artPrixHt }}€
+                                </div>
+                            </div>
+                            <footer class="card__actions">
+                                <a class="btn" href="{{ path('produits-details', {'id': article.artId}) }}">Details</a>
+                                <a class="btn" href="#">Ajouter au panier</a>
+                            </footer>
+                        </article>
+                    </div>
+            {% endfor %}
+            </div>  <!--col 7 -->
+            <div class="col-2 img-fluid">
+<img  class="img-fluid" src="../img/banniere.png ">
+            </div>  <!--col 2 -->
+        </div> <!--row -->
+
+    </div>
+{% endblock %}

@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'faccb1d0bdd0e3ceb8338c9886e028ece01bcc02',
+    'reference' => 'abbfda39af0a3b95d50bfbddc1136724bb124990',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'faccb1d0bdd0e3ceb8338c9886e028ece01bcc02',
+      'reference' => 'abbfda39af0a3b95d50bfbddc1136724bb124990',
     ),
     'composer/package-versions-deprecated' => 
     array (
@@ -205,6 +205,24 @@ private static $installed = array (
       array (
       ),
       'reference' => '121af47c9aee9c03031bdeca3fac0540f59aa5c3',
+    ),
+    'knplabs/knp-components' => 
+    array (
+      'pretty_version' => 'v3.0.2',
+      'version' => '3.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '7db2eb032591ded5809455af8a4dfdfda079041c',
+    ),
+    'knplabs/knp-paginator-bundle' => 
+    array (
+      'pretty_version' => 'v5.4.2',
+      'version' => '5.4.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8a7255062dd9f6ff8a3a4712a4b34bdbbc9f31f7',
     ),
     'laminas/laminas-code' => 
     array (
@@ -1336,6 +1354,7 @@ self::$canGetVendors = method_exists('Composer\Autoload\ClassLoader', 'getRegist
 $installed = array();
 
 if (self::$canGetVendors) {
+
 foreach (ClassLoader::getRegisteredLoaders() as $vendorDir => $loader) {
 if (isset(self::$installedByVendor[$vendorDir])) {
 $installed[] = self::$installedByVendor[$vendorDir];
