@@ -62,7 +62,7 @@ class ArticleController extends AbstractController
 //    }
 
     /**
-     * @Route("/{id}/details", name="produits_details", methods={"GET"})
+     * @Route("/details{id}", name="produits_details", methods={"GET"})
      */
     public function productShow(Article $article, CartService $cartService): Response
     {
@@ -101,7 +101,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="article_show", methods={"GET"})
+     * @Route("/show{id}", name="article_show", methods={"GET"})
      */
     public function show(Article $article, CartService $cartService): Response
     {
@@ -114,7 +114,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="article_edit", methods={"GET","POST"})
+     * @Route("/edit{id}", name="article_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Article $article, CartService $cartService): Response
     {

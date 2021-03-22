@@ -87,10 +87,10 @@ class CartService
 
         $panier = $this->session->get('panier', []);
 
-        if (!empty($panier[$id])) {
+        if (!empty($panier[$id] > 1)) {
             $panier[$id]--;
         } else {
-            $panier[$id] = 1;
+            unset($panier[$id]);
         }
         $this->session->set('panier', $panier);
 
