@@ -186,8 +186,8 @@
                                 </div>
                             </div>
                             <footer class="card__actions">
-                                <a class="btn" href="{{ path('produits-details', {'id': article.artId}) }}">Details</a>
-                                <a class="btn" href="#">Ajouter au panier</a>
+                                <a class="btn" href="{{ path('produits_details', {'id': article.artId}) }}">Details</a>
+                                <a class="btn" href="{{ path('cart_add', {'id':article.artId}) }}">Ajouter au panier</a>
                             </footer>
                         </article>
                     </div>

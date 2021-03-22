@@ -35,14 +35,18 @@ class ArticleController extends AbstractController
     /**
      * @Route("/produits", name="produits_index", methods={"GET"})
      */
-    public function product(): Response
+    public function product(CartService $cartService): Response
     {
+        $size = $cartService->getSize();
+
         $article = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAll();
 
-        return $this->render('article/product.html.twig', [
+        return $this->render('produit/produit.html.twig', [
             'article' => $article,
+            'size' => $size
+
         ]);
     }
 //    public function product(PaginatorInterface $paginator, Request $request): Response
@@ -51,18 +55,21 @@ class ArticleController extends AbstractController
 //            $request->query->getInt('page', 1),
 //            9
 //        );
-//        return $this->render('article/product.html.twig', [
+//        return $this->render('article/produit.html.twig', [
 //            'article' => $article,
 //        ]);
 //    }
 
     /**
-     * @Route("/{id}/details", name="produits-details", methods={"GET"})
+     * @Route("/{id}/details", name="produits_details", methods={"GET"})
      */
-    public function productShow(Article $article): Response
+    public function productShow(Article $article, CartService $cartService): Response
     {
-        return $this->render('article/productShow.html.twig', [
+        $size = $cartService->getSize();
+
+        return $this->render('produit/produitShow.html.twig', [
             'article' => $article,
+            'size' => $size
         ]);
     }
 
