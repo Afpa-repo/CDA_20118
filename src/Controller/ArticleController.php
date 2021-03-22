@@ -45,6 +45,7 @@ class ArticleController extends AbstractController
             'article' => $article,
         ]);
     }
+
 //    public function product(PaginatorInterface $paginator, Request $request): Response
 //    {
 //        $article = $paginator->paginate($this->repository->findAllVisibleQuery(),
