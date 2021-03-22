@@ -1,8 +1,11 @@
-.bodyback {
+body {
     background-image:url("../img/background village.png");
     background-size: cover;
 }
 
+h1, p {
+    color: #C9C9C9;
+}
 
 .red{
     color: red;
