@@ -62,7 +62,7 @@ class ArticleController extends AbstractController
 //    }
 
     /**
-     * @Route("/{id}/details", name="produits_details", methods={"GET"})
+     * @Route("/{id}", name="produits_details", methods={"GET"})
      */
     public function productShow(Article $article, CartService $cartService): Response
     {

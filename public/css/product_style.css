@@ -42,6 +42,7 @@
 }
 .card__supporting-text {
     padding: 8px 16px;
+    font-size: 1.5rem;
 }
 .card__actions {
     padding: 8px;
@@ -185,6 +186,7 @@
 /*----------------show sidebar button----------------*/
 #show-sidebar {
     position: fixed;
+    color: whitesmoke;
     left: 0;
     top: 120px;
     border-radius: 0 4px 4px 0px;
@@ -200,7 +202,7 @@
     width: 260px;
     height: 100%;
     max-height: 100%;
-    position: fixed;
+    position: absolute;
     top: 120px;
     left: -300px;
     z-index: 999;
