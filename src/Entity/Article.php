@@ -119,6 +119,8 @@ class Article
     {
         $this->artPhoto = $artPhoto;
 
+        return  $this;
+
     }
 
     public function linkpicture(){
