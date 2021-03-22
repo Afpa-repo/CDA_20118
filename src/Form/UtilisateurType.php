@@ -3,10 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Utilisateur;
+
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+
 
 class UtilisateurType extends AbstractType
 {
@@ -23,7 +27,10 @@ class UtilisateurType extends AbstractType
             ->add('utiMdp', PasswordType::class)
             ->add('confirm_utiMdp', PasswordType::class)
             ->add('utiSexe')
-            ->add('utiDateDeNaissance')
+            ->add('utiDateDeNaissance', BirthdayType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+            ])
             ->add('utiMail')
             ->add('utiTel')
             ->add('pay')

@@ -3,9 +3,24 @@
 {% block title %}New Utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Nouveau Utilisateur</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <div class="card shadow p-3 mb-5 bg-blue rounded mt-5">
+                    <div class="card-body">
 
-    {{ include('utilisateur/_form.html.twig') }}
 
-    <a href="{{ path('utilisateur_index') }}">back to list</a>
+                <h1 class="text-center">Nouveau Utilisateur</h1>
+
+                {{ include('utilisateur/_form.html.twig') }}
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
