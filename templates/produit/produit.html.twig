@@ -62,11 +62,11 @@
                                         </a>
                                         <div class="sidebar-submenu">
                                             <ul>
-{#                                               {{ form_start(form) }}#}
-{#                                                {{ form_row(form.minprice) }}#}
-{#                                                {{ form_row(form.maxprice) }}#}
-{#                                                <button class="btn btn-secondary">Rechercher</button>#}
-{#                                                {{ form_end(form) }}#}
+                                               {{ form_start(form) }}
+                                                {{ form_row(form.minprice) }}
+                                                {{ form_row(form.maxprice) }}
+                                                <button class="btn btn-secondary">Rechercher</button>
+                                                {{ form_end(form) }}
 {#                                                <li>#}
 {#                                                    <a href="#">0€ - 50€#}
 {#                                                    </a>#}
@@ -152,26 +152,20 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="header-menu">
-                                        <span>Catégories</span>
-                                    </li>
-                                    <li>
+                                    <li class="sidebar-dropdown">
                                         <a href="#">
-                                            <i class="fas fa-music"></i>
-                                            <span>Pianos</span>
+                                            <i class="far fa-gem"></i>
+                                            <span>Catégories</span>
                                         </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fas fa-music"></i>
-                                            <span>Guitares</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fas fa-music"></i>
-                                            <span>Examples</span>
-                                        </a>
+                                        <div class="sidebar-submenu">
+                                            {% for article in article %}
+                                            <ul>
+                                                <li>
+                                                    <a href="#">{{article.cat}}</a>
+                                                </li>
+                                            </ul>
+                                            {% endfor %}
+                                        </div>
                                     </li>
                                 </ul>
                             </div>

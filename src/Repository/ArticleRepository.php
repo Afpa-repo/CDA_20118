@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Article;
+use App\Entity\ArticleSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -31,17 +32,7 @@ public function findAllVisibleQuery(PropertySearch $search): Query
 {
     $query = $this->findAllQuery();
 
-    if($search->getMaxPrice()) {
-        $query=$query
-            ->andwhere('a.art_prix_ht < :maxprice')
-            ->setParameter('maxprice',$search->getMaxPrice());
-    }
 
-    if($search->getMinPrice()) {
-        $query=$query
-            ->andwhere('a.art_prix_ht >= :minprice')
-            ->setParameter('minprice',$search->getMinPrice());
-    }
 
     return $query->getQuery();
 
@@ -50,10 +41,23 @@ public function findAllVisibleQuery(PropertySearch $search): Query
      * @return Query
      */
 
-    public function  findAllQueries(): Query
+    public function  findAllQueries(ArticleSearch $search): Query
     {
-        return $this->findAllQuery()
-            ->getQuery();
+        $query = $this->findAllQuery();
+        // affiche les produits dont le prix est inférieur au nombre saisi
+        if($search->getMaxPrice()) {
+            $query=$query
+                ->andwhere('a.artPrixHt < :maxprice')
+                ->setParameter('maxprice',$search->getMaxPrice());
+        }
+        // affiche les produits dont le prix est supérieur au nombre saisi
+        if($search->getMinPrice()) {
+            $query=$query
+                ->andwhere('a.artPrixHt >= :minprice')
+                ->setParameter('minprice',$search->getMinPrice());
+        }
+
+        return $query->getQuery();
 
     }
 

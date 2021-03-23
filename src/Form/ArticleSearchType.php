@@ -15,12 +15,14 @@ class ArticleSearchType extends AbstractType
     {
         $builder
             ->add('minprice',integerType::class,[
+                'required'=>false,
                 'label'=>false,
                 'attr'=>[
                     'placeholder'=>'Prix minimum'
                 ]
             ])
             ->add('maxprice',integerType::class,[
+                'required'=>false,
                 'label'=>false,
                 'attr'=>[
                     'placeholder'=>'Prix maximum'
