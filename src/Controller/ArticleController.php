@@ -3,18 +3,34 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\ArticleSearch;
+use App\Form\ArticleSearchType;
 use App\Form\ArticleType;
 use App\Service\Cart\CartService;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ArticleRepository;
 
 /**
  * @Route("/article")
  */
 class ArticleController extends AbstractController
 {
+    // FUNCTION POUR ACCEDER FACILEMENT AUX FONCTIONS DANS ArticleRepository par exemple : $this->repository->fonctionSouhaitée
+    /**
+     * @var ArticleRepository
+     */
+    private $repository;
+    public function __construct(ArticleRepository $repository)
+    {
+        $this->repository=$repository;
+    }
+
+
+
     /**
      * @Route("/", name="article_index", methods={"GET"})
      */
@@ -35,17 +51,26 @@ class ArticleController extends AbstractController
     /**
      * @Route("/produits", name="produits_index", methods={"GET"})
      */
-    public function product(CartService $cartService): Response
+    public function product(CartService $cartService,PaginatorInterface $paginator, Request $request): Response
     {
+//        $search = new ArticleSearch();
+//        $form = $this->createForm(ArticleSearchType::class, $search);
+//        $form->handleRequest($request);
+
+
+
         $size = $cartService->getSize();
 
-        $article = $this->getDoctrine()
-            ->getRepository(Article::class)
-            ->findAll();
-
+        //Fonction pour paginer la page page produit: on appelle la fonction paginate() avec en param la fonction findAllQueries() dans ArticleRepository
+        $article = $paginator->paginate(
+            $this->repository->findAllQueries(),
+            $request->query->getInt('page',1),
+            3
+        );
         return $this->render('produit/produit.html.twig', [
             'article' => $article,
-            'size' => $size
+            'size' => $size,
+//            'form' => $form->createView()
 
         ]);
     }

@@ -5,7 +5,9 @@ namespace App\Repository;
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 
 /**
@@ -21,14 +23,44 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+
 /**
  * @return Query
  */
-public function findAllVisibleQuery(): Query
+public function findAllVisibleQuery(PropertySearch $search): Query
 {
-    return $this->findAllVisibleQuery()
-        ->getQuery();
+    $query = $this->findAllQuery();
+
+    if($search->getMaxPrice()) {
+        $query=$query
+            ->andwhere('a.art_prix_ht < :maxprice')
+            ->setParameter('maxprice',$search->getMaxPrice());
+    }
+
+    if($search->getMinPrice()) {
+        $query=$query
+            ->andwhere('a.art_prix_ht >= :minprice')
+            ->setParameter('minprice',$search->getMinPrice());
+    }
+
+    return $query->getQuery();
+
 }
+    /**
+     * @return Query
+     */
+
+    public function  findAllQueries(): Query
+    {
+        return $this->findAllQuery()
+            ->getQuery();
+
+    }
+
+    private function  findAllQuery(): QueryBuilder
+    {
+        return $this->createQueryBuilder('a');
+    }
 
     // /**
     //  * @return Article[] Returns an array of Article objects

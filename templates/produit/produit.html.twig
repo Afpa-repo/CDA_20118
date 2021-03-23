@@ -62,25 +62,30 @@
                                         </a>
                                         <div class="sidebar-submenu">
                                             <ul>
-                                                <li>
-                                                    <a href="#">0€ - 50€
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">50€ - 100€</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">100€ - 200€</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">200€ - 300€</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">400€ - 500€</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">500€ et plus</a>
-                                                </li>
+{#                                               {{ form_start(form) }}#}
+{#                                                {{ form_row(form.minprice) }}#}
+{#                                                {{ form_row(form.maxprice) }}#}
+{#                                                <button class="btn btn-secondary">Rechercher</button>#}
+{#                                                {{ form_end(form) }}#}
+{#                                                <li>#}
+{#                                                    <a href="#">0€ - 50€#}
+{#                                                    </a>#}
+{#                                                </li>#}
+{#                                                <li>#}
+{#                                                    <a href="#">50€ - 100€</a>#}
+{#                                                </li>#}
+{#                                                <li>#}
+{#                                                    <a href="#">100€ - 200€</a>#}
+{#                                                </li>#}
+{#                                                <li>#}
+{#                                                    <a href="#">200€ - 300€</a>#}
+{#                                                </li>#}
+{#                                                <li>#}
+{#                                                    <a href="#">400€ - 500€</a>#}
+{#                                                </li>#}
+{#                                                <li>#}
+{#                                                    <a href="#">500€ et plus</a>#}
+{#                                                </li>#}
                                             </ul>
                                         </div>
                                     </li>
@@ -203,6 +208,9 @@
 <img  class="img-fluid" src="../img/banniere_livraison.png ">
             </div>  <!--col 2 -->
         </div> <!--row -->
-
+            <div class="pagination">
+             {{ knp_pagination_render(article)}}
+            </div>
     </div>
+
 {% endblock %}
