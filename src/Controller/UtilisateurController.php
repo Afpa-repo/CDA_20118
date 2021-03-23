@@ -37,7 +37,7 @@ class UtilisateurController extends AbstractController
 
 
     /**
-     * @Route("/inscription", name="utilisateur_registration", methods={"GET", "POST"})
+     * @Route("/inscription", name="utilisateur_inscription", methods={"GET", "POST"})
      * @return Response
      */
     public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, CartService $cartService) {
@@ -56,7 +56,10 @@ class UtilisateurController extends AbstractController
 
             $manager->persist($utilisateur);
             $manager->flush();
+            $this->addFlash('success', 'Nouvelle Utilisateur créer !');
+
             return $this->redirectToRoute('security_login');
+
 
         }
         return $this->render('utilisateur/new.html.twig', [
@@ -95,6 +98,8 @@ class UtilisateurController extends AbstractController
             $utilisateur->setUtiMdp($hash);
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Modification ok !');
+
             return $this->redirectToRoute('utilisateur_index');
         }
 
@@ -116,6 +121,7 @@ class UtilisateurController extends AbstractController
             $entityManager->remove($utilisateur);
             $entityManager->flush();
         }
+        $this->addFlash('success', 'Utilisateur supprimer !');
 
         return $this->redirectToRoute('utilisateur_index');
     }

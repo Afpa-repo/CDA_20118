@@ -45,13 +45,13 @@ CREATE TABLE IF NOT EXISTS `article` (
 DELETE FROM `article`;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
 INSERT INTO `article` (`art_id`, `pro_id`, `four_id`, `cat_id`, `art_photo`, `art_nom`, `art_libelle`, `art_prix_ht`, `art_min_stock`, `art_stock`, `art_promo`, `art_desc`) VALUES
-	(2, NULL, 2, 14, 'autre test', 'test', 'test', 10.00, 2, 5, 0, ''),
-	(3, NULL, 4, 5, NULL, 'crayon', 'frfr', 20.00, 1, 2, 0, ''),
-	(4, NULL, 4, 18, NULL, 'taille', 'frfr', 20.00, 1, 2, 0, ''),
-	(5, 2, 5, 18, NULL, 'regle', 'frfr', 20.00, 1, 3, 0, ''),
-	(6, 2, 6, 8, NULL, 'crayon', 'frfr', 20.00, 1, 3, 0, ''),
-	(7, 2, 3, 19, NULL, 'crayon', 'frfr', 20.15, 2, 62, 0, ''),
-	(8, 2, 4, 4, NULL, 'crayon', 'frfr', 20.00, 1, 3, 0, '212414');
+	(2, NULL, 2, 14, 'piano.png', 'test', 'test', 10.00, 2, 5, 0, ''),
+	(3, NULL, 4, 5, 'guitare.png', 'crayon', 'frfr', 20.00, 1, 2, 0, ''),
+	(4, NULL, 4, 18, 'piano.png', 'taille', 'frfr', 20.00, 1, 2, 0, ''),
+	(5, 2, 5, 18, 'guitare.png', 'regle', 'frfr', 20.00, 1, 3, 0, ''),
+	(6, 2, 6, 8, 'piano.png', 'crayon', 'frfr', 20.00, 1, 3, 0, ''),
+	(7, 2, 3, 19, 'guitare.png', 'crayon', 'frfr', 20.15, 2, 62, 0, ''),
+	(8, 2, 4, 4, 'piano.png', 'crayon', 'frfr', 20.00, 1, 3, 0, '212414');
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 
 -- Listage de la structure de la table filrouge. categorie
@@ -156,11 +156,9 @@ CREATE TABLE IF NOT EXISTS `commande` (
   CONSTRAINT `FK_6EEAA67D3951DF75` FOREIGN KEY (`uti_id`) REFERENCES `utilisateur` (`uti_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge.commande : ~1 rows (environ)
+-- Listage des données de la table filrouge.commande : ~0 rows (environ)
 DELETE FROM `commande`;
 /*!40000 ALTER TABLE `commande` DISABLE KEYS */;
-INSERT INTO `commande` (`com_id`, `uti_id`, `com_num`, `com_date`, `com_etat`, `com_total_ht`, `com_type_de_paiement`, `com_reduc_commercial`) VALUES
-	(6, 17, '58258', '2016-01-01 00:00:00', 'bon', 60, 'mensuel', 20);
 /*!40000 ALTER TABLE `commande` ENABLE KEYS */;
 
 -- Listage de la structure de la table filrouge. doctrine_migration_versions
@@ -172,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table filrouge.doctrine_migration_versions : ~1 rows (environ)
+-- Listage des données de la table filrouge.doctrine_migration_versions : ~2 rows (environ)
 DELETE FROM `doctrine_migration_versions`;
 /*!40000 ALTER TABLE `doctrine_migration_versions` DISABLE KEYS */;
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
@@ -552,7 +550,7 @@ CREATE TABLE IF NOT EXISTS `promotion` (
   PRIMARY KEY (`pro_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge.promotion : ~1 rows (environ)
+-- Listage des données de la table filrouge.promotion : ~0 rows (environ)
 DELETE FROM `promotion`;
 /*!40000 ALTER TABLE `promotion` DISABLE KEYS */;
 INSERT INTO `promotion` (`pro_id`, `pro_coef`, `pro_date_debut`, `pro_date_fin`) VALUES
@@ -579,18 +577,14 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `uti_identifiant` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
   `uti_mdp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`uti_id`),
-  UNIQUE KEY `UNIQ_1D1C63B374C1F655` (`uti_identifiant`),
+  UNIQUE KEY `UNIQ_1D1C63B374C1F655` (`uti_identifiant`,`uti_mail`) USING BTREE,
   KEY `pay_id` (`pay_id`),
   KEY `uti_id_1` (`uti_id_1`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table filrouge.utilisateur : ~3 rows (environ)
+-- Listage des données de la table filrouge.utilisateur : ~8 rows (environ)
 DELETE FROM `utilisateur`;
 /*!40000 ALTER TABLE `utilisateur` DISABLE KEYS */;
-INSERT INTO `utilisateur` (`uti_id`, `uti_adresse`, `uti_adresse2`, `uti_ville`, `uti_codepostal`, `uti_nom`, `uti_role`, `uti_prenom`, `uti_sexe`, `uti_date_de_naissance`, `uti_mail`, `uti_tel`, `uti_id_1`, `pay_id`, `uti_identifiant`, `uti_mdp`) VALUES
-	(16, '21 rue de l\'eglise', '....', 'pierre', '21541', 'mik', 'client', 'mik', 'm', '2016-01-01', 'Testtest@gmail.fr', '0531625454', NULL, 6, 'mik00', '$2y$13$NOUNYek.8wkNXDb6bWTGuOKT2noSUxIDFKFvAR9k.PJP8Rt1DU4hK'),
-	(17, '21 rue de l\'eglise', '....', 'pierre', '21541', 'mik', 'ROLE_USER', 'mik', 'F', '2016-01-01', 'Gil@gmail.fr', '0531625454', NULL, 4, 'mik00test01', '$2y$13$0b6TEB7bzbCt6IgWoo9DA.NYVQPdRiLE2f.WEod/Vrp3IwCJrEdCK'),
-	(18, '21 rue de l\'eglise', '....', 'pierre', '21541', 'mik', 'ROLE_USER', 'mik', 'F', '2016-01-01', 'ttte@gmail.com', '0531625454', NULL, 7, 'mik0022', '$2y$13$17qaA7ewSUvn14laZOh9c.ocsX68tlo5BlvnfcyTgtD1PTAVT0E7.');
 /*!40000 ALTER TABLE `utilisateur` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

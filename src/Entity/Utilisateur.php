@@ -9,14 +9,18 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 
+
 /**
  * Utilisateur
  *
- * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_1D1C63B374C1F655", columns={"uti_identifiant"})}, indexes={@ORM\Index(name="pay_id", columns={"pay_id"}), @ORM\Index(name="uti_id_1", columns={"uti_id_1"})})
+ * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_1D1C63B374C1F655", columns={"uti_identifiant", "uti_mail"})}, indexes={@ORM\Index(name="pay_id", columns={"pay_id"}), @ORM\Index(name="uti_id_1", columns={"uti_id_1"})})
  * @ORM\Entity
- *  * @UniqueEntity(
+ * @UniqueEntity(
+ *     fields={"utiIdentifiant"},
+ *     message="L'identifiant indiquer existe deja !")
+ * @UniqueEntity(
  *     fields={"utiMail"},
- *     message="Cette adresse email existe deja !")
+ *     message="L'email indiquer existe deja !")
  */
 
 class Utilisateur implements UserInterface
@@ -46,21 +50,21 @@ class Utilisateur implements UserInterface
 
     /**
      * @var string|null
-     *
+     * @Assert\Length(min="3", minMessage="Votre ville doit contenir 3 caractère minimum")
      * @ORM\Column(name="uti_ville", type="string", length=50, nullable=true)
      */
     private $utiVille;
 
     /**
      * @var string|null
-     *
+     * @Assert\Length(min="5", minMessage="Votre code postal doit contenir 5 chiffres")
      * @ORM\Column(name="uti_codepostal", type="string", length=10, nullable=true)
      */
     private $utiCodepostal;
 
     /**
      * @var string
-     *
+     * @Assert\Length(min="2", minMessage="Votre nom doit contenir 2 lettres minimum")
      * @ORM\Column(name="uti_nom", type="string", length=50, nullable=false)
      */
     private $utiNom;
@@ -74,14 +78,14 @@ class Utilisateur implements UserInterface
 
     /**
      * @var string
-     *
+     * @Assert\Length(min="2", minMessage="Votre prenom doit contenir 2 lettres minimum")
      * @ORM\Column(name="uti_prenom", type="string", length=50, nullable=false)
      */
     private $utiPrenom;
 
     /**
      * @var string
-     *
+     * @Assert\Length(max="1", maxMessage="Ce champ ne peut contenir que H ou F !" )
      * @ORM\Column(name="uti_sexe", type="string", length=1, nullable=false)
      */
     private $utiSexe;
@@ -95,14 +99,14 @@ class Utilisateur implements UserInterface
 
     /**
      * @var string
-     *
+     * @Assert\Email(message="Veuillez saisir un email correct !")
      * @ORM\Column(name="uti_mail", type="string", length=255, nullable=false)
      */
-    private $utiMail;
+    protected $utiMail;
 
     /**
      * @var string
-     *
+     * @Assert\Length(max="10", minMessage="Votre telephone doit contenir 10 chiffres !!")
      * @ORM\Column(name="uti_tel", type="string", length=10, nullable=false)
      */
     private $utiTel;
@@ -127,9 +131,9 @@ class Utilisateur implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="uti_identifiant", type="string", length=180, nullable=false)
+     * @ORM\Column(name="uti_identifiant", type="string", length=180, unique=true)
      */
-    private $utiIdentifiant;
+    protected $utiIdentifiant;
 
     /**
      * @var string
@@ -140,6 +144,7 @@ class Utilisateur implements UserInterface
 
     /**
      * @var string
+
      * @Assert\EqualTo(propertyPath="uti_Mdp", message="Vous n'avez pas tapé la meme mot de passe")
      */
     public $confirm_utiMdp;

@@ -31,6 +31,11 @@
                                     <a class="btn" href="{{ path('cart_add', {'id':article.artId}) }}">Ajouter au panier</a>
                                     <a class="btn" href="{{ path('cart_index') }}">Afficher le panier</a>
                                 </footer>
+                                {% for message in app.flashes('success') %}
+                                    <div class="alert alert-success ">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
                             </article>
                         </div>
                 </div>

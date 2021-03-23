@@ -4,7 +4,11 @@
 
 {% block body %}
     <h1>Utilisateur index</h1>
-
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success ">
+            {{ message }}
+        </div>
+    {% endfor %}
     <table class="table">
         <thead>
             <tr>
@@ -57,5 +61,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('utilisateur_registration') }}">Create new</a>
+    <a href="{{ path('utilisateur_inscription') }}">Create new</a>
 {% endblock %}

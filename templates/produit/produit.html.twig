@@ -18,6 +18,7 @@
     <div class="container-fluid mt-4">
 
         <h2 class="product_title">Nos produits</h2>
+
         <div class="row">
             <div class="col-3">
                 <div class="page-wrapper chiller-theme toggled">
@@ -176,6 +177,11 @@
                 </div>
             </div> <!--col 3 -->
             <div class="col-7">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success ">
+                        {{ message }}
+                    </div>
+                {% endfor %}
             {% for article in article %}
                     <div class="example">
                         <article class="card depth--two mb-4">

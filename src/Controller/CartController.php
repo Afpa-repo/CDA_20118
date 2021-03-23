@@ -35,7 +35,7 @@ class CartController extends AbstractController
     public function add($id, CartService $cartService)
     {
         $cartService->add($id);
-
+        $this->addFlash('success', 'Ajout au panier reussi !');
         return $this->redirectToRoute("produits_index");
     }
 
@@ -45,7 +45,7 @@ class CartController extends AbstractController
     public function remove($id, CartService $cartService) {
 
         $cartService->remove($id);
-
+        $this->addFlash('success', 'Ligne supprimer !');
         return $this->redirectToRoute("cart_index");
     }
 
@@ -55,7 +55,7 @@ class CartController extends AbstractController
     public function minus($id, CartService $cartService)
     {
         $cartService->minus($id);
-
+        $this->addFlash('success', 'Article enlever !');
         return $this->redirectToRoute("cart_index");
     }
 
@@ -65,7 +65,7 @@ class CartController extends AbstractController
     public function add_cart($id, CartService $cartService)
     {
         $cartService->add($id);
-
+        $this->addFlash('success', 'Article ajouter !');
         return $this->redirectToRoute("cart_index");
     }
 
@@ -75,7 +75,7 @@ class CartController extends AbstractController
     public function removeAll(CartService $cartService) {
 
         $cartService->removeAll();
-
+        $this->addFlash('success', 'Suppression du panier !');
         return $this->redirectToRoute("produits_index");
     }
 }
