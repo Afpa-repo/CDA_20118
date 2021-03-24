@@ -3,29 +3,26 @@
 {% block title %}New Utilisateur{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success ">
-                    {{ message }}
-                </div>
-            {% endfor %}
-            <div class="col-sm-6 offset-sm-3">
-                <div class="card shadow p-3 mb-5 bg-blue rounded mt-5">
-                    <div class="card-body">
 
+    <div class="row">
 
-                <h1 class="text-center">Nouveau Utilisateur</h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success ">
+                {{ message }}
+            </div>
+        {% endfor %}
 
-                {{ include('utilisateur/_form.html.twig') }}
+        <div class="col-sm-6 offset-sm-3">
+            <div class="card shadow p-3 mb-5 bg-blue rounded mt-5">
+                <div class="card-body">
 
+                    <h1 class="text-center">Nouvel utilisateur</h1>
 
-
+                    {{ include('utilisateur/_form.html.twig') }}
 
                 </div>
             </div>
         </div>
     </div>
-
 
 {% endblock %}
