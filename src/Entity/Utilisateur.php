@@ -50,21 +50,18 @@ class Utilisateur implements UserInterface
 
     /**
      * @var string|null
-     * @Assert\Length(min="3", minMessage="Votre ville doit contenir 3 caractère minimum")
      * @ORM\Column(name="uti_ville", type="string", length=50, nullable=true)
      */
     private $utiVille;
 
     /**
      * @var string|null
-     * @Assert\Length(min="5", minMessage="Votre code postal doit contenir 5 chiffres")
      * @ORM\Column(name="uti_codepostal", type="string", length=10, nullable=true)
      */
     private $utiCodepostal;
 
     /**
      * @var string
-     * @Assert\Length(min="2", minMessage="Votre nom doit contenir 2 lettres minimum")
      * @ORM\Column(name="uti_nom", type="string", length=50, nullable=false)
      */
     private $utiNom;
@@ -78,14 +75,12 @@ class Utilisateur implements UserInterface
 
     /**
      * @var string
-     * @Assert\Length(min="2", minMessage="Votre prenom doit contenir 2 lettres minimum")
      * @ORM\Column(name="uti_prenom", type="string", length=50, nullable=false)
      */
     private $utiPrenom;
 
     /**
      * @var string
-     * @Assert\Length(max="1", maxMessage="Ce champ ne peut contenir que H ou F !" )
      * @ORM\Column(name="uti_sexe", type="string", length=1, nullable=false)
      */
     private $utiSexe;
@@ -99,14 +94,12 @@ class Utilisateur implements UserInterface
 
     /**
      * @var string
-     * @Assert\Email(message="Veuillez saisir un email correct !")
      * @ORM\Column(name="uti_mail", type="string", length=255, nullable=false)
      */
     protected $utiMail;
 
     /**
      * @var string
-     * @Assert\Length(max="10", minMessage="Votre telephone doit contenir 10 chiffres !!")
      * @ORM\Column(name="uti_tel", type="string", length=10, nullable=false)
      */
     private $utiTel;
@@ -138,7 +131,6 @@ class Utilisateur implements UserInterface
     /**
      * @var string
      * @ORM\Column(name="uti_mdp", type="string", length=255, nullable=false)
-     * @Assert\Length(min="8", minMessage="Votre mot de passe doit faire 8 caractères minimum")
      */
     private $utiMdp;
 
