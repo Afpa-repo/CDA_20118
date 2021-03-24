@@ -1,32 +1,90 @@
-h1, p {
-    color: #C9C9C9;
+.bodyback {
+    background-image:  url("../img/background village.png") ;
+    background-repeat:  no-repeat;
+    background-size:  cover;
+}
+h1{
+  font-size:5rem
+}
+.entete{
+text-align: left;
 }
 
-.bodyback {
-    background-image:url("../img/background village.png") ;
-    background-size:cover;
+.logo{
+  left: 0;
+  position: relative;
 }
-#categorie {
-    flex: 33.33%;
-    padding: 5px;
+.bienvenue{
+position:absolute;
+right: 22%;
 }
+
 .pub {
   height:auto;
+  width: 65%;
+ padding-left: 6%;
 }
 
-#row1 {
+@media (min-width: 1200px) {
+  .banniere
+  {
+  position: -webkit-sticky; /* pour safari */
+  position: sticky;
+  top: 0;
+  float:right;
+  text-align: right;
+}}
+@media (min-width: 1200px) {
+  .banniere2
+  {
+  position: -webkit-sticky; /* pour safari */
+  position: sticky;
+  top: 0;
+  float: left;
+  text-align: left;
+}}
+.banniere4 {
+
+height: auto;
+width: 100%;
+text-align: center;
+padding: 5%;
+
+}
+@media screen and (max-width: 500px) {
+  .column {
+    width: 10%;
+  }
+}
+
+.col {
+  width:10%;
+  text-align:left;
+  padding:5px;
+ }
+.center {
+  display: block;
+
+
+}
+
+.banniere{
+  float:right;
+}
+
+
+
+.row1 {
     display: flex;
   }
-  #row2 {
+.row2 {
     display: flex;
+  }
+.row3 {
+    display: flex; 
   }
   td {
       color: white;
-  }
-
-  .container {
-    position: relative;
-    width: 50%;
   }
   
 .image {
@@ -41,9 +99,6 @@ h1, p {
   transition: .5s ease;
   opacity: 0;
   position: absolute;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  
 }
 
 .container:hover .image {
@@ -52,18 +107,22 @@ h1, p {
 
 .container:hover .middle {
   opacity: 1;
-  top: 50%;
-  left: 33%;
+  top: 37%;
+  left: 37%;
 }
+
 .text {
     background-color: #4CAF50;
     color: white;
     font-size: 16px;
     padding: 16px 32px;
-    
-}
-.test {
-position: absolute; /* postulat de départ */
-top: 50%; left: 50%; /* à 50%/50% du parent référent */
-transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
-}
+    display: none;
+  }
+
+  .container:hover .text{
+    display: block;
+  }
+  .container {
+    position: relative;
+    width: 50%;
+  }

@@ -5,23 +5,39 @@
 {% endblock %}
 {% block bodyclass %}class="bodyback"{% endblock %}
  {% block body %}
-     <div class="container-fluid">
-         <div class="row mt-5 text-center">
-                 <h1>Accueil</h1>
+     <div class="container-fluid text-center">
+        <div class="entete">
+            <h1 class="bienvenue">Bienvenue chez Village Green !</h1>
+                <img src="{{ asset('../img/logo village green.png') }}" alt="Logo Village Green" class="logo">
+            </div>
+     <img src="{{ asset('../img/banniere_livraison.png') }}" alt="Banniere livraison" class="banniere">
+        <div class="col banniere2">
+            <a href="{{ asset('../categorie/1')}}"><img src="{{ asset('../img/TOP VENTES ROLL OVER guitare.png') }}" alt="Banniere Meilleures Ventes" class=""></a>  
+            <a href="{{ asset('../categorie/2') }}"><img src="{{ asset('../img/TOP VENTES ROLL OVER piano.png') }}"  alt="Banniere Meilleures Ventes" class=""></a> 
+            <a href="{{ asset('../categorie/45') }}"><img src="{{ asset('../img/TOP VENTES ROLL OVER saxo.png') }}"  alt="Banniere Meilleures Ventes" class=""></a></div>
                     
-                     <div id="pub"><img src="{{ asset('../img/pub guitare.png') }}" alt="Pub guitare Gibson/Ibanez" class=""> </div>
-                     <div id="banniere4"><img src="{{ asset('../img/banniere centre 4 pictos.png') }}" alt="Banniere" class="mx-auto d-block"></div>
-                     <div id="banniere"><img src="{{ asset('../img/banniere_livraison.png') }}" alt="Pub guitare Gibson/Ibanez" class=""></div>
-                        <div id="meilleures_ventes"><a href="{{ asset('../categorie/1')}}"><img src="{{ asset('../img/TOP VENTES ROLL OVER guitare.png') }}" alt="Pub top ventes guitare" class="img-thumbnail"></a>
-                        <a href="{{ asset('../categorie/2') }}"><img src="{{ asset('../img/TOP VENTES ROLL OVER piano.png') }}" alt="Pub top ventes piano" class="img-thumbnail"></a>
-                        <a href="{{ asset('../categorie/45') }}"><img src="{{ asset('../img/TOP VENTES ROLL OVER saxo.png') }}" alt="Pub top ventes saxophone" class="img-thumbnail"></a>
-                        
-                    </div>                       
+                    <img src="{{ asset('../img/pub guitare.png') }}" alt="Pub guitare Gibson/Ibanez" class="pub ">                                      
+            <div class="offset-2 col-8 " id="categories" >       
+                <div class="row1 col-12">
+                    <div class="container">
+                        <div class="categorie">
+                            <img src="{{ asset('/img/CATEGORIES ROLL OVER access.png')}}" class="image " alt="Categorie accessoires">
+                        </div>             
+                        <div class="middle">
+                                <div class="text" ><a href="#">Voir</a> </div>
+                        </div>
                 </div>
-            <div id="row1">
                 <div class="container">
-                    <div id="categorie">
-                        <img src="{{ asset('/img/CATEGORIES ROLL OVER access.png')}}" class="image" alt="Categorie accessoires">
+                    <div class="categorie">
+                        <img src="{{ asset('/img/CATEGORIES ROLL OVER batterie.png')}}" class="image " alt="Categorie batterie">
+                    </div>             
+                        <div class="middle">
+                                <div class="text" >Voir</div>
+                        </div>
+                </div>
+                <div class="container">
+                    <div class="categorie">
+                        <img src="{{ asset('/img/CATEGORIES ROLL OVER cases.png')}}" class="image " alt="Categorie cases">
                     </div>             
                         <div class="middle">
                                 <div class="text" >Voir
@@ -29,26 +45,8 @@
                         </div>
                 </div>
                 <div class="container">
-                    <div id="categorie">
-                        <img src="{{ asset('/img/CATEGORIES ROLL OVER batterie.png')}}" class="image" alt="Categorie batterie">
-                    </div>             
-                        <div class="middle">
-                                <div class="text" >Voir
-                                </div>
-                        </div>
-                </div>
-                <div class="container">
-                    <div id="categorie">
-                        <img src="{{ asset('/img/CATEGORIES ROLL OVER cases.png')}}" class="image" alt="Categorie cases">
-                    </div>             
-                        <div class="middle">
-                                <div class="text" >Voir
-                                </div>
-                        </div>
-                </div>
-                <div class="container">
-                    <div id="categorie">
-                        <img src="{{ asset('/img/CATEGORIES ROLL OVER guitare.png')}}" class="image" alt="Categorie guitare">
+                    <div class="categorie">
+                        <img src="{{ asset('/img/CATEGORIES ROLL OVER guitare.png')}}" class="image " alt="Categorie guitare">
                     </div>             
                         <div class="middle">
                                 <div class="text" >Voir
@@ -56,10 +54,19 @@
                         </div>
                 </div>
             </div>
-            <div id="row2">
+            <div class="row2 col-12">
             <div class="container">
-                    <div id="categorie">
-                        <img src="{{ asset('/img/CATEGORIES ROLL OVER micro.png')}}" class="image" alt="Categorie micro">
+                    <div class="categorie">
+                        <img src="{{ asset('/img/CATEGORIES ROLL OVER micro.png')}}" class="image " alt="Categorie micro">
+                    </div>             
+                        <div class="middle" >
+                                <div class="text" style="">Voir
+                                </div>
+                        </div>
+                </div>
+                <div class="container">
+                    <div class="categorie">
+                        <img src="{{ asset('/img/CATEGORIES ROLL OVER piano.png')}}" class="image " alt="Categorie piano">
                     </div>             
                         <div class="middle">
                                 <div class="text" >Voir
@@ -67,16 +74,7 @@
                         </div>
                 </div>
                 <div class="container">
-                    <div id="categorie">
-                        <img src="{{ asset('/img/CATEGORIES ROLL OVER piano.png')}}" class="image" alt="Categorie piano">
-                    </div>             
-                        <div class="middle">
-                                <div class="text" >Voir
-                                </div>
-                        </div>
-                </div>
-                <div class="container">
-                    <div id="categorie">
+                    <div class="categorie">
                         <img src="{{ asset('/img/CATEGORIES ROLL OVER saxo.png')}}" class="image" alt="Categorie saxophone">
                     </div>             
                         <div class="middle">
@@ -85,14 +83,25 @@
                         </div>
                 </div>
                 <div class="container">
-                    <div id="categorie">
-                        <img src="{{ asset('/img/CATEGORIES ROLL OVER sono.png')}}" class="image" alt="Categorie son">
+                    <div class="categorie">
+                        <img src="{{ asset('/img/CATEGORIES ROLL OVER sono.png')}}" class="image " alt="Categorie son">
                     </div>             
                         <div class="middle">
                                 <div class="text" >Voir
                                 </div>
                         </div>
                 </div>
+                
+                    </div>            
+            <div class="row3 col-12 text-center">                            
+                        <div class="column">
+                            <h2 class="text-center">Nos Partenaires</h2>
+                                <img src="{{ asset('../img/partenaires 4 logos.png') }}" alt="Nos partenaires" class="img-responsive">    
+                                <img src="{{ asset('../img/banniere centre 4 pictos.png') }}" alt="" class="img-responsive banniere4">
+                                      
+                        </div> 
+                    </div>
+                </div>
             </div>
-            </div>
+        </div>
  {% endblock %}
