@@ -31,9 +31,6 @@ class ArticleRepository extends ServiceEntityRepository
 public function findAllVisibleQuery(PropertySearch $search): Query
 {
     $query = $this->findAllQuery();
-
-
-
     return $query->getQuery();
 
 }
@@ -59,6 +56,15 @@ public function findAllVisibleQuery(PropertySearch $search): Query
 
         return $query->getQuery();
 
+    }
+
+    /**
+     * Recupere les produits en lien avec une recherche
+     * @return Article[]
+     */
+    public function findSearch(): Array
+    {
+        return $this->findAll();
     }
 
     private function  findAllQuery(): QueryBuilder

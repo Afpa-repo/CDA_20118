@@ -1,0 +1,21 @@
+
+    <div class="example">
+        <article class="card depth--two mb-4">
+            <figure class="image">
+                <img src="{{article.linkpicture}}"  alt="{{article.artNom}}" />
+            </figure>
+            <div class="card__body">
+                <header class="card__primary-title">
+                    <h2 class="text-large">{{article.artNom}}</h2>
+                    <h3 class="text-secondary text-normal text-small">{{ article.artLibelle}}</h3>
+                </header>
+                <div class="card__supporting-text">
+                    {{ article.artPrixHt }}€
+                </div>
+            </div>
+            <footer class="card__actions">
+                <a class="btn" href="{{ path('produits_details', {'id': article.artId}) }}">Details</a>
+                <a class="btn" href="{{ path('cart_add', {'id':article.artId}) }}">Ajouter au panier</a>
+            </footer>
+        </article>
+    </div>

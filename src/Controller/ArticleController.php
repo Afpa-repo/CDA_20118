@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Article;
 use App\Entity\ArticleSearch;
+use App\Entity\Categorie;
 use App\Form\ArticleSearchType;
 use App\Form\ArticleType;
+use App\Form\SearchType;
 use App\Service\Cart\CartService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,11 +26,11 @@ class ArticleController extends AbstractController
     /**
      * @var ArticleRepository
      */
-    private $repository;
-    public function __construct(ArticleRepository $repository)
-    {
-        $this->repository=$repository;
-    }
+//    private $repository;
+//    public function __construct(ArticleRepository $repository)
+//    {
+//        $this->repository=$repository;
+//    }
 
 
 
@@ -42,6 +45,8 @@ class ArticleController extends AbstractController
             ->getRepository(Article::class)
             ->findAll();
 
+
+
         return $this->render('article/index.html.twig', [
             'articles' => $articles,
             'size' => $size
@@ -51,20 +56,30 @@ class ArticleController extends AbstractController
     /**
      * @Route("/produits", name="produits_index", methods={"GET"})
      */
-    public function product(CartService $cartService,PaginatorInterface $paginator, Request $request): Response
+    public function product(ArticleRepository $repository,CartService $cartService, Request $request): Response
     {
-        $search = new ArticleSearch();
-        $form = $this->createForm(ArticleSearchType::class, $search);
-        $form->handleRequest($request);
+        //formulaire de filtres
+//        $search = new ArticleSearch();
+//        $form = $this->createForm(ArticleSearchType::class, $search);
+//        $form->handleRequest($request);
 
         $size = $cartService->getSize();
+
+        // Affiche le noms des catégories
+        $categories = $this->getDoctrine()
+            ->getRepository(Categorie::class)
+            ->findAll();
         //Fonction pour paginer la page page produit: on appelle la fonction paginate() avec en param la fonction findAllQueries() dans ArticleRepository
-        $article = $paginator->paginate(
-            $this->repository->findAllQueries($search),
-            $request->query->getInt('page',1),
-            3
-        );
+//        $article = $paginator->paginate(
+//            $this->repository->findAllQueries($search),
+//            $request->query->getInt('page',1),
+//            6
+//        );
+        $data = new SearchData();
+        $form=$this->createForm(SearchType::class,$data);
+        $article= $repository->findSearch();
         return $this->render('produit/produit.html.twig', [
+            'categories'=>$categories,
             'article' => $article,
             'size' => $size,
             'form' => $form->createView()

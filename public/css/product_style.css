@@ -508,6 +508,11 @@
     color: #6c7b88;
 }
 
+ .filter{
+     color: whitesmoke;
+ }
+
+
 /* PUB DROITE*/
 
 @media (max-width:629px) {
@@ -515,3 +520,4 @@
         display: none;
     }
 }
+
