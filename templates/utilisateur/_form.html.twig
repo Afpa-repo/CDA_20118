@@ -1,23 +1,84 @@
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {{ form_start(form) }}
-    {{ form_row(form.utiIdentifiant)}}
-    {{ form_row(form.utiNom)}}
-    {{ form_row(form.utiPrenom)}}
-    {{ form_row(form.utiAdresse)}}
-    {{ form_row(form.utiAdresse2)}}
-    {{ form_row(form.utiVille)}}
-    {{ form_row(form.utiCodepostal)}}
-    {{ form_row(form.utiSexe)}}
-    {{ form_row(form.utiDateDeNaissance)}}
-    {{ form_row(form.utiMdp)}}
-    {{ form_row(form.confirm_utiMdp)}}
-    {{ form_row(form.utiMail)}}
-    {{ form_row(form.utiTel)}}
-    {{ form_row(form.pay, {'label': 'Votre pays : '})}}
-{{ form_errors(form) }}
-<div class="form-group row text-center">
-    <div class="col-sm-12">
-        <a class="btn btn-success" href="{{ path('home') }}">Retour a l'accueil</a>
-        <button type="submit" class="btn btn-success">Souscrire</button>
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6">
+            {{ form_row(form.utiIdentifiant) }}
+        </div>
+        <div class="col s12 m6">
+            {{ form_row(form.utiMail) }}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m6">
+            {{ form_row(form.utiPrenom) }}
+        </div>
+        <div class="col s12 m6">
+            {{ form_row(form.utiNom) }}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m6">
+            {{ form_row(form.utiAdresse) }}
+
+        </div>
+        <div class="col s12 m6">
+            {{ form_row(form.utiAdresse2) }}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m6">
+            {{ form_row(form.utiVille) }}
+
+        </div>
+        <div class="col s12 m6">
+            {{ form_row(form.utiCodepostal) }}
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col s12 m6">
+            {{ form_row(form.utiDateDeNaissance) }}
+
+        </div>
+        <div class="col s12 m6">
+            {{ form_row(form.utiSexe) }}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m6">
+            {{ form_row(form.utiTel) }}
+        </div>
+        <div class="col s12 m6">
+            {{ form_row(form.pay, {'label': 'Pays : '}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m6">
+            {{ form_row(form.utiMdp) }}
+        </div>
+        <div class="col s12 m6">
+            {{ form_row(form.confirm_utiMdp) }}
+        </div>
+    </div>
+
+
+    <div class="form-group row text-center">
+        <div class="col-sm-12">
+            <a class="btn btn-success" href="{{ path('home') }}">Retour a l'accueil</a>
+            <button type="submit" class="btn btn-success">Souscrire</button>
+        </div>
     </div>
 </div>
 

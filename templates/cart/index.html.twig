@@ -5,87 +5,100 @@
 
 {% block body %}
 
-    <div class="container">
+    <div class="col-sm-6 offset-sm-3">
+        <div class="card shadow p-3 mb-5 bg-blue rounded mt-5">
+            <div class="card-body">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success ">
+                        {{ message }}
+                    </div>
+                {% endfor %}
 
-        <h1 class="text-center mb-5">Votre panier</h1>
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success ">
-            {{ message }}
-        </div>
-    {% endfor %}
+                <h1 class="text-center mb-5 card">Votre panier</h1>
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
 
-    {% if items | length > 0 %}
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Produit</th>
-                <th>Prix</th>
-                <th>Quantité</th>
-                <th>Total</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for item in items %}
-                <tr>
-                    <td>{{ item.product.artNom }}</td>
-                    <td>{{ item.product.artPrixHt }}</td>
-                    <td>
-                        <a href="{{ path('cart_minus', {'id': item.product.artId}) }}" class="btn btn-secondary btn-sm">
-                            <i class="bi bi-dash-circle"></i>
-                        </a>
-                        {{ item.quantity }}
-                        <a href="{{ path('cart_add_cart', {'id': item.product.artId}) }}"
-                           class="btn btn-success btn-sm">
-                            <i class="bi bi-plus-circle"></i>
-                        </a>
-                    </td>
-                    <td>{{ item.product.artPrixHt * item.quantity }}</td>
-                    <td>
-                        <a href="{{ path('cart_remove', {'id': item.product.artId}) }}" class="btn btn-danger btn-sm">
-                            <i class="bi bi-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="2" class="text-right">
-                    <a class="btn btn-danger btn-sm">
-                        Total : </a>
-                    <a class="btn btn-primary btn-sm">
-                        {{ size }} Articles </a>
-                    <a class="btn btn-primary btn-sm">
-                        {{ total }} € </a>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            </tfoot>
-        </table>
+                {% if items | length > 0 %}
+                <div class="card">
+                    <div class="container">
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Prix</th>
+                                <th>Quantité</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for item in items %}
+                                <tr>
+                                    <td>{{ item.product.artNom }}</td>
+                                    <td>{{ item.product.artPrixHt }}</td>
+                                    <td>
+                                        <a href="{{ path('cart_minus', {'id': item.product.artId}) }}"
+                                           class="btn btn-secondary btn-sm">
+                                            <i class="bi bi-dash-circle"></i>
+                                        </a>
+                                        {{ item.quantity }}
+                                        <a href="{{ path('cart_add_cart', {'id': item.product.artId}) }}"
+                                           class="btn btn-success btn-sm">
+                                            <i class="bi bi-plus-circle"></i>
+                                        </a>
+                                    </td>
+                                    <td>{{ item.product.artPrixHt * item.quantity }}</td>
+                                    <td>
+                                        <a href="{{ path('cart_remove', {'id': item.product.artId}) }}"
+                                           class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                    </div>
+                    </table>
 
 
-            <div class="row">
-                <div class="col-md mt-3">
-                    <a class="btn btn-secondary" href="{{ path('produits_index') }}">Continuer ces achats</a>
-                </div>
-                <div class="col-md mt-3">
-                    <a href="{{ path('cart_removeAll') }}" class="btn btn-danger ">
-                        Supprimer le panier </a>
-                </div>
-                <div class="col-md mt-3">
-                    <a class="btn btn-success" href="">Valider son panier</a>
+                    <div class="col-sm-6 offset-sm-3 ">
+                        <div class="card shadow p-3 mb-4 bg-blue rounded mt-4">
+                            <div class="card-body">
+
+                                <p class="card text-center">
+                                    Total : </p>
+                                <p class="card text-center">
+                                    {{ size }} Articles </p>
+                                <p class="card text-center">
+                                    {{ total }} € </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row text-center">
+                        <div class="col s-6 m-3">
+                            <a class="btn btn-secondary" href="{{ path('produits_index') }}">Continuer ces achats</a>
+                            <a href="{{ path('cart_removeAll') }}" class="btn btn-danger ">
+                                Supprimer le panier </a>
+                            <a class="btn btn-success" href="">Valider son panier</a>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
-
+            {% else %}
+                <p>Surprise, c'est vide !</p>
+            {% endif %}
         </div>
-
-
-
-    {% else %}
-        <p>Surprise, c'est vide !</p>
-    {% endif %}
-
+    </div>
+    </div>
+    </div>
 {% endblock %}
