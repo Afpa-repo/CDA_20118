@@ -4,17 +4,16 @@
 <link rel="stylesheet" href="{{ asset('css/style_accueil.css') }}">
 {% endblock %}
 {% block bodyclass %}class="bodyback"{% endblock %}
- {% block body %}
-     <div class="container-fluid text-center">
-        <div class="entete">
-
-            {% if not app.user %}
-            <h1 class="text-center">Bienvenue chez Village Green </h1>
-            {% else %}
-                <h1 class="text-center">Bienvenue {{ app.user.utiIdentifiant }} </h1>
-            {% endif %}
-                <img src="{{ asset('../img/logo village green.png') }}" alt="Logo Village Green" class="logo">
-            </div>
+{% block body %}
+    <div class="container-fluid text-center">
+    <div class="entete">
+            <img src="{{ asset('../img/logo village green.png') }}" alt="Logo Village Green" class="logo">
+                {% if not app.user %}
+        <h1 class="text-center">Bienvenue chez Village Green </h1>
+        {% else %}
+            <h1 class="text-center">Bienvenue {{ app.user.utiIdentifiant }} </h1>
+        {% endif %}
+        </div>
      <img src="{{ asset('../img/banniere_livraison.png') }}" alt="Banniere livraison" class="banniere">
         <div class="col banniere2">
             <a href="{{ asset('../categorie/1')}}"><img src="{{ asset('../img/TOP VENTES ROLL OVER guitare.png') }}" alt="Banniere Meilleures Ventes" class=""></a>  
