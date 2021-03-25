@@ -14,7 +14,7 @@
             <div class="card-body">
 
                 {% if app.user.utiId == utilisateur.utiId %}
-                {{ include('utilisateur/_delete_form.html.twig') }}
+                    {{ include('utilisateur/_delete_form.html.twig') }}
                 {% endif %}
                 <h1 class="text-center">Modifier {{ app.user.utiIdentifiant }}</h1>
 
@@ -25,9 +25,9 @@
 
                     <div class="col-sm-12">
                         <a class="btn btn-success" href="{{ path('home') }}">Retour a l'accueil</a>
-
-                        <button type="submit" class="btn btn-success">Valider</button>
-
+                        {% if app.user.utiId == utilisateur.utiId %}
+                            <button type="submit" class="btn btn-success">Valider</button>
+                        {% endif %}
                     </div>
                 </div>
             </div>

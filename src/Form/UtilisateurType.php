@@ -49,6 +49,7 @@ class UtilisateurType extends AbstractType
             ->add('utiCodepostal', NumberType::class, [
                 'label' => 'Votre code postal : ',
                 'attr' => ['placeholder' => 'Votre Code postal ....'],
+                'invalid_message' => 'Veuillez rentrez ques des chiffres !!',
                 'constraints' => [
                     new Assert\Length([
                         'min' => 5,
@@ -139,6 +140,7 @@ class UtilisateurType extends AbstractType
             ->add('utiTel', NumberType::class, [
                 'label' => 'Numero de telephone : ',
                 'attr' => ['placeholder' => 'Numero de telephone ....'],
+                'invalid_message' => 'Veuillez rentrez ques des chiffres !!',
                 'constraints' => [
                     new Assert\Length([
                         'max' => 10,
