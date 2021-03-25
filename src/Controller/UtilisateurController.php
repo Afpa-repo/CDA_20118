@@ -89,10 +89,14 @@ class UtilisateurController extends AbstractController
      */
     public function edit(Request $request, Utilisateur $utilisateur, CartService $cartService, UserPasswordEncoderInterface $encoder): Response
     {
-        $size = $cartService->getSize();
 
+        // Vérification que l'utilisateur n'a pas l'acces a l'url voulu
+        $this->denyAccessUnlessGranted('utilisateur_edit', $utilisateur, 'non non non ...');
+
+        $size = $cartService->getSize();
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($utilisateur, $utilisateur->getUtiMdp());
@@ -118,7 +122,8 @@ class UtilisateurController extends AbstractController
      */
     public function delete(Request $request, Utilisateur $utilisateur): Response
     {
-
+        // Vérification que l'utilisateur n'a pas l'acces a l'url voulu
+        $this->denyAccessUnlessGranted('utilisateur_edit', $utilisateur, 'non non non ...');
 
         if ($this->isCsrfTokenValid('delete'.$utilisateur->getUtiId(), $request->request->get('_token'))) {
 
