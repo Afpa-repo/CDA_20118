@@ -32,6 +32,7 @@ class UtilisateurType extends AbstractType
                 ]
             ])
             ->add('utiAdresse2', TextType::class, [
+                'required' => false,
                 'label' => 'Complement d\'adresse : ',
                 'attr' => ['placeholder' => 'Complement d\'adresse ....']
             ])
