@@ -32,6 +32,7 @@ class UtilisateurType extends AbstractType
                 ]
             ])
             ->add('utiAdresse2', TextType::class, [
+                'required' => false,
                 'label' => 'Complement d\'adresse : ',
                 'attr' => ['placeholder' => 'Complement d\'adresse ....']
             ])
@@ -58,7 +59,7 @@ class UtilisateurType extends AbstractType
                 ]
             ])
             ->add('utiNom', TextType::class, [
-                'label' => 'Nom d\'utilisateur : ',
+                'label' => 'Nom : ',
                 'attr' => ['placeholder' => 'Nom d\'utilisateur ....'],
                 'constraints' => [
                     new Assert\Length([
@@ -68,7 +69,7 @@ class UtilisateurType extends AbstractType
                 ]
             ])
             ->add('utiPrenom', TextType::class, [
-                'label' => 'Prenom d\'utilisateur : ',
+                'label' => 'Prenom : ',
                 'attr' => ['placeholder' => 'Votre Prenom ....'],
                 'constraints' => [
                     new Assert\Length([

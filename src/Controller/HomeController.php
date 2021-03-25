@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Utilisateur;
 use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,10 +18,13 @@ class HomeController extends AbstractController {
      */
     public function index(CartService $cartService) :Response
     {
+
+
         $size = $cartService->getSize();
         
         // affichage de la page d'accueil
         return $this->render('accueil/index.html.twig',[
+
             'size' => $size
             ]);
     }

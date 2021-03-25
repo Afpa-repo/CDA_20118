@@ -20,9 +20,16 @@
 
                     {{ include('utilisateur/_form.html.twig') }}
 
+                    <div class="form-group row text-center">
+                        <div class="col-sm-12">
+                            <a class="btn btn-success" href="{{ path('home') }}">Retour a l'accueil</a>
+                            <button type="submit" class="btn btn-success">Valider</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 {% endblock %}

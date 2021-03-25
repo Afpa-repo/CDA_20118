@@ -1,69 +1,137 @@
-h1, p {
-    color: #C9C9C9;
-}
-
 .bodyback {
-    background-image:url("../img/background village.png") ;
-    background-size:cover;
+  background-image:  url("../img/background village.png") ;
+  background-repeat:  no-repeat;
+  background-size:  cover;
 }
-#categorie {
-    flex: 33.33%;
-    padding: 5px;
+
+h1{
+font-size:5rem
 }
+
+.entete{
+text-align: left;
+}
+
+.logo{
+left: 0;
+position: relative;
+}
+
+.bienvenue{
+position:absolute;
+right: 25rem;
+}
+
 .pub {
-  height:auto;
+height:auto;
+width: 80rem;
+padding-left:8rem;
 }
 
-#row1 {
-    display: flex;
-  }
-  #row2 {
-    display: flex;
-  }
-  td {
-      color: white;
-  }
+@media (min-width: 1200px) {
+.banniere
+{
+position: -webkit-sticky; /* pour safari */
+position: sticky;
+top: 0;
+float:right;
+text-align: right;
+}
+.banniere2
+{
+position: -webkit-sticky; /* pour safari */
+position: sticky;
+top: 0;
+float: left;
+text-align: left;
+}}
 
-  .container {
-    position: relative;
-    width: 50%;
-  }
-  
+.banniere4 {
+
+height: auto;
+width: auto;
+text-align: center;
+padding: 3rem;
+}
+
+@media screen and (max-width: 500px) {
+.column {
+  width: 10%;
+}
+.banniere {
+
+  display: none;
+
+}}
+
+.col {
+width:10%;
+text-align:left;
+padding:0.313rem;
+}
+
+.center {
+display: block;
+}
+
+.banniere{
+float:right;
+}
+
+.row1 {
+  display: flex;
+}
+
+.row2 {
+  display: flex;
+}
+
+.row3 {
+  display: flex; 
+}
+
+td {
+    color: white;
+}
+/*Hover pour les catégories sur PC*/
 .image {
-  opacity: 1;
-  display: block;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
+opacity: 1;
+display: block;
+height: auto;
+transition: .5s ease;
+backface-visibility: hidden;
 }
 
 .middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  
+transition: .5s ease;
+opacity: 0;
+position: absolute;
 }
 
 .container:hover .image {
-  opacity: 0.3;
+opacity: 0.3;
 }
 
 .container:hover .middle {
-  opacity: 1;
-  top: 50%;
-  left: 33%;
+opacity: 1;
+top: 4.5rem;
+left: 7.5rem;
 }
+
 .text {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    padding: 16px 32px;
-    
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  display: none;
 }
-.test {
-position: absolute; /* postulat de départ */
-top: 50%; left: 50%; /* à 50%/50% du parent référent */
-transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+
+.container:hover .text{
+  display: block;
+}
+
+.container {
+  position: relative;
+  width: 14rem;
+  padding: 0.5rem; 
 }
