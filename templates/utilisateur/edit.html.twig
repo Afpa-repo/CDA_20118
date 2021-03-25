@@ -3,7 +3,6 @@
 {% block title %}Edit Utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Edit Utilisateur</h1>
 
     {% for message in app.flashes('success') %}
         <div class="alert alert-success ">
@@ -11,9 +10,31 @@
         </div>
     {% endfor %}
 
-    {{ include('utilisateur/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('utilisateur_index') }}">back to list</a>
 
-    {{ include('utilisateur/_delete_form.html.twig') }}
+
+
+    <div class="col-sm-6 offset-sm-3">
+        <div class="card shadow p-3 mb-5 bg-blue rounded mt-5">
+            <div class="card-body">
+
+                <h1 class="text-center">Modifier {{ app.user.utiIdentifiant }}</h1>
+
+
+                {{ include('utilisateur/_form.html.twig') }}
+
+                <div class="form-group row text-center">
+
+                    <div class="col-sm-12">
+                        <a class="btn btn-success" href="{{ path('home') }}">Retour a l'accueil</a>
+
+                        <button type="submit" class="btn btn-success">Valider</button>
+{#                        {{ include('utilisateur/_delete_form.html.twig') }}#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
 {% endblock %}

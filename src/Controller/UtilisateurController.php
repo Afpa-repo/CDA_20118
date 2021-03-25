@@ -75,12 +75,14 @@ class UtilisateurController extends AbstractController
     {
         $size = $cartService->getSize();
 
-        return $this->render('utilisateur/show.html.twig', [
+        return $this->render('utilisateur/profil.html.twig', [
             'utilisateur' => $utilisateur,
             'size' => $size
 
         ]);
     }
+
+
 
     /**
      * @Route("/{utiId}/edit", name="utilisateur_edit", methods={"GET","POST"})
