@@ -12,6 +12,9 @@
                 <div class="card__supporting-text">
                     {{ article.artPrixHt }}€
                 </div>
+                <div class="card__supporting-text">
+                    {{ article.cat.catNom }}
+                </div>
             </div>
             <footer class="card__actions">
                 <a class="btn" href="{{ path('produits_details', {'id': article.artId}) }}">Details</a>

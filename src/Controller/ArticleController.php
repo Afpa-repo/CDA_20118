@@ -66,9 +66,9 @@ class ArticleController extends AbstractController
         $size = $cartService->getSize();
 
         // Affiche le noms des catégories
-        $categories = $this->getDoctrine()
-            ->getRepository(Categorie::class)
-            ->findAll();
+//        $categories = $this->getDoctrine()
+//            ->getRepository(Categorie::class)
+//            ->findAll();
         //Fonction pour paginer la page page produit: on appelle la fonction paginate() avec en param la fonction findAllQueries() dans ArticleRepository
 //        $article = $paginator->paginate(
 //            $this->repository->findAllQueries($search),
@@ -77,9 +77,10 @@ class ArticleController extends AbstractController
 //        );
         $data = new SearchData();
         $form=$this->createForm(SearchType::class,$data);
-        $article= $repository->findSearch();
+        $form->handleRequest($request);
+        $article= $repository->findSearch($data);
         return $this->render('produit/produit.html.twig', [
-            'categories'=>$categories,
+//            'categories'=>$categories,
             'article' => $article,
             'size' => $size,
             'form' => $form->createView()

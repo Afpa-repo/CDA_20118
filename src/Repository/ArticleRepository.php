@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Article;
 use App\Entity\ArticleSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -62,9 +63,43 @@ public function findAllVisibleQuery(PropertySearch $search): Query
      * Recupere les produits en lien avec une recherche
      * @return Article[]
      */
-    public function findSearch(): Array
+    public function findSearch(SearchData $search): Array
     {
-        return $this->findAll();
+        $query = $this
+                ->createQueryBuilder('a')
+                ->select('c','a')
+                ->join('a.cat','c');
+
+
+                if (!empty($search->q))
+                {
+                    $query = $query
+                        ->andWhere('a.artNom LIKE :q')
+                        ->setParameter('q',"%{$search->q}%");
+                }
+
+                if (!empty($search->min))
+                {
+                    $query = $query
+                        ->andWhere('a.artPrixHt >= :min')
+                        ->setParameter('min',$search->min);
+                }
+
+                if (!empty($search->max))
+                {
+                    $query = $query
+                        ->andWhere('a.artPrixHt <= :max')
+                        ->setParameter('max',$search->max);
+                }
+
+                if (!empty($search->categories))
+                {
+                    $query = $query
+                        ->andWhere('c.catId IN (:categories)')
+                        ->setParameter('categories',$search->categories);
+                }
+
+                return $query->getQuery()->getResult();
     }
 
     private function  findAllQuery(): QueryBuilder
