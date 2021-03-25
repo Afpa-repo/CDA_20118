@@ -102,7 +102,7 @@ class UtilisateurController extends AbstractController
 
             $this->addFlash('success', 'Modification ok !');
 
-            return $this->redirectToRoute('utilisateur_index');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('utilisateur/edit.html.twig', [
