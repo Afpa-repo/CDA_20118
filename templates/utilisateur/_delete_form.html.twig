@@ -1,7 +1,7 @@
 <form method="post" action="{{ path('utilisateur_delete', {'utiId': utilisateur.utiId}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ utilisateur.utiId) }}">
-    <button class="btn btn-danger col-2">Supprimer</button>
+    <button class="bi bi-trash-fill"></button>
 </form>
 
 
