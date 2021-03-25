@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
-use App\Repository\ProductRepository;
+use App\Entity\Utilisateur;
+use App\Form\UtilisateurType;
+use App\Form\PanierCommandeType;
 use App\Service\Cart\CartService;
+use Symfony\Component\Mime\Email;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CartController extends AbstractController
 {
@@ -77,5 +81,59 @@ class CartController extends AbstractController
         $cartService->removeAll();
         $this->addFlash('success', 'Suppression du panier !');
         return $this->redirectToRoute("produits_index");
+    }
+
+
+/**
+ * @Route("/panier/commande", name="panier_commande")
+ */
+    public function commande(CartService $cartService, Request $request, MailerInterface $mailer) {
+        $form = $this->createForm(PanierCommandeType::class);
+        $form->handleRequest($request);
+        
+        $size = $cartService->getSize();
+
+        $total = $cartService->getTotal();
+
+        $panierWithData = $cartService->getFullCart();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // On récupère les infos du formulaire
+            $contact = $form->getData();
+
+            // Ici nous enverrons l'e-mail
+            $message = (new TemplatedEmail())
+
+            // On attribue l'expéditeur
+            ->From('villagegreen@gmail.com')
+
+            // On attribue le destinataire
+            ->To($contact['email'])
+
+            // On crée le texte avec la vue
+
+            ->subject('Commande passée avec succées !')
+            ->context([
+                'size' => $size,
+                'panier' => $panierWithData,
+                'prenom' => $contact['prenom'],
+                'livraison' => $contact['livraison'],
+                'facturation' => $contact['facturation'],
+                'total' => $total,
+                'items' => $panierWithData,
+            ])
+            ->htmlTemplate("emails/commande.html.twig");
+            ;
+
+            // On envoie le message
+            $mailer->send($message);
+
+            $this->addFlash('success', 'Votre commande a bien été pris en compte, vous aller recevoir dans votre boite mail le récapitulatif de votre commande.'); // Permet un message flash de renvoi
+        }
+
+        return $this->render("cart/commande.html.twig", [
+            'form_util' => $form->createView(),
+            'size' => $size
+        ]);
     }
 }

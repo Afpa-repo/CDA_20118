@@ -1,0 +1,31 @@
+
+{% block title %} Récapitulatif commande {% endblock %}
+
+{% block body %}
+<h1>Merci d'avoir commandé chez nous {{ prenom }}</h1>
+<p>Voici le Récapitulatif de votre commande</p>
+<br>
+{% for item in items %}
+    <tr>
+        <td>- {{ item.product.artNom }}</td>
+        <td>: {{ item.product.artPrixHt }} €</td>
+        <br>
+    </tr>
+{% endfor %}
+<br>
+<span>Nombre d'article:</span>
+<span>{{ size }}</span>
+<br>
+<span>total :</span>
+<span>{{ total }} €</span>
+<br>
+<p>Livré à :</p>
+<div>{{ livraison }}</div>
+<br>
+<p>Facturé à :</p>
+<div>{{ facturation}}</div>
+<br>
+<div>En vous souhaitant bonne réception !</div>
+<br>
+<p>L'équipe Village Green</p>
+{% endblock %}

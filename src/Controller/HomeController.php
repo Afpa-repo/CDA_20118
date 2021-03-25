@@ -18,6 +18,7 @@ class HomeController extends AbstractController {
     public function index(CartService $cartService) :Response
     {
         $size = $cartService->getSize();
+        
         // affichage de la page d'accueil
         return $this->render('accueil/index.html.twig',[
             'size' => $size

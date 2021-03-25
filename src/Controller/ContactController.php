@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-use Symfony\Component\DependencyInjection\Container;
 
 
 class ContactController extends AbstractController
@@ -39,8 +38,8 @@ class ContactController extends AbstractController
 
             // On crée le texte avec la vue
 
-            ->subject('Welcome to the Space Bar!')
-            ->text("Nice to meet you ! ❤️");
+            ->subject('Un mail via le formulaire de contact')
+            ->text($contact['message']);
             ;
 
             // On envoie le message
