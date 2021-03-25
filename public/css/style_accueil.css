@@ -1,128 +1,137 @@
 .bodyback {
-    background-image:  url("../img/background village.png") ;
-    background-repeat:  no-repeat;
-    background-size:  cover;
+  background-image:  url("../img/background village.png") ;
+  background-repeat:  no-repeat;
+  background-size:  cover;
 }
+
 h1{
-  font-size:5rem
+font-size:5rem
 }
+
 .entete{
 text-align: left;
 }
 
 .logo{
-  left: 0;
-  position: relative;
+left: 0;
+position: relative;
 }
+
 .bienvenue{
 position:absolute;
-right: 22%;
+right: 25rem;
 }
 
 .pub {
-  height:auto;
-  width: 65%;
- padding-left: 6%;
+height:auto;
+width: 80rem;
+padding-left:8rem;
 }
 
 @media (min-width: 1200px) {
-  .banniere
-  {
-  position: -webkit-sticky; /* pour safari */
-  position: sticky;
-  top: 0;
-  float:right;
-  text-align: right;
+.banniere
+{
+position: -webkit-sticky; /* pour safari */
+position: sticky;
+top: 0;
+float:right;
+text-align: right;
+}
+.banniere2
+{
+position: -webkit-sticky; /* pour safari */
+position: sticky;
+top: 0;
+float: left;
+text-align: left;
 }}
-@media (min-width: 1200px) {
-  .banniere2
-  {
-  position: -webkit-sticky; /* pour safari */
-  position: sticky;
-  top: 0;
-  float: left;
-  text-align: left;
-}}
+
 .banniere4 {
 
 height: auto;
-width: 100%;
+width: auto;
 text-align: center;
-padding: 5%;
+padding: 3rem;
+}
 
-}
 @media screen and (max-width: 500px) {
-  .column {
-    width: 10%;
-  }
+.column {
+  width: 10%;
 }
+.banniere {
+
+  display: none;
+
+}}
 
 .col {
-  width:10%;
-  text-align:left;
-  padding:5px;
- }
+width:10%;
+text-align:left;
+padding:0.313rem;
+}
+
 .center {
-  display: block;
-
-
+display: block;
 }
 
 .banniere{
-  float:right;
+float:right;
 }
 
-
-
 .row1 {
-    display: flex;
-  }
+  display: flex;
+}
+
 .row2 {
-    display: flex;
-  }
+  display: flex;
+}
+
 .row3 {
-    display: flex; 
-  }
-  td {
-      color: white;
-  }
-  
+  display: flex; 
+}
+
+td {
+    color: white;
+}
+/*Hover pour les catégories sur PC*/
 .image {
-  opacity: 1;
-  display: block;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
+opacity: 1;
+display: block;
+height: auto;
+transition: .5s ease;
+backface-visibility: hidden;
 }
 
 .middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
+transition: .5s ease;
+opacity: 0;
+position: absolute;
 }
 
 .container:hover .image {
-  opacity: 0.3;
+opacity: 0.3;
 }
 
 .container:hover .middle {
-  opacity: 1;
-  top: 37%;
-  left: 37%;
+opacity: 1;
+top: 4.5rem;
+left: 7.5rem;
 }
 
 .text {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    padding: 16px 32px;
-    display: none;
-  }
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  display: none;
+}
 
-  .container:hover .text{
-    display: block;
-  }
-  .container {
-    position: relative;
-    width: 50%;
-  }
+.container:hover .text{
+  display: block;
+}
+
+.container {
+  position: relative;
+  width: 14rem;
+  padding: 0.5rem; 
+}
