@@ -118,13 +118,21 @@ class UtilisateurController extends AbstractController
      */
     public function delete(Request $request, Utilisateur $utilisateur): Response
     {
+
+
         if ($this->isCsrfTokenValid('delete'.$utilisateur->getUtiId(), $request->request->get('_token'))) {
+
             $entityManager = $this->getDoctrine()->getManager();
+
+        //Je vide le token
+            $this->container->get('security.token_storage')->setToken(null);
+
             $entityManager->remove($utilisateur);
             $entityManager->flush();
         }
+        // j'envoi un msg pour confirmer la suppresion
         $this->addFlash('success', 'Utilisateur supprimer !');
 
-        return $this->redirectToRoute('utilisateur_index');
+        return $this->redirectToRoute('home');
     }
 }
