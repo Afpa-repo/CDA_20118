@@ -503,14 +503,18 @@
     background: #3a3f48;
 }
 
-.chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
+.chiller-theme .sidebar-wrapper .sidebar-menu .header-menu {
     /* Couleur des titres */
     color: #6c7b88;
+}
+span{
+    color: whitesmoke;
 }
 
  .filter{
      color: whitesmoke;
  }
+
 
 
 /* PUB DROITE*/
